@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
     <!-- Custom CSS -->
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
     
     <style>
         :root {
@@ -175,9 +175,9 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="../business-profile.php"><i class="fas fa-cog me-2"></i>Pengaturan Bisnis</a></li>
+                    <li><a class="dropdown-item" href="business-profile.php"><i class="fas fa-cog me-2"></i>Pengaturan Bisnis</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="../auth/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    <li><a class="dropdown-item text-danger" href="auth/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                 </ul>
             </div>
         </div>
