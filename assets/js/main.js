@@ -1,12 +1,6 @@
-/**
- * Main JavaScript File
- * Jasaku - Platform Manajemen Bisnis Jasa
- */
-
 (function($) {
     'use strict';
 
-    // Initialize tooltips
     function initTooltips() {
         const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.map(function(tooltipTriggerEl) {
@@ -14,7 +8,6 @@
         });
     }
 
-    // Initialize popovers
     function initPopovers() {
         const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
         popoverTriggerList.map(function(popoverTriggerEl) {
@@ -22,7 +15,6 @@
         });
     }
 
-    // Format currency input
     function formatCurrencyInput(element) {
         let value = element.value.replace(/[^\d]/g, '');
         if (value) {
@@ -31,17 +23,14 @@
         }
     }
 
-    // Parse currency value
     function parseCurrency(value) {
         return parseFloat(value.replace(/[^\d]/g, '')) || 0;
     }
 
-    // Confirm delete action
     window.confirmDelete = function(message) {
         return confirm(message || 'Apakah Anda yakin ingin menghapus item ini?');
     };
 
-    // Show loading spinner
     window.showLoading = function(button) {
         const originalText = button.innerHTML;
         button.setAttribute('data-original-text', originalText);
@@ -49,7 +38,6 @@
         button.disabled = true;
     };
 
-    // Hide loading spinner
     window.hideLoading = function(button) {
         const originalText = button.getAttribute('data-original-text');
         if (originalText) {
@@ -58,7 +46,6 @@
         button.disabled = false;
     };
 
-    // Auto-dismiss alerts
     function autoDismissAlerts() {
         $('.alert').each(function() {
             const alert = $(this);
@@ -72,7 +59,6 @@
         });
     }
 
-    // Search/Filter functionality
     window.filterTable = function(input, tableId) {
         const filter = input.value.toUpperCase();
         const table = document.getElementById(tableId);
@@ -97,7 +83,6 @@
         }
     };
 
-    // Sort table
     window.sortTable = function(columnIndex, tableId) {
         const table = document.getElementById(tableId);
         const tbody = table.getElementsByTagName('tbody')[0];
@@ -124,11 +109,9 @@
                 : bValue.localeCompare(aValue);
         });
         
-        // Rebuild table
         rows.forEach(row => tbody.appendChild(row));
     };
 
-    // Copy to clipboard
     window.copyToClipboard = function(text, button) {
         navigator.clipboard.writeText(text).then(function() {
             const originalHtml = button.innerHTML;
@@ -146,12 +129,10 @@
         });
     };
 
-    // Print function
     window.printPage = function() {
         window.print();
     };
 
-    // Export to CSV
     window.exportTableToCSV = function(tableId, filename) {
         const table = document.getElementById(tableId);
         const rows = table.querySelectorAll('tr');
@@ -184,7 +165,6 @@
         document.body.removeChild(downloadLink);
     }
 
-    // Number animation
     window.animateNumber = function(element, start, end, duration) {
         const range = end - start;
         const increment = range / (duration / 16);
@@ -200,7 +180,6 @@
         }, 16);
     };
 
-    // Form validation
     function validateForm(form) {
         let isValid = true;
         
@@ -224,21 +203,16 @@
         return isValid;
     }
 
-    // Initialize on document ready
     $(document).ready(function() {
-        // Initialize Bootstrap components
         initTooltips();
         initPopovers();
         
-        // Auto-dismiss alerts
         autoDismissAlerts();
         
-        // Currency input formatting
         $('.currency-input').on('blur', function() {
             formatCurrencyInput(this);
         });
         
-        // Form validation
         $('form').on('submit', function(e) {
             if ($(this).hasClass('needs-validation')) {
                 if (!validateForm(this)) {
@@ -248,13 +222,11 @@
             }
         });
         
-        // Remove invalid class on input
         $('.form-control, .form-select').on('input change', function() {
             $(this).removeClass('is-invalid');
             $(this).next('.invalid-feedback').remove();
         });
         
-        // Confirm delete links
         $('.delete-link, .btn-delete').on('click', function(e) {
             if (!confirm('Apakah Anda yakin ingin menghapus item ini?')) {
                 e.preventDefault();
@@ -262,25 +234,20 @@
             }
         });
         
-        // Auto-focus first input in modals
         $('.modal').on('shown.bs.modal', function() {
             $(this).find('input:first').focus();
         });
         
-        // Print button
         $('.btn-print').on('click', function() {
             window.print();
         });
         
-        // Back button
         $('.btn-back').on('click', function() {
             window.history.back();
         });
     });
 
-    // Chart utilities
     window.ChartUtils = {
-        // Chart colors
         colors: {
             primary: '#4F46E5',
             success: '#10B981',
@@ -290,7 +257,6 @@
             secondary: '#6B7280'
         },
         
-        // Default chart options
         defaultOptions: {
             responsive: true,
             maintainAspectRatio: true,
@@ -323,12 +289,10 @@
             }
         },
         
-        // Format currency for charts
         formatCurrency: function(value) {
             return 'Rp ' + value.toLocaleString('id-ID');
         },
         
-        // Format large numbers
         formatNumber: function(value) {
             if (value >= 1000000) {
                 return (value / 1000000).toFixed(1) + 'M';

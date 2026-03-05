@@ -1,43 +1,31 @@
 <?php
-/**
- * Login Page
- * Jasaku - Platform Manajemen Bisnis Jasa
- */
-
 require_once '../includes/db.php';
 require_once '../includes/functions.php';
 
-// Redirect if already logged in
 if (isLoggedIn()) {
     redirect('../dashboard.php');
 }
 
 $error = '';
 
-// Process login form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     $remember = isset($_POST['remember']);
     
-    // Validation
     if (empty($email) || empty($password)) {
         $error = 'Email dan password wajib diisi.';
     } else {
-        // Check credentials
         $stmt = mysqli_prepare($conn, "SELECT id, full_name, password_hash FROM users WHERE email = ?");
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         
         if ($user = mysqli_fetch_assoc($result)) {
-            // Verify password
             if (password_verify($password, $user['password_hash'])) {
-                // Set session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['full_name'];
                 
-                // Get primary business
                 $stmt = mysqli_prepare($conn, "SELECT id FROM businesses WHERE user_id = ? AND is_primary = 1 LIMIT 1");
                 mysqli_stmt_bind_param($stmt, "i", $user['id']);
                 mysqli_stmt_execute($stmt);
@@ -47,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['business_id'] = $business['id'];
                     redirect('../dashboard.php');
                 } else {
-                    // No business yet, redirect to setup
                     redirect('../setup-business.php');
                 }
             } else {
