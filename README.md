@@ -1,350 +1,532 @@
-# Jasaku - Complete Setup Guide
+# 🚀 Jasaku
 
-## Project Structure Lengkap
+> Platform Manajemen Bisnis Jasa untuk Agensi dan UMKM Indonesia
 
-```
-/jasaku
-├── index.php                    # Landing page (homepage)
-├── PRD.md                       # Product Requirements Document
-├── DASHBOARD_README.md          # Dashboard implementation guide
-├── DASHBOARD_VISUAL_GUIDE.md    # Visual reference guide
-│
-├── /auth                        # Authentication pages
-│   ├── login.php               # Login form
-│   ├── register.php            # Registration form
-│   └── logout.php              # Logout handler
-│
-├── /pages                       # Main application pages
-│   ├── dashboard.php           # Main dashboard with KPIs & charts
-│   └── setup-business.php      # First-time business setup
-│
-├── /includes                    # Reusable components
-│   ├── db.php                  # Database connection
-│   ├── functions.php           # Helper functions
-│   ├── header.php              # Page header template
-│   ├── sidebar.php             # Navigation sidebar
-│   └── footer.php              # Page footer template
-│
-├── /assets                      # Static assets
-│   ├── /css
-│   │   └── style.css           # Custom styles
-│   ├── /js
-│   │   └── main.js             # JavaScript utilities
-│   └── /uploads                # User uploads (logos, etc)
-│       └── /logos
-│
-└── /database
-    └── schema.sql              # Database schema & sample data
-```
-
-## Installation Steps
-
-### 1. Setup Database
-
-**Option A: Using phpMyAdmin**
-1. Open phpMyAdmin (http://localhost/phpmyadmin)
-2. Create new database: `jasaku_db`
-3. Select database `jasaku_db`
-4. Click "Import" tab
-5. Choose file: `database/schema.sql`
-6. Click "Go"
-
-**Option B: Using Command Line**
-```bash
-mysql -u root -p
-CREATE DATABASE jasaku_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE jasaku_db;
-SOURCE C:/xampp/htdocs/faydev/jasaku/database/schema.sql;
-EXIT;
-```
-
-### 2. Configure Database Connection
-
-File: `includes/db.php`
-
-```php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');          // Change if different
-define('DB_PASS', '');              // Add password if needed
-define('DB_NAME', 'jasaku_db');
-```
-
-### 3. Create Upload Directory
-
-```bash
-# Create directory for logo uploads
-mkdir -p assets/uploads/logos
-chmod 755 assets/uploads/logos
-```
-
-On Windows (create manually):
-```
-assets/
-  └── uploads/
-      └── logos/
-```
-
-### 4. Start XAMPP
-
-1. Open XAMPP Control Panel
-2. Start **Apache**
-3. Start **MySQL**
-
-### 5. Access Application
-
-Open browser and navigate to:
-- **Landing Page**: `http://localhost/faydev/jasaku/`
-- **Login**: `http://localhost/faydev/jasaku/auth/login.php`
-- **Register**: `http://localhost/faydev/jasaku/auth/register.php`
-
-## User Flow
-
-```
-┌─────────────────┐
-│  Landing Page   │
-│   (index.php)   │
-└────────┬────────┘
-         │
-    ┌────┴────┐
-    │         │
-┌───▼───┐ ┌──▼──────┐
-│Login  │ │Register │
-└───┬───┘ └──┬──────┘
-    │        │
-    │    ┌───▼───────────────┐
-    │    │ Business Setup    │
-    │    │ (First time only) │
-    │    └───┬───────────────┘
-    │        │
-    └────┬───┘
-         │
-    ┌────▼────────┐
-    │  Dashboard  │
-    └─────────────┘
-```
-
-## Sample Login Credentials
-
-After importing the database, you can login with:
-
-- **Email**: `admin@jasaku.com`
-- **Password**: `password`
-- **Business**: Jasaku Digital Agency (already created)
-
-## Features Overview
-
-### Landing Page (index.php)
-- Modern hero section with gradient background
-- Features showcase (6 feature cards)
-- Call-to-action section
-- Responsive navigation
-- Footer with links
-
-### Authentication
-
-**Login Page (auth/login.php)**
-- Email & password form
-- Password visibility toggle
-- Remember me checkbox
-- Secure password verification
-- Auto-redirect to dashboard or business setup
-
-**Register Page (auth/register.php)**
-- Full name, email, password form
-- Password strength indicator
-- Password confirmation
-- Email validation
-- Auto-redirect to business setup after registration
-
-**Logout (auth/logout.php)**
-- Session destruction
-- Cookie cleanup
-- Redirect to landing page
-
-### Business Setup (pages/setup-business.php)
-- Required fields: Business name, category
-- Optional fields: Description, phone, email, address, logo
-- Logo upload (max 2MB, JPG/PNG)
-- Preview logo before submit
-- Sets business as primary automatically for first business
-- Can be skipped if already has business
-
-### Dashboard (pages/dashboard.php)
-- **5 KPI Cards**:
-  1. Total Revenue (current month)
-  2. Active Deals
-  3. Total Clients
-  4. Deal Conversion Rate
-  5. Outstanding Payments alert
-  
-- **Chart.js Visualization**:
-  - Revenue vs Expense bar chart
-  - 6 months historical data
-  - Export to PNG feature
-  - Interactive tooltips
-
-- **Recent Deals Widget**:
-  - 5 most recent deals
-  - Stage badges (color-coded)
-  - Client info & deal value
-  - Expected close date
-
-- **Quick Actions**:
-  - Create new deal
-  - Add client
-  - Record transaction
-  - Add service package
-
-## Security Features
-
-1. **Password Hashing**: Using `password_hash()` with bcrypt
-2. **SQL Injection Prevention**: Prepared statements throughout
-3. **XSS Prevention**: Output escaping with `htmlspecialchars()`
-4. **Session Management**: Secure session handling
-5. **File Upload Security**: Type & size validation
-6. **CSRF Protection**: Token functions ready (in functions.php)
-
-## Helper Functions
-
-Located in `includes/functions.php`:
-
-```php
-// Authentication
-isLoggedIn()
-getCurrentBusinessId()
-getCurrentUserId()
-requireLogin()
-
-// Formatting
-formatCurrency($amount, $withSymbol)
-formatDate($date, $withTime)
-e($string)  // XSS protection
-
-// Calculations
-calculatePercentageChange($current, $previous)
-getChangeClass($percentage)
-getChangeIcon($percentage)
-
-// Flash Messages
-setFlashMessage($type, $message)
-getFlashMessage()
-
-// CSRF Protection
-generateCSRFToken()
-verifyCSRFToken($token)
-```
-
-## Database Tables
-
-1. **users** - User accounts
-2. **businesses** - Business profiles (multi-business support)
-3. **service_packages** - Service offerings
-4. **clients** - Client database
-5. **deals** - Deal pipeline tracking
-6. **deal_payments** - Payment tracking for deals
-7. **transactions** - Income & expense records
-
-## Responsive Design
-
-All pages are fully responsive with breakpoints:
-- **Mobile**: < 768px (hamburger menu, stacked layout)
-- **Tablet**: 768px - 1200px (collapsible sidebar)
-- **Desktop**: > 1200px (full layout with fixed sidebar)
-
-## Browser Support
-
-- Chrome (latest) ✅
-- Firefox (latest) ✅
-- Safari (latest) ✅
-- Edge (latest) ✅
-- IE11 (limited) ⚠️
-
-## Technologies Used
-
-| Component | Technology |
-|-----------|-----------|
-| Frontend | HTML5, CSS3, Bootstrap 5 |
-| Icons | Font Awesome 6 |
-| Charts | Chart.js 4.4.0 |
-| JavaScript | jQuery 3.x |
-| Backend | PHP 7.4+ |
-| Database | MySQL 5.7+ |
-| Server | Apache (XAMPP) |
-
-## Testing Checklist
-
-- [ ] Database imported successfully
-- [ ] Can access landing page
-- [ ] Can register new account
-- [ ] Can login with credentials
-- [ ] Business setup form works
-- [ ] Logo upload works
-- [ ] Dashboard displays correctly
-- [ ] KPI metrics show data
-- [ ] Chart renders properly
-- [ ] Recent deals widget shows data
-- [ ] Can logout successfully
-
-## Troubleshooting
-
-### "Cannot connect to database"
-- Check MySQL is running in XAMPP
-- Verify credentials in `includes/db.php`
-- Ensure database `jasaku_db` exists
-
-### "Call to undefined function mysqli_connect()"
-- Enable mysqli extension in php.ini
-- Restart Apache
-
-### "Permission denied" on logo upload
-- Check folder permissions: `chmod 755 assets/uploads/logos`
-- Ensure folder exists
-
-### Dashboard shows "No data"
-- Run sample data from `database/schema.sql`
-- Check if business_id is set in session
-
-### Styles not loading
-- Clear browser cache
-- Check Bootstrap CDN is accessible
-- Verify CSS file path
-
-## Next Steps
-
-After setup, you can:
-
-1. Create more pages:
-   - `pages/deals.php` - Deal pipeline management
-   - `pages/clients.php` - Client list & management
-   - `pages/services.php` - Service packages
-   - `pages/finance.php` - Financial tracking
-
-2. Add features:
-   - Deal stage management
-   - Client detail view
-   - Invoice generation
-   - Payment tracking
-   - Reports & analytics
-
-3. Enhance security:
-   - Implement CSRF tokens on forms
-   - Add rate limiting
-   - Email verification
-   - 2FA authentication
-
-## Support
-
-For issues or questions, refer to:
-- **PRD.md** - Product requirements and specifications
-- **DASHBOARD_README.md** - Dashboard implementation details
-- **DASHBOARD_VISUAL_GUIDE.md** - UI/UX reference
-
-## License
-
-This project is part of Jasaku MVP development.
+**Jasaku** adalah platform SaaS yang dirancang khusus untuk membantu pemilik bisnis jasa di Indonesia mengelola operasional bisnis mereka secara terintegrasi — mulai dari database klien, penawaran proyek, pipeline sales, hingga pencatatan keuangan — dalam satu command center yang sederhana namun powerful.
 
 ---
 
-**Version**: 1.0  
-**Last Updated**: March 5, 2026  
-**Status**: MVP Complete - Ready for Development
+## 📋 Daftar Isi
+
+- [Overview](#-overview)
+- [Fitur Utama](#-fitur-utama)
+- [Tech Stack](#-tech-stack)
+- [Struktur Projek](#-struktur-projek)
+- [Modul & Fungsionalitas](#-modul--fungsionalitas)
+- [Database Schema](#-database-schema)
+- [Development Notes](#-development-notes)
+- [Roadmap](#-roadmap)
+
+---
+
+## 🎯 Overview
+
+### Problem Statement
+
+Banyak pemilik bisnis jasa (agensi, konsultan, UMKM) di Indonesia masih kesulitan mengelola operasional mereka:
+- Data klien tersebar di WhatsApp, notes, atau Excel
+- Sulit tracking deal mana yang masih prospek, sudah closing, atau gagal
+- Keuangan tidak tercatat dengan baik
+- Tidak tahu performa bisnis secara real-time
+
+### Solution
+
+Jasaku menyediakan platform all-in-one yang menyatukan:
+- **CRM sederhana** untuk database klien
+- **Deal Pipeline** untuk tracking sales funnel
+- **Service Management** untuk kelola paket jasa
+- **Financial Tracking** untuk catat pemasukan & pengeluaran
+- **Dashboard Analytics** untuk monitor performa bisnis
+
+### Target Pengguna
+
+| Segmen | Karakteristik | Use Case |
+|--------|---------------|----------|
+| **Agensi Jasa** | Tim kecil (2-10 orang), project-based | Pipeline management, multi-client tracking |
+| **UMKM Jasa** | Owner-operator, bisnis lokal | Pencatatan keuangan, database klien, promo |
+| **Konsultan** | Freelancer/small firm | Service packages, deal tracking |
+
+### Value Proposition
+
+> *"Kelola bisnis jasamu tanpa ribet — dari pertama klien hubungi sampai uang masuk rekening, semua tercatat rapi di satu tempat."*
+
+---
+
+## ✨ Fitur Utama
+
+### 1. 🏢 Multi-Business Management
+- Satu user bisa kelola beberapa bisnis
+- Switch business dengan mudah via dropdown
+- Setiap bisnis punya data terpisah (klien, deals, keuangan)
+
+### 2. 📦 Service Package Management
+- Buat dan kelola paket jasa (one-time service)
+- Set harga, deskripsi, status aktif/nonaktif
+- Quick-select saat create deal
+
+### 3. 👥 Client CRM
+- Database klien lengkap dengan company, kontak, alamat
+- Tracking sumber klien (Referral, Social Media, Direct, etc.)
+- History deals per klien
+- Notes untuk catatan penting
+
+### 4. 💼 Deal Pipeline Management
+Pipeline 5-stage yang fixed untuk konsistensi:
+
+```
+Lead → Qualified → Proposal → Negotiation → Won/Lost
+10%     25%         50%         75%          100%/0%
+```
+
+**Fitur Deal:**
+- Assign client & service package
+- Nilai deal otomatis dari harga service
+- Apply discount (percentage)
+- Expected close date
+- Track stage progression
+- Deal history
+
+### 5. 💰 Financial Management
+
+#### Income Tracking
+- Kategori: Deal Payment, Lainnya
+- Metode: Transfer, Cash, QRIS, Lainnya
+- Link langsung ke deal (optional)
+- Filter by date range
+
+#### Expense Tracking
+- Kategori: Operasional, Marketing, Tools, Lainnya
+- Pencatatan pengeluaran bisnis
+- Analisis profitabilitas
+
+#### Payment Status
+- **Pending**: Belum ada pembayaran
+- **Partial**: Sebagian sudah dibayar
+- **Paid**: Lunas
+- **Cancelled**: Deal dibatalkan
+
+### 6. 📊 Dashboard & Analytics
+
+**Metrics Display:**
+- 💵 Total Revenue (bulan ini) + percentage change
+- 📈 Active Deals (deals yang belum Won/Lost)
+- 👥 Total Clients + growth rate
+- 📉 Deal Conversion Rate
+- ⏳ Outstanding Payments
+
+**Visualisasi:**
+- Revenue vs Expense chart (6 bulan terakhir)
+- Deal pipeline overview
+- Recent activities
+
+### 7. 🎨 Professional Branding
+- Upload logo bisnis
+- Business profile lengkap (kategori, deskripsi, kontak)
+- Professional look untuk kredibilitas
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
+- **PHP 7.4+** — Server-side logic
+- **MySQL 8.0** — Database dengan InnoDB engine
+- **MySQLi** — Database interface (prepared statements untuk security)
+
+### Frontend
+- **HTML5/CSS3** — Semantic markup
+- **Bootstrap 5.3** — Responsive UI framework
+- **JavaScript (Vanilla)** — Client-side interactivity
+- **Font Awesome 6** — Icon library
+- **Chart.js** (planned) — Data visualization
+
+### Development Tools
+- **XAMPP** — Local development environment
+- **Git** — Version control
+- **VS Code** — Code editor
+
+### Security Features
+- Password hashing dengan `password_hash()` (bcrypt)
+- Prepared statements untuk SQL injection prevention
+- CSRF token untuk form submissions
+- Session management untuk authentication
+- Input validation & sanitization
+
+---
+
+## 📁 Struktur Projek
+
+```
+jasaku/
+├── assets/
+│   ├── css/
+│   │   └── style.css              # Custom styling
+│   ├── js/
+│   │   └── main.js                # Frontend interactivity
+│   └── uploads/
+│       └── logos/                 # Business logos storage
+│
+├── auth/
+│   ├── login.php                  # Login page
+│   ├── register.php               # Registration page
+│   └── logout.php                 # Logout handler
+│
+├── database/
+│   ├── schema.sql                 # Database structure
+│   └── schema_with_rich_data.sql  # Schema + sample data
+│
+├── includes/
+│   ├── db.php                     # Database connection
+│   ├── functions.php              # Helper functions
+│   ├── header.php                 # Page header component
+│   ├── sidebar.php                # Navigation sidebar
+│   └── footer.php                 # Page footer component
+│
+├── index.php                      # Landing page
+├── dashboard.php                  # Dashboard (overview metrics)
+│
+├── setup-business.php             # First-time business setup
+├── business-profile.php           # Edit business profile
+│
+├── services.php                   # Service packages list
+├── service-form.php               # Add/Edit service
+│
+├── clients.php                    # Client list & CRM
+├── client-form.php                # Add/Edit client
+│
+├── deals.php                      # Deal pipeline view
+├── deal-form.php                  # Add/Edit deal
+│
+├── finance.php                    # Financial tracking (income/expense)
+├── transaction-form.php           # Add/Edit transaction
+│
+├── PRD.md                         # Product Requirements Document
+└── README.md                      # Dokumentasi projek (you are here)
+```
+
+### File Organization Pattern
+
+#### Page Structure
+Setiap halaman utama mengikuti pola:
+1. **Require dependencies** (`db.php`, `functions.php`)
+2. **Authentication check** (`requireLogin()`)
+3. **Business validation** (redirect ke setup jika belum punya bisnis)
+4. **Data fetching** (queries)
+5. **Include header**
+6. **Page content**
+7. **Include footer**
+
+#### Form Pattern
+Setiap form mengikuti pola:
+- CSRF token generation (`generateCSRFToken()`)
+- POST handler dengan validation
+- Success: Flash message + redirect
+- Error: Show error message
+
+---
+
+## 🔧 Modul & Fungsionalitas
+
+### 1. Authentication Module (`auth/`)
+
+**Register Flow:**
+```
+Input: Name, Email, Password → 
+Validation → 
+Hash Password → 
+Insert to DB → 
+Redirect to Login
+```
+
+**Login Flow:**
+```
+Input: Email, Password → 
+Verify Credentials → 
+Set Session (user_id, business_id) → 
+Check if has business? 
+  → Yes: Dashboard
+  → No: Setup Business
+```
+
+### 2. Business Module
+
+**First-Time Setup:**
+- Wajib sebelum bisa akses fitur lain
+- Input: Business name, category, description, contact info, logo
+- Set as primary business
+- Session `business_id` di-set
+
+**Multi-Business:**
+- User bisa create multiple businesses
+- Switch business via dropdown di sidebar
+- Filter semua data by `business_id`
+
+### 3. Service Module
+
+**CRUD Operations:**
+- Create/Update service package
+- Soft delete (`is_deleted = 1`)
+- Status: Active/Inactive
+- Pagination & search
+
+**Business Logic:**
+- Service harga auto-populate deal value
+- Service bisa di-link ke multiple deals
+
+### 4. Client Module (CRM)
+
+**Features:**
+- Complete contact information
+- Source tracking (marketing analytics)
+- Notes field untuk catatan internal
+- Deal history per client
+
+**Filter & Search:**
+- Filter by source
+- Search by name/company/email
+- Sort by date, name
+
+### 5. Deal Module (Sales Pipeline)
+
+**Pipeline Stages:**
+
+| Stage | Deskripsi | Probability | Actions |
+|-------|-----------|-------------|---------|
+| **Lead** | Klien baru inquiry | 10% | Qualify → |
+| **Qualified** | Budget & kebutuhan cocok | 25% | Send proposal → |
+| **Proposal** | Penawaran dikirim | 50% | Apply discount, negotiate → |
+| **Negotiation** | Negosiasi terms | 75% | Finalize → |
+| **Won** | Deal closed! 🎉 | 100% | Create invoice, payment tracking |
+| **Lost** | Deal gagal | 0% | Record reason, follow-up later |
+
+**Deal Logic:**
+- `final_value = deal_value - (deal_value * discount_percent / 100)`
+- Discount hanya bisa apply di stage Proposal keatas
+- Stage Won/Lost adalah final state
+- History stage changes tracked via `updated_at`
+
+### 6. Financial Module
+
+**Income Categories:**
+- Deal Payment (linked to specific deal)
+- Lainnya
+
+**Expense Categories:**
+- Operasional
+- Marketing
+- Tools
+- Lainnya
+
+**Payment Tracking:**
+```
+Deal Created (Pending) → 
+Partial Payment → 
+Full Payment (Paid) or Cancelled
+```
+
+**Reports:**
+- Monthly revenue vs expense
+- Profit margin
+- Outstanding payments
+- Payment methods breakdown
+
+### 7. Dashboard Module
+
+**Metrics Calculation:**
+
+```php
+// Revenue (current month)
+SELECT SUM(amount) FROM transactions 
+WHERE type='Income' AND MONTH(transaction_date) = CURRENT_MONTH
+
+// Active Deals
+SELECT COUNT(*) FROM deals 
+WHERE current_stage NOT IN ('Won', 'Lost')
+
+// Conversion Rate
+(Won Deals / Total Deals) * 100
+
+// Outstanding Payments
+SELECT SUM(final_value) FROM deals 
+WHERE payment_status != 'Paid'
+```
+
+---
+
+## 🗄 Database Schema
+
+### Entity Relationship
+
+```
+┌─────────┐
+│  users  │
+└────┬────┘
+     │ 1:N
+     ↓
+┌──────────┐       ┌──────────────┐
+│businesses│ 1:N   │   services   │
+└────┬─────┘←──────┤              │
+     │             └──────┬───────┘
+     │ 1:N                │
+     ↓                    │
+┌─────────┐               │
+│ clients │               │
+└────┬────┘               │
+     │ 1:N                │ N:1
+     ↓                    ↓
+┌────────────┐     ┌──────┴───────┐
+│   deals    │────→│    deals     │
+└─────┬──────┘     └──────────────┘
+      │ 1:N
+      ↓
+┌───────────────┐
+│ deal_payments │
+└───────────────┘
+
+┌──────────────┐
+│ transactions │ (linked to business & optionally to deal)
+└──────────────┘
+```
+
+### Key Tables
+
+#### `users`
+- Primary authentication entity
+- Can own multiple businesses
+
+#### `businesses`
+- Multi-tenancy dengan `user_id`
+- Semua data scoped by `business_id`
+- Primary business flag
+
+#### `services`
+- Service packages per business
+- Soft delete support
+- Active/Inactive status
+
+#### `clients`
+- CRM database
+- Source tracking
+- Linked to deals
+
+#### `deals`
+- Core sales pipeline
+- Links client + service
+- Discount & final value calculation
+- Stage progression
+
+#### `deal_payments`
+- Payment installments
+- Multiple payments per deal
+- Payment methods tracking
+
+#### `transactions`
+- Income & Expense tracking
+- Optional link to deals
+- Category & method
+
+---
+
+## 💻 Development Notes
+
+### Code Conventions
+
+**Naming:**
+- Files: `kebab-case.php`
+- Database: `snake_case`
+- Functions: `camelCase()`
+- Constants: `UPPER_SNAKE_CASE`
+
+**Security:**
+- ✅ Always use prepared statements
+- ✅ Sanitize input with `htmlspecialchars()` (via `e()` helper)
+- ✅ Validate file uploads (type, size)
+- ✅ CSRF protection on forms
+- ✅ Session-based authentication
+
+**Database:**
+- Use transactions untuk operasi yang multi-table
+- Index pada foreign keys dan frequent query fields
+- Soft delete untuk data yang perlu audit trail
+
+### Helper Functions (`includes/functions.php`)
+
+```php
+isLoggedIn()              // Check if user authenticated
+getCurrentBusinessId()    // Get active business ID from session
+requireLogin()            // Redirect if not authenticated
+formatCurrency($amount)   // Format to Rupiah
+formatDate($date)         // Format to Indonesian locale
+setFlashMessage()         // Set session flash message
+getFlashMessage()         // Retrieve & clear flash message
+generateCSRFToken()       // Create CSRF token
+verifyCSRFToken()         // Validate CSRF token
+```
+
+### Session Variables
+
+```php
+$_SESSION['user_id']      // Current logged in user
+$_SESSION['business_id']  // Current active business
+$_SESSION['flash']        // Flash messages
+$_SESSION['csrf_token']   // CSRF protection
+```
+
+---
+
+## 🚀 Roadmap
+
+### Phase 1 - MVP (Current)
+- ✅ Authentication (Login/Register)
+- ✅ Business Profile Management
+- ✅ Service Package CRUD
+- ✅ Client CRM
+- ✅ Deal Pipeline (5 stages)
+- ✅ Financial Tracking (Income/Expense)
+- ✅ Dashboard Metrics
+- ✅ Payment Tracking
+
+### Phase 2 - Enhancements (Q2 2026)
+- [ ] Invoice Generation & PDF Export
+- [ ] Email Notifications (deal updates, payment reminders)
+- [ ] Advanced filters & search
+- [ ] Bulk actions
+- [ ] Data export (CSV/Excel)
+- [ ] Activity log & audit trail
+
+### Phase 3 - Advanced Features (Q3 2026)
+- [ ] Recurring/Subscription Services
+- [ ] Team collaboration (multi-user per business)
+- [ ] Role-based access control
+- [ ] Client Portal (klien bisa login, lihat invoice, bayar)
+- [ ] Payment Gateway Integration (Midtrans, Xendit)
+- [ ] WhatsApp Integration
+- [ ] Advanced analytics & forecasting
+
+### Phase 4 - Scale (Q4 2026)
+- [ ] Mobile App (React Native)
+- [ ] API untuk integrasi
+- [ ] Automated workflows
+- [ ] AI-powered insights
+- [ ] Multi-currency support
+- [ ] Multi-language (English)
+
+---
+
+## 📝 License & Credits
+
+**Jasaku** © 2026 — Platform Manajemen Bisnis Jasa
+
+Dibuat dengan ❤️ untuk UMKM dan Agensi Jasa Indonesia 🇮🇩
+
+---
+
+## 📞 Support
+
+Untuk pertanyaan development atau issue, silakan hubungi tim development.
+
+---
+
+**Version:** 1.0 MVP  
+**Last Updated:** Maret 2026  
+**Status:** Active Development
