@@ -580,19 +580,19 @@ function exportChart() {
 }
 
 .kpi-icon.revenue {
-    background: linear-gradient(135deg, #10B981, #059669);
+    background: #059669;
 }
 
 .kpi-icon.deals {
-    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    background: #3B82F6;
 }
 
 .kpi-icon.clients {
-    background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+    background: #10B981;
 }
 
 .kpi-icon.conversion {
-    background: linear-gradient(135deg, #F59E0B, #D97706);
+    background: #F59E0B;
 }
 
 .kpi-info {

@@ -36,7 +36,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     .sidebar-logo-icon {
         width: 40px;
         height: 40px;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        background: var(--primary-color);
         border-radius: 10px;
         display: flex;
         align-items: center;

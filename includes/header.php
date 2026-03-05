@@ -38,9 +38,9 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     
     <style>
         :root {
-            --primary-color: #4F46E5;
-            --secondary-color: #06B6D4;
-            --success-color: #10B981;
+            --primary-color: #10B981;
+            --secondary-color: #059669;
+            --success-color: #059669;
             --danger-color: #EF4444;
             --warning-color: #F59E0B;
             --dark-color: #1F2937;

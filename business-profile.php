@@ -348,7 +348,7 @@ include 'includes/sidebar.php';
     width: 200px;
     height: 200px;
     margin: 0 auto;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--primary-color);
     border-radius: 12px;
     display: flex;
     align-items: center;

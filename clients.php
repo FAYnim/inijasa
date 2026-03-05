@@ -181,7 +181,7 @@ include 'includes/sidebar.php';
     width: 50px;
     height: 50px;
     border-radius: 10px;
-    background: linear-gradient(135deg, var(--primary-color), #764ba2);
+    background: var(--primary-color);
     color: white;
     display: flex;
     align-items: center;

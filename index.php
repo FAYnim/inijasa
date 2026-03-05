@@ -27,9 +27,9 @@ if (isset($_SESSION['user_id'])) {
     
     <style>
         :root {
-            --primary-color: #4F46E5;
-            --secondary-color: #06B6D4;
-            --success-color: #10B981;
+            --primary-color: #10B981;
+            --secondary-color: #059669;
+            --success-color: #059669;
             --dark-color: #1F2937;
         }
         
@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id'])) {
         /* Hero Section */
         .hero-section {
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-color);
             color: white;
             position: relative;
             overflow: hidden;
@@ -204,12 +204,12 @@ if (isset($_SESSION['user_id'])) {
             margin-bottom: 1.5rem;
         }
         
-        .feature-icon-1 { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
-        .feature-icon-2 { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
-        .feature-icon-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; }
-        .feature-icon-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; }
-        .feature-icon-5 { background: linear-gradient(135deg, #fa709a, #fee140); color: white; }
-        .feature-icon-6 { background: linear-gradient(135deg, #30cfd0, #330867); color: white; }
+        .feature-icon-1 { background: #10B981; color: white; }
+        .feature-icon-2 { background: #059669; color: white; }
+        .feature-icon-3 { background: #3B82F6; color: white; }
+        .feature-icon-4 { background: #F59E0B; color: white; }
+        .feature-icon-5 { background: #EF4444; color: white; }
+        .feature-icon-6 { background: #10B981; color: white; }
         
         .feature-title {
             font-size: 1.25rem;
@@ -226,7 +226,7 @@ if (isset($_SESSION['user_id'])) {
         /* CTA Section */
         .cta-section {
             padding: 5rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-color);
             color: white;
             text-align: center;
         }

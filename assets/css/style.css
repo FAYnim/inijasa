@@ -4,9 +4,9 @@
  */
 
 :root {
-    --primary-color: #4F46E5;
-    --secondary-color: #06B6D4;
-    --success-color: #10B981;
+    --primary-color: #10B981;
+    --secondary-color: #059669;
+    --success-color: #059669;
     --danger-color: #EF4444;
     --warning-color: #F59E0B;
     --info-color: #3B82F6;
@@ -46,7 +46,7 @@ a {
 }
 
 a:hover {
-    color: #4338CA;
+    color: #059669;
 }
 
 /* Buttons */
@@ -63,10 +63,10 @@ a:hover {
 }
 
 .btn-primary:hover {
-    background: #4338CA;
-    border-color: #4338CA;
+    background: #059669;
+    border-color: #059669;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .btn-success {
@@ -131,7 +131,7 @@ a:hover {
 .form-control:focus,
 .form-select:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
 /* Tables */
