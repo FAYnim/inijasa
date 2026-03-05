@@ -4,8 +4,8 @@
  * Jasaku - Platform Manajemen Bisnis Jasa
  */
 
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
 
 requireLogin();
 
@@ -72,8 +72,8 @@ FROM services
 WHERE business_id = $business_id AND is_deleted = 0";
 $stats = mysqli_fetch_assoc(mysqli_query($conn, $stats_query));
 
-include '../includes/header.php';
-include '../includes/sidebar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
 ?>
 
 <div class="main-content">
@@ -208,4 +208,4 @@ include '../includes/sidebar.php';
     </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

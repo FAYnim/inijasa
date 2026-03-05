@@ -4,8 +4,8 @@
  * Jasaku - Platform Manajemen Bisnis Jasa
  */
 
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
 
 requireLogin();
 
@@ -95,8 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include '../includes/header.php';
-include '../includes/sidebar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
 ?>
 
 <div class="main-content">
@@ -215,4 +215,4 @@ include '../includes/sidebar.php';
     </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

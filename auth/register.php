@@ -9,7 +9,7 @@ require_once '../includes/functions.php';
 
 // Redirect if already logged in
 if (isLoggedIn()) {
-    redirect('../pages/dashboard.php');
+    redirect('../dashboard.php');
 }
 
 $error = '';
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_name'] = $full_name;
                 
                 // Redirect to business setup
-                redirect('../pages/setup-business.php');
+                redirect('../setup-business.php');
             } else {
                 $error = 'Terjadi kesalahan. Silakan coba lagi.';
             }

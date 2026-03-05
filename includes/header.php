@@ -175,7 +175,7 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="../pages/business-profile.php"><i class="fas fa-cog me-2"></i>Pengaturan Bisnis</a></li>
+                    <li><a class="dropdown-item" href="../business-profile.php"><i class="fas fa-cog me-2"></i>Pengaturan Bisnis</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item text-danger" href="../auth/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                 </ul>

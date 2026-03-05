@@ -4,8 +4,8 @@
  * Jasaku - Platform Manajemen Bisnis Jasa
  */
 
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
 
 requireLogin();
 
@@ -50,8 +50,8 @@ $clients = mysqli_stmt_get_result($stmt);
 // Get total clients
 $total_clients = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM clients WHERE business_id = $business_id"))['count'];
 
-include '../includes/header.php';
-include '../includes/sidebar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
 ?>
 
 <div class="main-content">
@@ -195,4 +195,4 @@ include '../includes/sidebar.php';
 }
 </style>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

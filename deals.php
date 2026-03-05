@@ -4,8 +4,8 @@
  * Jasaku - Platform Manajemen Bisnis Jasa
  */
 
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
 
 requireLogin();
 
@@ -69,8 +69,8 @@ foreach ($stages as $stage) {
     $stage_counts[$stage] = mysqli_fetch_assoc($result)['count'];
 }
 
-include '../includes/header.php';
-include '../includes/sidebar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
 ?>
 
 <div class="main-content">
@@ -264,4 +264,4 @@ include '../includes/sidebar.php';
 }
 </style>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

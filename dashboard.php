@@ -4,8 +4,8 @@
  * Jasaku - Platform Manajemen Bisnis Jasa
  */
 
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
 
 // Require login
 requireLogin();
@@ -195,8 +195,8 @@ mysqli_stmt_execute($stmt);
 $recent_deals = mysqli_stmt_get_result($stmt);
 
 // Include header and sidebar
-include '../includes/header.php';
-include '../includes/sidebar.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
 ?>
 
 <div class="main-content">
@@ -946,4 +946,4 @@ function exportChart() {
 }
 </style>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

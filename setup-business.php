@@ -4,8 +4,8 @@
  * Jasaku - Platform Manajemen Bisnis Jasa
  */
 
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
 
 // Require login
 requireLogin();
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif ($_FILES['logo']['size'] > $max_size) {
                 $error = 'Ukuran logo maksimal 2MB.';
             } else {
-                $upload_dir = '../assets/uploads/logos/';
+                $upload_dir = 'assets/uploads/logos/';
                 if (!is_dir($upload_dir)) {
                     mkdir($upload_dir, 0755, true);
                 }

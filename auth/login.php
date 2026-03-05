@@ -9,7 +9,7 @@ require_once '../includes/functions.php';
 
 // Redirect if already logged in
 if (isLoggedIn()) {
-    redirect('../pages/dashboard.php');
+    redirect('../dashboard.php');
 }
 
 $error = '';
@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if ($business = mysqli_fetch_assoc($business_result)) {
                     $_SESSION['business_id'] = $business['id'];
-                    redirect('../pages/dashboard.php');
+                    redirect('../dashboard.php');
                 } else {
                     // No business yet, redirect to setup
-                    redirect('../pages/setup-business.php');
+                    redirect('../setup-business.php');
                 }
             } else {
                 $error = 'Email atau password salah.';
