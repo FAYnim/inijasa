@@ -7,20 +7,15 @@
 require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
-// Require login
 requireLogin();
 
 $page_title = 'Dashboard';
 $business_id = getCurrentBusinessId();
 
-// Redirect to business setup if no business
 if (!$business_id) {
     redirect('setup-business.php');
 }
 
-// ==================== FETCH DASHBOARD METRICS ====================
-
-// 1. Total Revenue (Current Month)
 $current_month = date('Y-m');
 $stmt = mysqli_prepare($conn, "
     SELECT COALESCE(SUM(amount), 0) as total_revenue
@@ -34,7 +29,6 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $total_revenue = mysqli_fetch_assoc($result)['total_revenue'];
 
-// Total Revenue (Previous Month) for comparison
 $previous_month = date('Y-m', strtotime('-1 month'));
 $stmt = mysqli_prepare($conn, "
     SELECT COALESCE(SUM(amount), 0) as total_revenue
@@ -50,7 +44,6 @@ $previous_revenue = mysqli_fetch_assoc($result)['total_revenue'];
 
 $revenue_change = calculatePercentageChange($total_revenue, $previous_revenue);
 
-// 2. Total Active Deals
 $stmt = mysqli_prepare($conn, "
     SELECT COUNT(*) as active_deals
     FROM deals
@@ -62,7 +55,6 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $active_deals = mysqli_fetch_assoc($result)['active_deals'];
 
-// Active Deals Previous Month
 $stmt = mysqli_prepare($conn, "
     SELECT COUNT(*) as active_deals
     FROM deals
@@ -77,7 +69,6 @@ $previous_active_deals = mysqli_fetch_assoc($result)['active_deals'];
 
 $deals_change = calculatePercentageChange($active_deals, $previous_active_deals);
 
-// 3. Total Clients
 $stmt = mysqli_prepare($conn, "
     SELECT COUNT(*) as total_clients
     FROM clients
@@ -88,7 +79,6 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $total_clients = mysqli_fetch_assoc($result)['total_clients'];
 
-// Previous month clients
 $stmt = mysqli_prepare($conn, "
     SELECT COUNT(*) as total_clients
     FROM clients
@@ -102,7 +92,6 @@ $previous_clients = mysqli_fetch_assoc($result)['total_clients'];
 
 $clients_change = calculatePercentageChange($total_clients, $previous_clients);
 
-// 4. Deal Conversion Rate
 $stmt = mysqli_prepare($conn, "
     SELECT 
         COUNT(*) as total_deals,
@@ -118,7 +107,6 @@ $conversion_rate = $deal_stats['total_deals'] > 0
     ? ($deal_stats['won_deals'] / $deal_stats['total_deals']) * 100 
     : 0;
 
-// 5. Outstanding Payments
 $stmt = mysqli_prepare($conn, "
     SELECT COALESCE(SUM(d.final_value - COALESCE(dp.paid_amount, 0)), 0) as outstanding
     FROM deals d
@@ -136,13 +124,11 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $outstanding_payments = mysqli_fetch_assoc($result)['outstanding'];
 
-// ==================== CHART DATA: Revenue vs Expense (6 Months) ====================
 $chart_data = [];
 for ($i = 5; $i >= 0; $i--) {
     $month = date('Y-m', strtotime("-$i months"));
     $month_label = date('M Y', strtotime("-$i months"));
     
-    // Revenue
     $stmt = mysqli_prepare($conn, "
         SELECT COALESCE(SUM(amount), 0) as total
         FROM transactions
@@ -155,7 +141,6 @@ for ($i = 5; $i >= 0; $i--) {
     $result = mysqli_stmt_get_result($stmt);
     $revenue = mysqli_fetch_assoc($result)['total'];
     
-    // Expense
     $stmt = mysqli_prepare($conn, "
         SELECT COALESCE(SUM(amount), 0) as total
         FROM transactions
@@ -175,7 +160,6 @@ for ($i = 5; $i >= 0; $i--) {
     ];
 }
 
-// ==================== RECENT DEALS ====================
 $stmt = mysqli_prepare($conn, "
     SELECT 
         d.id,
@@ -194,7 +178,6 @@ mysqli_stmt_bind_param($stmt, "i", $business_id);
 mysqli_stmt_execute($stmt);
 $recent_deals = mysqli_stmt_get_result($stmt);
 
-// Include header and sidebar
 include 'includes/header.php';
 include 'includes/sidebar.php';
 ?>

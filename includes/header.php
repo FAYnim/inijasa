@@ -1,10 +1,4 @@
 <?php
-/**
- * Header Template
- * Jasaku - Platform Manajemen Bisnis Jasa
- */
-
-// Get current business info
 $business_name = 'Jasaku';
 $user_name = 'User';
 
@@ -37,16 +31,9 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($page_title) ? e($page_title) . ' - ' : '' ?>Jasaku</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    
-    <!-- Custom CSS -->
     <link href="assets/css/style.css" rel="stylesheet">
     
     <style>
