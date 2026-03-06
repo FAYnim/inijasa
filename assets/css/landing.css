@@ -1,0 +1,860 @@
+/* ====================================
+   CSS Variables & Theme
+   ==================================== */
+:root {
+    /* Colors */
+    --primary: #0A2342;
+    --primary-light: #1B3A5F;
+    --accent: #FF6B35;
+    --accent-hover: #E55A2A;
+    --bg-main: #FAFAFA;
+    --bg-white: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #6B7280;
+    --border-color: #E5E7EB;
+    
+    /* Typography */
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Outfit', sans-serif;
+    
+    /* Spacing */
+    --section-padding: 100px;
+    --section-padding-mobile: 60px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(10, 35, 66, 0.08);
+    --shadow-md: 0 4px 16px rgba(10, 35, 66, 0.12);
+    --shadow-lg: 0 8px 32px rgba(10, 35, 66, 0.16);
+}
+
+/* ====================================
+   Global Styles & Reset
+   ==================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: var(--bg-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Add subtle grain texture to body */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+}
+
+section {
+    padding: var(--section-padding) 0;
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: var(--section-padding-mobile) 0;
+    }
+}
+
+/* ====================================
+   Typography
+   ==================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--primary);
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.section-title-small {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section-subtitle-small {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* ====================================
+   Navbar
+   ==================================== */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: var(--accent);
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+.navbar .cta-btn {
+    margin-left: 1rem;
+}
+
+/* ====================================
+   Buttons
+   ==================================== */
+.btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline-secondary:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-outline-primary {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+
+.btn-outline-primary:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+/* ====================================
+   Hero Section
+   ==================================== */
+.hero-section {
+    position: relative;
+    padding: 120px 0 100px;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 35, 66, 0.03) 0%, rgba(255, 107, 53, 0.05) 100%);
+    border-radius: 0 0 0 200px;
+    z-index: -1;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    animation: fadeInUp 0.6s ease 0.4s both;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease 0.5s both;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    animation: fadeInLeft 0.8s ease 0.4s both;
+}
+
+.hero-image {
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+/* ====================================
+   Logo Cloud Section
+   ==================================== */
+.logo-cloud-section {
+    background: white;
+    padding: 60px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo-cloud {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.logo-item {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.logo-item:hover {
+    opacity: 1;
+}
+
+.logo-item img {
+    height: 40px;
+    width: auto;
+    filter: grayscale(100%);
+}
+
+/* ====================================
+   How It Works Section
+   ==================================== */
+.how-it-works-section {
+    background: white;
+}
+
+.step-card {
+    background: var(--bg-main);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+
+.step-number {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    opacity: 0.3;
+}
+
+.step-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.step-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* ====================================
+   Features Section
+   ==================================== */
+.features-section {
+    background: var(--bg-main);
+}
+
+.feature-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+}
+
+.feature-description {
+    color: var(--text-secondary);
+    font-size: 0.975rem;
+    line-height: 1.6;
+}
+
+/* ====================================
+   Screenshot Section
+   ==================================== */
+.screenshot-section {
+    background: linear-gradient(180deg, white 0%, var(--bg-main) 100%);
+}
+
+.screenshot-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+.screenshot-main {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screenshot-thumb {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.screenshot-thumb:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.screenshot-thumb img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.thumb-caption {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* ====================================
+   Testimonials Section
+   ==================================== */
+.testimonials-section {
+    background: var(--primary);
+    color: white;
+}
+
+.testimonials-section .section-title {
+    color: white;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+}
+
+.quote-icon {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.testimonial-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: white;
+}
+
+.author-role {
+    font-size: 0.925rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* ====================================
+   Pricing Section (Hidden)
+   ==================================== */
+.pricing-section {
+    background: white;
+}
+
+.pricing-card {
+    background: var(--bg-main);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    border: 2px solid var(--border-color);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 100%;
+}
+
+.pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.pricing-card.featured {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.pricing-tier {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.pricing-price {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.pricing-price span {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.pricing-features li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pricing-card.featured .pricing-features li {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ====================================
+   FAQ Section
+   ==================================== */
+.faq-section {
+    background: white;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faq-item {
+    background: var(--bg-main);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-sm);
+    border-color: var(--accent);
+}
+
+.faq-question {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+}
+
+.faq-answer {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ====================================
+   Final CTA Section
+   ==================================== */
+.final-cta-section {
+    position: relative;
+    background: var(--accent);
+    color: white;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.cta-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    opacity: 0.9;
+    z-index: 0;
+}
+
+.final-cta-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    font-style: italic;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.cta-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+}
+
+.cta-main-btn {
+    background: white;
+    color: var(--accent);
+    font-size: 1.25rem;
+    padding: 1.25rem 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta-main-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-4px);
+}
+
+.cta-trust {
+    font-size: 0.925rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 1rem;
+}
+
+/* ====================================
+   Footer
+   ==================================== */
+.footer {
+    background: var(--primary);
+    color: white;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-copyright {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    margin-left: 2rem;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent);
+}
+
+/* ====================================
+   Animations
+   ==================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+[data-animate] {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+[data-animate="fade-up"] {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+[data-animate="fade-left"] {
+    animation: fadeInLeft 0.8s ease forwards;
+}
+
+[data-delay="0"] {
+    animation-delay: 0s;
+}
+
+[data-delay="100"] {
+    animation-delay: 0.1s;
+}
+
+[data-delay="200"] {
+    animation-delay: 0.2s;
+}
+
+/* ====================================
+   Responsive Design
+   ==================================== */
+@media (max-width: 991px) {
+    .hero-section {
+        padding: 80px 0 60px;
+    }
+    
+    .hero-background {
+        width: 80%;
+        border-radius: 0 0 0 100px;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo-cloud {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .cta-btn {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    .hero-title {
+        font-size: 2.25rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .step-card,
+    .feature-card,
+    .testimonial-card,
+    .faq-item {
+        margin-bottom: 1rem;
+    }
+    
+    .footer-link {
+        margin-left: 1rem;
+    }
+    
+    .footer .col-md-6 {
+        text-align: center !important;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-link:first-of-type {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 0.375rem 1rem;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.975rem;
+    }
+    
+    .btn-lg {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .logo-cloud {
+        gap: 1.5rem;
+    }
+    
+    .logo-item img {
+        height: 30px;
+    }
+    
+    .step-number {
+        font-size: 2.5rem;
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+    
+    .quote-icon {
+        font-size: 3rem;
+    }
+}
