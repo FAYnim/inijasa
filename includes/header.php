@@ -34,22 +34,25 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #10B981;
-            --secondary-color: #059669;
+            --primary-color: #FF6B35;
+            --secondary-color: #E55A2A;
             --success-color: #059669;
             --danger-color: #EF4444;
             --warning-color: #F59E0B;
-            --dark-color: #1F2937;
-            --light-color: #F9FAFB;
+            --dark-color: #0A2342;
+            --light-color: #FAFAFA;
             --sidebar-width: 260px;
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--light-color);
         }
         

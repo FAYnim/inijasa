@@ -77,15 +77,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-color: #10B981;
-            --dark-color: #1F2937;
+            --primary-color: #FF6B35;
+            --primary-hover: #E55A2A;
+            --dark-color: #0A2342;
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--primary-color);
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--dark-color) 0%, #1B3A5F 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -151,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
         }
         
         .password-toggle {
@@ -179,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         .password-strength-weak { width: 33%; background: #EF4444; }
         .password-strength-medium { width: 66%; background: #F59E0B; }
-        .password-strength-strong { width: 100%; background: #10B981; }
+        .password-strength-strong { width: 100%; background: #059669; }
         
         .btn-register {
             width: 100%;
@@ -194,9 +200,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .btn-register:hover {
-            background: #059669;
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
         }
         
         .divider {

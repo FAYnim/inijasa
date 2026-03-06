@@ -87,7 +87,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     }
     
     .nav-link.active {
-        background: #EEF2FF;
+        background: rgba(255, 107, 53, 0.1);
         color: var(--primary-color);
         border-right: 3px solid var(--primary-color);
     }
