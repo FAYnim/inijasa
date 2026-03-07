@@ -161,7 +161,7 @@
         try {
             const res  = await fetch(getApiBase() + 'business-switch.php', {
                 method:  'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': window.CSRF_TOKEN || '' },
                 body:    JSON.stringify({ business_id: businessId })
             });
             const data = await res.json();
@@ -220,7 +220,7 @@
         try {
             const res  = await fetch(getApiBase() + 'business-create.php', {
                 method:  'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': window.CSRF_TOKEN || '' },
                 body:    JSON.stringify(payload)
             });
             const data = await res.json();

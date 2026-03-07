@@ -16,6 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$csrf_token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+if (!verifyCSRFToken($csrf_token)) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
+    exit;
+}
+
 $input = json_decode(file_get_contents('php://input'), true);
 
 if (!isset($input['business_id']) || !is_numeric($input['business_id'])) {

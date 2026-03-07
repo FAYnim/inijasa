@@ -211,7 +211,6 @@ function switchBusiness($business_id, $user_id) {
     }
 
     $_SESSION['business_id'] = (int)$business_id;
-    session_regenerate_id(true);
     return true;
 }
 

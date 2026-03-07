@@ -12,6 +12,7 @@
     
     <!-- Custom JS -->
     <script src="assets/js/main.js"></script>
+    <script>window.CSRF_TOKEN = '<?php echo generateCSRFToken(); ?>';</script>
     <script src="assets/js/business-switcher.js"></script>
     
     <script>
