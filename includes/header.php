@@ -148,9 +148,9 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
             <button class="btn btn-link d-md-none" id="sidebarToggle">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="business-switcher">
+            <div class="business-switcher" data-bs-toggle="modal" data-bs-target="#businessSwitcherModal">
                 <i class="fas fa-briefcase"></i>
-                <span><?= e($business_name) ?></span>
+                <span id="currentBusinessName"><?= e($business_name) ?></span>
                 <i class="fas fa-chevron-down"></i>
             </div>
         </div>
