@@ -1,3 +1,9 @@
+    <!-- Business Modals -->
+    <?php
+        require_once __DIR__ . '/modals/business-switcher-modal.php';
+        require_once __DIR__ . '/modals/create-business-modal.php';
+    ?>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
@@ -6,6 +12,7 @@
     
     <!-- Custom JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/business-switcher.js"></script>
     
     <script>
         // Sidebar toggle for mobile
