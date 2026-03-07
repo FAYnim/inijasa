@@ -146,41 +146,6 @@ CREATE TABLE system_config (
 INSERT INTO system_config (config_key, config_value, description) VALUES
 ('default_business_limit', NULL, 'Default limit bisnis per user. NULL = unlimited');
 
--- Insert sample data for testing (optional)
-
--- Sample user
+-- Admin user
 INSERT INTO users (full_name, email, password_hash) VALUES
 ('Admin User', 'admin@jasaku.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'); -- password: password
-
--- Sample business
-INSERT INTO businesses (user_id, business_name, category, description, phone, email, is_primary) VALUES
-(1, 'Jasaku Digital Agency', 'Kreatif/Desain', 'Agensi digital kreatif untuk semua kebutuhan bisnis Anda', '081234567890', 'info@jasakudigital.com', 1);
-
--- Sample services
-INSERT INTO services (business_id, service_name, description, price, status) VALUES
-(1, 'Website Development', 'Pembuatan website profesional dengan desain modern', 15000000.00, 'Active'),
-(1, 'Social Media Management', 'Pengelolaan konten dan strategi media sosial', 5000000.00, 'Active'),
-(1, 'Logo Design', 'Desain logo unik dan memorable untuk brand Anda', 2500000.00, 'Active');
-
--- Sample clients
-INSERT INTO clients (business_id, client_name, company, email, phone, source) VALUES
-(1, 'Budi Santoso', 'PT. Maju Bersama', 'budi@majubersama.com', '081234567891', 'Referral'),
-(1, 'Siti Aminah', 'CV. Sukses Mandiri', 'siti@suksesmandiri.com', '081234567892', 'Social Media'),
-(1, 'Ahmad Yani', 'Toko Elektronik Jaya', 'ahmad@elektronikjaya.com', '081234567893', 'Direct');
-
--- Sample deals
-INSERT INTO deals (business_id, client_id, service_id, deal_title, deal_value, discount_percent, final_value, current_stage, expected_close_date) VALUES
-(1, 1, 1, 'Website Company Profile PT. Maju Bersama', 15000000.00, 10.00, 13500000.00, 'Proposal', '2026-04-15'),
-(1, 2, 2, 'Social Media Management 6 Bulan', 5000000.00, 0.00, 5000000.00, 'Negotiation', '2026-03-25'),
-(1, 3, 3, 'Logo & Brand Identity Toko Elektronik', 2500000.00, 0.00, 2500000.00, 'Won', '2026-03-01');
-
--- Sample transactions
-INSERT INTO transactions (business_id, type, title, category, amount, transaction_date, method, deal_id) VALUES
-(1, 'Income', 'Pembayaran DP Website PT. Maju Bersama', 'Deal Payment', 6750000.00, '2026-03-05', 'Transfer', 1),
-(1, 'Income', 'Pembayaran Logo Toko Elektronik', 'Deal Payment', 2500000.00, '2026-03-01', 'Transfer', 3),
-(1, 'Expense', 'Hosting & Domain 1 Tahun', 'Tools', 2000000.00, '2026-02-15', 'Transfer', NULL),
-(1, 'Expense', 'Facebook Ads Budget', 'Marketing', 1500000.00, '2026-02-20', 'Transfer', NULL);
-
--- Sample deal payment
-INSERT INTO deal_payments (deal_id, amount, payment_date, method, notes) VALUES
-(3, 2500000.00, '2026-03-01', 'Transfer', 'Lunas');

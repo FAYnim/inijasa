@@ -1,28 +1,186 @@
 -- ============================================================
--- Jasaku Dummy Data - Simulasi Full Website Flow
+-- Jasaku - Full Setup (Database + Tables + Dummy Data)
 -- ============================================================
 -- Skenario:
 --   User 1 (Faris)   → 2 bisnis: Digital Agency + Konsultan
 --   User 2 (Rina)    → 1 bisnis: Kebersihan Rumah
 --   User 3 (Dito)    → 1 bisnis: Perbaikan Elektronik
+--   User 4 (Nadia)   → 1 bisnis: Nadia Beauty Studio
 -- Password semua: password
 -- Hash: $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
 -- ============================================================
 
+-- ============================================================
+-- CREATE DATABASE
+-- ============================================================
+CREATE DATABASE IF NOT EXISTS jasaku_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE jasaku_db;
 
 -- ============================================================
--- TRUNCATE (urutan penting karena FK)
+-- CREATE TABLES
+-- ============================================================
+
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    business_limit INT DEFAULT NULL COMMENT 'NULL = use default/unlimited',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Businesses table
+CREATE TABLE IF NOT EXISTS businesses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    business_name VARCHAR(150) NOT NULL,
+    category ENUM('Kreatif/Desain', 'Konsultan', 'Kebersihan', 'Perbaikan', 'Lainnya'),
+    description TEXT,
+    address TEXT,
+    phone VARCHAR(20),
+    email VARCHAR(100),
+    logo_path VARCHAR(255),
+    is_primary BOOLEAN DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user_id (user_id),
+    INDEX idx_user_is_primary (user_id, is_primary),
+    INDEX idx_business_name (business_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Services table
+CREATE TABLE IF NOT EXISTS services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    business_id INT NOT NULL,
+    service_name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price DECIMAL(15,2) NOT NULL,
+    status ENUM('Active', 'Inactive') DEFAULT 'Active',
+    is_deleted BOOLEAN DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE,
+    INDEX idx_business_id (business_id),
+    INDEX idx_status (status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Clients table
+CREATE TABLE IF NOT EXISTS clients (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    business_id INT NOT NULL,
+    client_name VARCHAR(100) NOT NULL,
+    company VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    address TEXT,
+    notes TEXT,
+    source ENUM('Referral', 'Social Media', 'Direct', 'Website', 'Lainnya'),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE,
+    INDEX idx_business_id (business_id),
+    INDEX idx_client_name (client_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Deals table
+CREATE TABLE IF NOT EXISTS deals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    business_id INT NOT NULL,
+    client_id INT NOT NULL,
+    service_id INT,
+    deal_title VARCHAR(150) NOT NULL,
+    deal_value DECIMAL(15,2) NOT NULL,
+    discount_percent DECIMAL(5,2) DEFAULT 0,
+    final_value DECIMAL(15,2) NOT NULL,
+    current_stage ENUM('Lead', 'Qualified', 'Proposal', 'Negotiation', 'Won', 'Lost') DEFAULT 'Lead',
+    expected_close_date DATE,
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    closed_at TIMESTAMP NULL,
+    FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE,
+    FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE SET NULL,
+    INDEX idx_business_id (business_id),
+    INDEX idx_client_id (client_id),
+    INDEX idx_current_stage (current_stage),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Deal payments table
+CREATE TABLE IF NOT EXISTS deal_payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    deal_id INT NOT NULL,
+    amount DECIMAL(15,2) NOT NULL,
+    payment_date DATE NOT NULL,
+    method ENUM('Transfer', 'Cash', 'QRIS', 'Lainnya'),
+    notes VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (deal_id) REFERENCES deals(id) ON DELETE CASCADE,
+    INDEX idx_deal_id (deal_id),
+    INDEX idx_payment_date (payment_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Transactions table (Income & Expense)
+CREATE TABLE IF NOT EXISTS transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    business_id INT NOT NULL,
+    type ENUM('Income', 'Expense') NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    category VARCHAR(50),
+    amount DECIMAL(15,2) NOT NULL,
+    transaction_date DATE NOT NULL,
+    method VARCHAR(50),
+    notes TEXT,
+    deal_id INT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE,
+    FOREIGN KEY (deal_id) REFERENCES deals(id) ON DELETE SET NULL,
+    INDEX idx_business_id (business_id),
+    INDEX idx_type (type),
+    INDEX idx_transaction_date (transaction_date),
+    INDEX idx_deal_id (deal_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- System configuration table
+CREATE TABLE IF NOT EXISTS system_config (
+    config_key VARCHAR(50) PRIMARY KEY,
+    config_value VARCHAR(255),
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Default system config
+INSERT IGNORE INTO system_config (config_key, config_value, description) VALUES
+('default_business_limit', NULL, 'Default limit bisnis per user. NULL = unlimited');
+
+-- ============================================================
+-- RESET DATA (urutan child → parent karena FK)
 -- ============================================================
 SET FOREIGN_KEY_CHECKS = 0;
-TRUNCATE TABLE deal_payments;
-TRUNCATE TABLE transactions;
-TRUNCATE TABLE deals;
-TRUNCATE TABLE clients;
-TRUNCATE TABLE services;
-TRUNCATE TABLE businesses;
-TRUNCATE TABLE users;
+DELETE FROM deal_payments;
+DELETE FROM transactions;
+DELETE FROM deals;
+DELETE FROM clients;
+DELETE FROM services;
+DELETE FROM businesses;
+DELETE FROM users;
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE deal_payments AUTO_INCREMENT = 1;
+ALTER TABLE transactions   AUTO_INCREMENT = 1;
+ALTER TABLE deals          AUTO_INCREMENT = 1;
+ALTER TABLE clients        AUTO_INCREMENT = 1;
+ALTER TABLE services       AUTO_INCREMENT = 1;
+ALTER TABLE businesses     AUTO_INCREMENT = 1;
+ALTER TABLE users          AUTO_INCREMENT = 1;
 
 -- ============================================================
 -- USERS
