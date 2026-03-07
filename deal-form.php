@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "INSERT INTO deals (business_id, client_id, service_id, deal_title, deal_value, discount_percent, final_value, current_stage, expected_close_date, notes) 
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
-            mysqli_stmt_bind_param($stmt, "iiisdddss", 
+            mysqli_stmt_bind_param($stmt, "iiisdddsss", 
                 $business_id, $client_id, $service_id, $deal_title, $deal_value, 
                 $discount_percent, $final_value, $current_stage, $expected_close_date, $notes
             );
