@@ -1,5 +1,6 @@
 -- Jasaku Database Schema
 -- Platform Manajemen Bisnis Jasa
+-- Updated: includes migrations 001, 002, 003
 
 -- Create database
 CREATE DATABASE IF NOT EXISTS jasaku_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -11,6 +12,7 @@ CREATE TABLE users (
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
+    business_limit INT DEFAULT NULL COMMENT 'NULL = use default/unlimited',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_email (email)
@@ -31,7 +33,9 @@ CREATE TABLE businesses (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    INDEX idx_user_id (user_id)
+    INDEX idx_user_id (user_id),
+    INDEX idx_user_is_primary (user_id, is_primary),
+    INDEX idx_business_name (business_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Services table
@@ -128,6 +132,19 @@ CREATE TABLE transactions (
     INDEX idx_transaction_date (transaction_date),
     INDEX idx_deal_id (deal_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- System configuration table (migration 001)
+CREATE TABLE system_config (
+    config_key VARCHAR(50) PRIMARY KEY,
+    config_value VARCHAR(255),
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Default system config
+INSERT INTO system_config (config_key, config_value, description) VALUES
+('default_business_limit', NULL, 'Default limit bisnis per user. NULL = unlimited');
 
 -- Insert sample data for testing (optional)
 
