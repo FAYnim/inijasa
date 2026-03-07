@@ -262,6 +262,32 @@ include 'includes/sidebar.php';
 .stage-filters .nav-link.active .badge {
     background: rgba(255, 255, 255, 0.3) !important;
 }
+
+/* Stage Badges */
+.badge-lead {
+    background-color: #6B7280;
+    color: white;
+}
+.badge-qualified {
+    background-color: #3B82F6;
+    color: white;
+}
+.badge-proposal {
+    background-color: #F59E0B;
+    color: white;
+}
+.badge-negotiation {
+    background-color: #8B5CF6;
+    color: white;
+}
+.badge-won {
+    background-color: #10B981;
+    color: white;
+}
+.badge-lost {
+    background-color: #EF4444;
+    color: white;
+}
 </style>
 
 <?php include 'includes/footer.php'; ?>
