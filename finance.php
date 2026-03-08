@@ -68,24 +68,33 @@ mysqli_stmt_bind_param($stmt, $types, ...$params);
 mysqli_stmt_execute($stmt);
 $transactions = mysqli_stmt_get_result($stmt);
 
-// Get summary stats
+// Get summary stats (prepared statement)
 $stats_query = "SELECT 
     SUM(CASE WHEN type = 'Income' THEN amount ELSE 0 END) as total_income,
     SUM(CASE WHEN type = 'Expense' THEN amount ELSE 0 END) as total_expense,
     COUNT(CASE WHEN type = 'Income' THEN 1 END) as income_count,
     COUNT(CASE WHEN type = 'Expense' THEN 1 END) as expense_count
 FROM transactions 
-WHERE business_id = $business_id";
+WHERE business_id = ?";
+$stats_params = [$business_id];
+$stats_types = "i";
 
 // Apply date filters to stats if provided
-if ($date_from || $date_to) {
-    $stats_query .= " AND (1=1";
-    if ($date_from) $stats_query .= " AND transaction_date >= '$date_from'";
-    if ($date_to) $stats_query .= " AND transaction_date <= '$date_to'";
-    $stats_query .= ")";
+if ($date_from) {
+    $stats_query .= " AND transaction_date >= ?";
+    $stats_params[] = $date_from;
+    $stats_types .= "s";
+}
+if ($date_to) {
+    $stats_query .= " AND transaction_date <= ?";
+    $stats_params[] = $date_to;
+    $stats_types .= "s";
 }
 
-$stats = mysqli_fetch_assoc(mysqli_query($conn, $stats_query));
+$stats_stmt = mysqli_prepare($conn, $stats_query);
+mysqli_stmt_bind_param($stats_stmt, $stats_types, ...$stats_params);
+mysqli_stmt_execute($stats_stmt);
+$stats = mysqli_fetch_assoc(mysqli_stmt_get_result($stats_stmt));
 $net_profit = $stats['total_income'] - $stats['total_expense'];
 
 // Category options
@@ -306,12 +315,16 @@ include 'includes/sidebar.php';
                                        title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="transaction-form.php?action=delete&id=<?= $trans['id'] ?>&type=<?= $active_tab ?>" 
-                                       class="btn btn-outline-danger"
-                                       title="Hapus"
-                                       onclick="return confirm('Yakin ingin menghapus transaksi ini?')">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    <form method="POST" action="transaction-form.php" class="d-inline" 
+                                          onsubmit="return confirm('Yakin ingin menghapus transaksi ini?')">
+                                        <input type="hidden" name="csrf_token" value="<?= generateCSRFToken() ?>">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="<?= $trans['id'] ?>">
+                                        <input type="hidden" name="type" value="<?= $active_tab ?>">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm" title="Hapus">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

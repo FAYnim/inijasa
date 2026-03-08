@@ -14,15 +14,27 @@ if (!$business_id) {
     redirect('setup-business.php');
 }
 
-// Handle delete action
-if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
-    $trans_id = (int)$_GET['id'];
-    $type = $_GET['type'] ?? 'income';
+// Handle delete action (POST + CSRF)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['id'])) {
+    $csrf_token = $_POST['csrf_token'] ?? '';
+    if (!verifyCSRFToken($csrf_token)) {
+        setFlashMessage('danger', 'Token CSRF tidak valid. Silakan coba lagi.');
+        redirect('finance.php');
+    }
     
-    // Verify ownership
-    $check = mysqli_query($conn, "SELECT id FROM transactions WHERE id = $trans_id AND business_id = $business_id");
-    if (mysqli_num_rows($check) > 0) {
-        mysqli_query($conn, "DELETE FROM transactions WHERE id = $trans_id");
+    $trans_id = (int)$_POST['id'];
+    $type = $_POST['type'] ?? 'income';
+    
+    // Verify ownership (prepared statement)
+    $check_stmt = mysqli_prepare($conn, "SELECT id FROM transactions WHERE id = ? AND business_id = ?");
+    mysqli_stmt_bind_param($check_stmt, "ii", $trans_id, $business_id);
+    mysqli_stmt_execute($check_stmt);
+    $check_result = mysqli_stmt_get_result($check_stmt);
+    
+    if (mysqli_num_rows($check_result) > 0) {
+        $del_stmt = mysqli_prepare($conn, "DELETE FROM transactions WHERE id = ?");
+        mysqli_stmt_bind_param($del_stmt, "i", $trans_id);
+        mysqli_stmt_execute($del_stmt);
         setFlashMessage('success', 'Transaksi berhasil dihapus.');
     } else {
         setFlashMessage('danger', 'Transaksi tidak ditemukan.');
@@ -61,12 +73,16 @@ if ($is_edit) {
 // Get won deals for income category
 $won_deals = [];
 if ($type === 'income') {
-    $won_deals_query = "SELECT d.id, d.deal_title, c.client_name 
-                        FROM deals d 
-                        JOIN clients c ON d.client_id = c.id 
-                        WHERE d.business_id = $business_id AND d.current_stage = 'Won'
-                        ORDER BY d.updated_at DESC";
-    $won_deals_result = mysqli_query($conn, $won_deals_query);
+    $won_deals_stmt = mysqli_prepare($conn, 
+        "SELECT d.id, d.deal_title, c.client_name 
+         FROM deals d 
+         JOIN clients c ON d.client_id = c.id 
+         WHERE d.business_id = ? AND d.current_stage = 'Won'
+         ORDER BY d.updated_at DESC"
+    );
+    mysqli_stmt_bind_param($won_deals_stmt, "i", $business_id);
+    mysqli_stmt_execute($won_deals_stmt);
+    $won_deals_result = mysqli_stmt_get_result($won_deals_stmt);
     while ($deal = mysqli_fetch_assoc($won_deals_result)) {
         $won_deals[] = $deal;
     }
@@ -132,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "INSERT INTO transactions (business_id, type, title, category, amount, transaction_date, method, notes, deal_id) 
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
-            mysqli_stmt_bind_param($stmt, "isssdssi", 
+            mysqli_stmt_bind_param($stmt, "isssdsssi", 
                 $business_id, $trans_type, $title, $category, $amount, $transaction_date, $method, $notes, $deal_id
             );
             
