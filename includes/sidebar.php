@@ -172,6 +172,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span>Invoice</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="reports.php" class="nav-link <?= $current_page == 'reports.php' ? 'active' : '' ?>">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Laporan</span>
+                </a>
+            </li>
         </ul>
         
         <div class="nav-section">Pengaturan</div>

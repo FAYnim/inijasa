@@ -112,9 +112,15 @@ include 'includes/sidebar.php';
             <h2 class="page-title mb-1">Keuangan</h2>
             <p class="text-muted mb-0">Kelola pemasukan dan pengeluaran bisnis</p>
         </div>
-        <a href="transaction-form.php?type=<?= $active_tab ?>" class="btn btn-primary">
-            <i class="fas fa-plus-circle me-2"></i>Tambah Transaksi
-        </a>
+        <div class="d-flex gap-2">
+            <a href="export-csv.php?type=transactions&tab=<?= $active_tab ?>&date_from=<?= urlencode($date_from) ?>&date_to=<?= urlencode($date_to) ?>&category=<?= urlencode($category_filter) ?>&search=<?= urlencode($search) ?>" 
+               class="btn btn-outline-success">
+                <i class="fas fa-file-csv me-2"></i>Export CSV
+            </a>
+            <a href="transaction-form.php?type=<?= $active_tab ?>" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-2"></i>Tambah Transaksi
+            </a>
+        </div>
     </div>
     
     <?php

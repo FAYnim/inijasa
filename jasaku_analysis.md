@@ -16,6 +16,7 @@ Berdasarkan eksplorasi kode dan PRD, berikut kondisi fitur yang **sudah implemen
 | Dashboard | ✅ Done | KPI cards, Chart.js, recent deals |
 | Multi-business switcher | ✅ Done | `system_config` untuk business limit |
 | CSRF Protection | ✅ Done | Token generator di [functions.php](file:///c:/xampp/htdocs/faydev/jasaku/includes/functions.php) |
+| Laporan & Export CSV | ✅ Done | [reports.php](file:///c:/xampp/htdocs/faydev/jasaku/reports.php) (Laba-Rugi & Pipeline), [export-csv.php](file:///c:/xampp/htdocs/faydev/jasaku/export-csv.php) (5 tipe export) |
 
 > [!NOTE]
 > MVP sudah sangat solid. Struktur kode bersih, keamanan cukup baik (prepared statements, XSS escaping, CSRF). Yang kurang adalah fitur-fitur yang membuat platform ini **sticky** dan berguna di lapangan.
@@ -49,21 +50,7 @@ CREATE TABLE notifications (
 
 ---
 
-### B. Laporan & Export Data
-**Kenapa penting:** Owner bisnis butuh data untuk laporan pajak, evaluasi bulanan, dan presentasi ke investor/mitra.
-
-**Yang perlu dibangun:**
-- Export transaksi ke CSV/Excel
-- Laporan laba-rugi per bulan (filter bulan/tahun)
-- Laporan pipeline: berapa nilai deal per stage, win rate per bulan
-
-**Cara implementasi sederhana:**
-- PHP `fputcsv()` untuk CSV export (tidak perlu library tambahan)
-- Halaman `reports.php` dengan filter date range
-
----
-
-### C. Catatan Aktivitas per Klien / Deal (Activity Log)
+### B. Catatan Aktivitas per Klien / Deal (Activity Log)
 **Kenapa penting:** Agensi dengan tim > 1 orang (atau owner yang sering lupa) butuh jejak percakapan/aktivitas per klien.
 
 **Yang perlu dibangun:**
@@ -87,14 +74,14 @@ CREATE TABLE activity_logs (
 
 ## 💡 Rekomendasi Fitur Tambahan (Prioritas Sedang)
 
-### D. Kanban Board View untuk Pipeline
+### C. Kanban Board View untuk Pipeline
 Saat ini tampilan deal hanya tabel list. **Kanban view** (kolom per stage, drag-drop) lebih intuitif untuk tracking pipeline. Banyak CRM populer (Trello-style) menggunakan ini sebagai default view.
 
 **Implementasi:** Toggle antara List View ↔ Kanban View di [deals.php](file:///c:/xampp/htdocs/faydev/jasaku/deals.php) menggunakan JavaScript + CSS Grid/Flexbox.
 
 ---
 
-### E. Recurring / Retainer Client Flag
+### D. Recurring / Retainer Client Flag
 **Kenapa penting:** Banyak UMKM jasa punya klien langganan bulanan (retainer). Saat ini tidak ada cara untuk membedakan klien reguler vs klien baru.
 
 **Yang perlu dibangun:**
@@ -105,7 +92,7 @@ Saat ini tampilan deal hanya tabel list. **Kanban view** (kolom per stage, drag-
 
 ---
 
-### F. Target Pendapatan Bulanan
+### E. Target Pendapatan Bulanan
 **Kenapa penting:** Fitur sederhana tapi powerful untuk motivasi owner. "Kamu sudah capai X% dari target bulan ini."
 
 **Yang perlu dibangun:**
@@ -115,7 +102,7 @@ Saat ini tampilan deal hanya tabel list. **Kanban view** (kolom per stage, drag-
 
 ---
 
-### G. WhatsApp Quick Share
+### F. WhatsApp Quick Share
 **Kenapa penting:** UMKM Indonesia mayoritas komunikasi via WhatsApp. Tombol "Share ke WA" untuk kirim ringkasan deal/invoice ke klien sangat relevan.
 
 **Implementasi:** Link `https://api.whatsapp.com/send?text=...` dengan data deal di-encode ke URL. Tidak butuh API, cukup 3-4 baris JavaScript.
@@ -146,28 +133,33 @@ Saat ini tampilan deal hanya tabel list. **Kanban view** (kolom per stage, drag-
 Phase 2 ✅ (Selesai):
 └── Fix security: prepared statements & CSRF di finance.php
 
-Phase 3 (2-3 minggu):
+Phase 3 ✅ (Selesai):
 ├── Export CSV untuk transaksi & laporan
-└── Notifikasi in-app (deal stale, overdue)
+└── Halaman reports.php (Laba-Rugi & Pipeline)
 
 Phase 4 (2-3 minggu):
-├── Kanban view untuk pipeline deals
+├── Notifikasi in-app (deal stale, overdue)
 ├── Activity log per deal/klien
-└── Target revenue bulanan di dashboard
+└── Kanban view untuk pipeline deals
 
-Phase 5 (Future):
+Phase 5 (2-3 minggu):
+├── Target revenue bulanan di dashboard
+├── Recurring/Retainer client flag
+└── WhatsApp quick share
+
+Phase 6 (Future):
 ├── Multi-user per bisnis (roles: owner, staff)
 ├── Client portal (klien bisa lihat invoice)
-└── WhatsApp/email integration
+└── Email integration
 ```
 
 ---
 
 ## 💬 Kesimpulan
 
-MVP Jasaku sudah dibangun dengan **fondasi yang sangat baik** — struktur database solid, keamanan cukup, dan UI yang bersih. `deal-detail.php` sudah selesai dibangun lengkap dengan stage management, payment tracking, dan stage history. **Invoice Generator** juga sudah diimplementasikan. Untuk pengembangan selanjutnya, hal yang paling krusial adalah:
+MVP Jasaku sudah dibangun dengan **fondasi yang sangat baik** — struktur database solid, keamanan cukup, dan UI yang bersih. `deal-detail.php` sudah selesai dibangun lengkap dengan stage management, payment tracking, dan stage history. **Invoice Generator** dan **Laporan & Export CSV** juga sudah diimplementasikan. Untuk pengembangan selanjutnya, hal yang paling krusial adalah:
 
-1. **Export data CSV** — untuk keperluan laporan pajak dan evaluasi bisnis
-2. **Notifikasi in-app** — reminder deal stale dan payment overdue
+1. **Notifikasi in-app** — reminder deal stale dan payment overdue
+2. **Activity log** — catatan aktivitas per klien/deal untuk CRM notes
 
 Fitur-fitur lain bersifat *nice-to-have* yang meningkatkan retention dan diferensiasi produk.

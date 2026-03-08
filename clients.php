@@ -61,9 +61,15 @@ include 'includes/sidebar.php';
             <h2 class="page-title mb-1">Klien</h2>
             <p class="text-muted mb-0">Total <?= $total_clients ?> klien terdaftar</p>
         </div>
-        <a href="client-form.php" class="btn btn-primary">
-            <i class="fas fa-user-plus me-2"></i>Tambah Klien
-        </a>
+        <div class="d-flex gap-2">
+            <a href="export-csv.php?type=clients&source=<?= urlencode($source_filter) ?>&search=<?= urlencode($search) ?>" 
+               class="btn btn-outline-success">
+                <i class="fas fa-file-csv me-2"></i>Export CSV
+            </a>
+            <a href="client-form.php" class="btn btn-primary">
+                <i class="fas fa-user-plus me-2"></i>Tambah Klien
+            </a>
+        </div>
     </div>
     
     <?php
