@@ -125,11 +125,11 @@ Saat ini tampilan deal hanya tabel list. **Kanban view** (kolom per stage, drag-
 ## 🔧 Perbaikan Teknis yang Direkomendasikan
 
 ### Keamanan
-| Issue | Lokasi | Solusi |
+| Issue | Lokasi | Status |
 |-------|--------|--------|
-| Raw query di [finance.php](file:///c:/xampp/htdocs/faydev/jasaku/finance.php) L78 | `$stats_query` pakai string interpolasi `$business_id` | Ganti ke prepared statement |
-| Tidak ada rate limiting login | [auth/login.php](file:///c:/xampp/htdocs/faydev/jasaku/auth/login.php) | Tambah login attempt counter di session/DB |
-| Delete transaksi via GET request | [finance.php](file:///c:/xampp/htdocs/faydev/jasaku/finance.php) L309 | Harus POST + CSRF token |
+| ~~Raw query di finance.php~~ | `finance.php`, `transaction-form.php` | ✅ Fixed — semua query sudah pakai prepared statement |
+| Tidak ada rate limiting login | [auth/login.php](file:///c:/xampp/htdocs/faydev/jasaku/auth/login.php) | ⬜ Tambah login attempt counter di session/DB |
+| ~~Delete transaksi via GET request~~ | `finance.php`, `transaction-form.php` | ✅ Fixed — sudah POST + CSRF token |
 
 ### UX / Fungsionalitas
 | Issue | Lokasi | Solusi |
@@ -143,8 +143,8 @@ Saat ini tampilan deal hanya tabel list. **Kanban view** (kolom per stage, drag-
 ## 📋 Roadmap Pengembangan yang Disarankan
 
 ```
-Phase 2 (1-2 minggu):
-└── Fix security: raw query di finance.php
+Phase 2 ✅ (Selesai):
+└── Fix security: prepared statements & CSRF di finance.php
 
 Phase 3 (2-3 minggu):
 ├── Export CSV untuk transaksi & laporan
