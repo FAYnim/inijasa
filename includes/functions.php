@@ -226,4 +226,31 @@ function isBusinessOwner($business_id, $user_id) {
     $result = mysqli_stmt_get_result($stmt);
     return mysqli_num_rows($result) > 0;
 }
+
+/**
+ * Generate next invoice number for a business (INV-YYYY-XXXX)
+ */
+function generateInvoiceNumber($conn, $business_id) {
+    $year = date('Y');
+    $prefix = "INV-$year-";
+
+    $stmt = mysqli_prepare($conn, 
+        "SELECT invoice_number FROM invoices 
+         WHERE business_id = ? AND invoice_number LIKE ? 
+         ORDER BY id DESC LIMIT 1"
+    );
+    $like = $prefix . '%';
+    mysqli_stmt_bind_param($stmt, "is", $business_id, $like);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        $last_num = (int) substr($row['invoice_number'], strlen($prefix));
+        $next_num = $last_num + 1;
+    } else {
+        $next_num = 1;
+    }
+
+    return $prefix . str_pad($next_num, 4, '0', STR_PAD_LEFT);
+}
 ?>
