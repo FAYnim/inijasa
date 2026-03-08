@@ -130,6 +130,11 @@ Lead → Qualified → Proposal → Negotiation → Won/Lost
 - Business profile lengkap (kategori, deskripsi, kontak)
 - Professional look untuk kredibilitas
 
+### 9. 📈 Laporan & Export Data
+- **Laporan Laba-Rugi (Profit & Loss)**: Analisis komprehensif pendapatan bulanan dikurangi pengeluaran.
+- **Laporan Pipeline Sales**: Ringkasan performa deal di tiap stage (total, nilai, conversion rate).
+- **Export to CSV**: Kemudahan satu klik untuk men-download data Klien, Deals, Transaksi Keuangan, dan Laporan ke format CSV/Excel.
+
 ---
 
 ## 🛠 Tech Stack
@@ -211,6 +216,9 @@ jasaku/
 │
 ├── finance.php                    # Financial tracking (income/expense)
 ├── transaction-form.php           # Add/Edit transaction
+│
+├── reports.php                    # Laporan Laba-Rugi & Pipeline
+├── export-csv.php                 # Handler export data ke format CSV
 │
 ├── PRD.md                         # Product Requirements Document
 └── README.md                      # Dokumentasi projek (you are here)
@@ -528,12 +536,13 @@ $_SESSION['csrf_token']   // CSRF protection
 - ✅ Dashboard Metrics
 - ✅ Payment Tracking
 - ✅ Invoice Generation & PDF Export
+- ✅ Laporan Laba-Rugi & Export CSV
 
 ### Phase 2 - Enhancements (Q2 2026)
 - [ ] Email Notifications (deal updates, payment reminders)
 - [ ] Advanced filters & search
 - [ ] Bulk actions
-- [ ] Data export (CSV/Excel)
+- [x] Data export (CSV/Excel)
 - [ ] Activity log & audit trail
 
 ### Phase 3 - Advanced Features (Q3 2026)
