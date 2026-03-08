@@ -80,9 +80,15 @@ include 'includes/sidebar.php';
             <h2 class="page-title mb-1">Deals</h2>
             <p class="text-muted mb-0">Kelola semua kesepakatan bisnis Anda</p>
         </div>
-        <a href="deal-form.php" class="btn btn-primary">
-            <i class="fas fa-plus me-2"></i>Buat Deal Baru
-        </a>
+        <div class="d-flex gap-2">
+            <a href="export-csv.php?type=deals&stage=<?= urlencode($filter_stage) ?>&search=<?= urlencode($search) ?>" 
+               class="btn btn-outline-success">
+                <i class="fas fa-file-csv me-2"></i>Export CSV
+            </a>
+            <a href="deal-form.php" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>Buat Deal Baru
+            </a>
+        </div>
     </div>
     
     <?php
