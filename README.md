@@ -105,7 +105,13 @@ Lead → Qualified → Proposal → Negotiation → Won/Lost
 - **Paid**: Lunas
 - **Cancelled**: Deal dibatalkan
 
-### 6. 📊 Dashboard & Analytics
+### 6. 📄 Invoicing & Billing
+- Buat invoice profesional secara mandiri atau dari deal yang sudah ada
+- Download invoice dalam format PDF
+- Lacak status tagihan (Draft, Sent, Paid, Overdue)
+- Kustomisasi pajak dan item secara dinamis
+
+### 7. 📊 Dashboard & Analytics
 
 **Metrics Display:**
 - 💵 Total Revenue (bulan ini) + percentage change
@@ -119,7 +125,7 @@ Lead → Qualified → Proposal → Negotiation → Won/Lost
 - Deal pipeline overview
 - Recent activities
 
-### 7. 🎨 Professional Branding
+### 8. 🎨 Professional Branding
 - Upload logo bisnis
 - Business profile lengkap (kategori, deskripsi, kontak)
 - Professional look untuk kredibilitas
@@ -196,6 +202,12 @@ jasaku/
 │
 ├── deals.php                      # Deal pipeline view
 ├── deal-form.php                  # Add/Edit deal
+├── deal-detail.php                # View deal details, history & payments
+│
+├── invoices.php                   # Invoice list
+├── invoice-form.php               # Create/Edit invoice
+├── invoice-detail.php             # Invoice details view
+├── invoice-pdf.php                # Generate PDF invoice
 │
 ├── finance.php                    # Financial tracking (income/expense)
 ├── transaction-form.php           # Add/Edit transaction
@@ -303,7 +315,7 @@ Check if has business?
 - `final_value = deal_value - (deal_value * discount_percent / 100)`
 - Discount hanya bisa apply di stage Proposal keatas
 - Stage Won/Lost adalah final state
-- History stage changes tracked via `updated_at`
+- Track stage changes secara mendetail dengan timestamp di tabel `deal_stage_history`
 
 ### 6. Financial Module
 
@@ -351,6 +363,15 @@ SELECT SUM(final_value) FROM deals
 WHERE payment_status != 'Paid'
 ```
 
+### 8. Invoice Module
+
+**Features:**
+- Generate invoice untuk deal tertentu / klien tanpa deal
+- Automatic invoice number generation
+- Flexible invoice line items & taxes
+- Status tracking (Draft, Sent, Paid, Overdue)
+- Export to PDF untuk client
+
 ---
 
 ## 🗄 Database Schema
@@ -382,6 +403,15 @@ WHERE payment_status != 'Paid'
 ┌───────────────┐
 │ deal_payments │
 └───────────────┘
+
+┌───────────────┐
+│stage_history  │
+└───────────────┘
+
+┌──────────────┐       ┌───────────────┐
+│   invoices   │──────→│ invoice_items │
+└──────────────┘ 1:N   └───────────────┘
+  (linked to deals & clients)
 
 ┌──────────────┐
 │ transactions │ (linked to business & optionally to deal)
@@ -420,10 +450,21 @@ WHERE payment_status != 'Paid'
 - Multiple payments per deal
 - Payment methods tracking
 
+#### `deal_stage_history`
+- Melacak log perpindahan stage sebuah deal
+
 #### `transactions`
 - Income & Expense tracking
 - Optional link to deals
 - Category & method
+
+#### `invoices`
+- Invoice details (number, status, due dates, tax)
+- Linked to deal and client
+- PDF generation ready
+
+#### `invoice_items`
+- Rincian item per invoice (deskripsi, quantity, harga)
 
 ---
 
@@ -482,12 +523,13 @@ $_SESSION['csrf_token']   // CSRF protection
 - ✅ Service Package CRUD
 - ✅ Client CRM
 - ✅ Deal Pipeline (5 stages)
+- ✅ Deal Detail & Stage History Track
 - ✅ Financial Tracking (Income/Expense)
 - ✅ Dashboard Metrics
 - ✅ Payment Tracking
+- ✅ Invoice Generation & PDF Export
 
 ### Phase 2 - Enhancements (Q2 2026)
-- [ ] Invoice Generation & PDF Export
 - [ ] Email Notifications (deal updates, payment reminders)
 - [ ] Advanced filters & search
 - [ ] Bulk actions
@@ -527,6 +569,6 @@ Untuk pertanyaan development atau issue, silakan hubungi tim development.
 
 ---
 
-**Version:** 1.0 MVP  
+**Version:** 1.5 MVP  
 **Last Updated:** Maret 2026  
 **Status:** Active Development
