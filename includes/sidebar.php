@@ -166,6 +166,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span>Keuangan</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="invoices.php" class="nav-link <?= in_array($current_page, ['invoices.php', 'invoice-form.php', 'invoice-detail.php']) ? 'active' : '' ?>">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Invoice</span>
+                </a>
+            </li>
         </ul>
         
         <div class="nav-section">Pengaturan</div>

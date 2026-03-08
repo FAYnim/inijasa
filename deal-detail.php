@@ -304,6 +304,9 @@ include 'includes/sidebar.php';
             <a href="deals.php" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left me-2"></i>Kembali
             </a>
+            <a href="invoice-form.php?deal_id=<?= $deal['id'] ?>" class="btn btn-outline-primary">
+                <i class="fas fa-file-invoice me-2"></i>Buat Invoice
+            </a>
             <a href="deal-form.php?id=<?= $deal['id'] ?>" class="btn btn-primary">
                 <i class="fas fa-edit me-2"></i>Edit Deal
             </a>
