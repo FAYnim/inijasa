@@ -418,7 +418,7 @@ if (isset($_SESSION['user_id'])) {
                     <ul class="list-unstyled text-muted d-flex flex-column gap-3 fw-medium">
                         <li><a href="about.php" class="text-decoration-none text-muted footer-link">Tentang Kami</a></li>
                         <li><a href="#" class="text-decoration-none text-muted footer-link">Karir</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted footer-link">Kontak</a></li>
+                        <li><a href="contact.php" class="text-decoration-none text-muted footer-link">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mt-4 mt-lg-0">
