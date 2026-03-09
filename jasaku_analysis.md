@@ -18,38 +18,13 @@ Berdasarkan eksplorasi kode dan PRD, berikut kondisi fitur yang **sudah implemen
 | CSRF Protection | ✅ Done | Token generator di [functions.php](file:///c:/xampp/htdocs/faydev/jasaku/includes/functions.php) |
 | Laporan & Export CSV | ✅ Done | [reports.php](file:///c:/xampp/htdocs/faydev/jasaku/reports.php) (Laba-Rugi & Pipeline), [export-csv.php](file:///c:/xampp/htdocs/faydev/jasaku/export-csv.php) (5 tipe export) |
 | Activity Log | ✅ Done | Fitur catatan aktivitas pada klien dan deal |
+| Notifikasi In-App | ✅ Done | Reminder otomatis untuk deal stale, payment overdue, dan rentang waktu |
 
 > [!NOTE]
 > MVP sudah sangat solid. Struktur kode bersih, keamanan cukup baik (prepared statements, XSS escaping, CSRF). Yang kurang adalah fitur-fitur yang membuat platform ini **sticky** dan berguna di lapangan.
 
 ---
 
-## 🎯 Rekomendasi Fitur Tambahan (Prioritas Tinggi)
-
-### A. Notifikasi & Reminder In-App
-**Kenapa penting:** Deal yang sudah lama tidak bergerak biasanya hilang begitu saja. Owner butuh diingatkan.
-
-**Yang perlu dibangun:**
-- Badge notifikasi di sidebar (navbar)
-- Tipe notifikasi:
-  - ⚠️ Deal sudah X hari tidak pindah stage
-  - 📅 Expected close date deal sudah lewat
-  - 💰 Payment outstanding > 7 hari
-
-**Tabel tambahan:**
-```sql
-CREATE TABLE notifications (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    business_id INT NOT NULL,
-    type ENUM('deal_stale','overdue_payment','close_date_passed') NOT NULL,
-    message TEXT NOT NULL,
-    related_id INT, -- deal_id/payment_id
-    is_read BOOLEAN DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
----
 
 ## 💡 Rekomendasi Fitur Tambahan (Prioritas Sedang)
 
@@ -117,8 +92,8 @@ Phase 3 ✅ (Selesai):
 ├── Halaman reports.php (Laba-Rugi & Pipeline)
 └── Activity log per deal/klien
 
-Phase 4 (2-3 minggu):
-├── Notifikasi in-app (deal stale, overdue)
+Phase 4 (In progress):
+├── ✅ Notifikasi in-app (deal stale, overdue)
 └── Kanban view untuk pipeline deals
 
 Phase 5 (2-3 minggu):
@@ -136,8 +111,8 @@ Phase 6 (Future):
 
 ## 💬 Kesimpulan
 
-MVP Jasaku sudah dibangun dengan **fondasi yang sangat baik** — struktur database solid, keamanan cukup, dan UI yang bersih. `deal-detail.php` sudah selesai dibangun lengkap dengan stage management, payment tracking, dan stage history. **Invoice Generator**, **Laporan & Export CSV**, dan **Activity log** juga sudah diimplementasikan. Untuk pengembangan selanjutnya, hal yang paling krusial adalah:
+MVP Jasaku sudah dibangun dengan **fondasi yang sangat baik** — struktur database solid, keamanan cukup, dan UI yang bersih. `deal-detail.php` sudah selesai dibangun lengkap dengan stage management, payment tracking, dan stage history. **Invoice Generator**, **Laporan & Export CSV**, **Activity log**, dan **Notifikasi In-App** juga sudah diimplementasikan. Untuk pengembangan selanjutnya, hal yang paling krusial adalah:
 
-1. **Notifikasi in-app** — reminder deal stale dan payment overdue
+1. **Kanban view** untuk pipeline deals agar tracking lebih intuitif
 
 Fitur-fitur lain bersifat *nice-to-have* yang meningkatkan retention dan diferensiasi produk.
