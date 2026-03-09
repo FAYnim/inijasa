@@ -132,6 +132,7 @@ include 'includes/sidebar.php';
                 <table class="table table-hover align-middle">
                     <thead>
                         <tr>
+                            <th style="width:68px;">Gambar</th>
                             <th>Nama Paket</th>
                             <th>Deskripsi</th>
                             <th>Harga</th>
@@ -142,6 +143,17 @@ include 'includes/sidebar.php';
                     <tbody>
                         <?php while ($service = mysqli_fetch_assoc($services)): ?>
                         <tr>
+                            <td>
+                                <?php if (!empty($service['image_path']) && file_exists($service['image_path'])): ?>
+                                    <img src="<?= e($service['image_path']) ?>"
+                                         alt="<?= e($service['service_name']) ?>"
+                                         class="service-thumb">
+                                <?php else: ?>
+                                    <div class="service-thumb-placeholder">
+                                        <i class="fas fa-image"></i>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <strong><?= e($service['service_name']) ?></strong>
                             </td>

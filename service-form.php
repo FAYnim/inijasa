@@ -41,9 +41,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = trim($_POST['description'] ?? '');
     $price = trim($_POST['price'] ?? '');
     $status = $_POST['status'] ?? 'Active';
-    
+
+    // Pre-validate image if provided
+    $new_image_file = null;
+    $image_upload_error = '';
+    if (isset($_FILES['service_image']) && $_FILES['service_image']['error'] === UPLOAD_ERR_OK) {
+        $allowed_types = ['image/jpeg', 'image/png', 'image/jpg'];
+        $max_size = 2 * 1024 * 1024;
+        if (!in_array($_FILES['service_image']['type'], $allowed_types)) {
+            $image_upload_error = 'Format gambar harus JPG atau PNG.';
+        } elseif ($_FILES['service_image']['size'] > $max_size) {
+            $image_upload_error = 'Ukuran gambar maksimal 2MB.';
+        } else {
+            $new_image_file = $_FILES['service_image'];
+        }
+    }
+
     // Validation
-    if (empty($service_name)) {
+    if (!empty($image_upload_error)) {
+        $error = $image_upload_error;
+    } elseif (empty($service_name)) {
         $error = 'Nama paket jasa wajib diisi.';
     } elseif (empty($price) || !is_numeric($price) || $price < 0) {
         $error = 'Harga harus berupa angka valid dan tidak boleh negatif.';
@@ -68,25 +85,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Nama paket jasa sudah digunakan. Gunakan nama yang berbeda.';
         } else {
             if ($is_edit) {
-                // Update service
-                $stmt = mysqli_prepare($conn, 
-                    "UPDATE services SET 
-                        service_name = ?, 
-                        description = ?, 
-                        price = ?, 
-                        status = ?
-                     WHERE id = ? AND business_id = ?"
-                );
-                mysqli_stmt_bind_param($stmt, "ssdsii", 
-                    $service_name, $description, $price, $status,
-                    $service_id, $business_id
-                );
-                
-                if (mysqli_stmt_execute($stmt)) {
-                    setFlashMessage('success', 'Paket jasa berhasil diupdate.');
-                    redirect('services.php');
-                } else {
-                    $error = 'Gagal mengupdate paket jasa.';
+                // Determine image path for update
+                $image_path = $service['image_path'];
+                $delete_old_image = false;
+
+                if ($new_image_file) {
+                    $uploaded_path = uploadServiceImage($new_image_file, $service_id);
+                    if ($uploaded_path) {
+                        $delete_old_image = !empty($service['image_path']);
+                        $image_path = $uploaded_path;
+                    } else {
+                        $error = 'Gagal mengupload gambar.';
+                    }
+                } elseif (isset($_POST['delete_image']) && $_POST['delete_image'] === '1') {
+                    $delete_old_image = !empty($service['image_path']);
+                    $image_path = null;
+                }
+
+                if (empty($error)) {
+                    // Update service
+                    $stmt = mysqli_prepare($conn, 
+                        "UPDATE services SET 
+                            service_name = ?, 
+                            description = ?, 
+                            price = ?, 
+                            status = ?,
+                            image_path = ?
+                         WHERE id = ? AND business_id = ?"
+                    );
+                    mysqli_stmt_bind_param($stmt, "ssdssii", 
+                        $service_name, $description, $price, $status, $image_path,
+                        $service_id, $business_id
+                    );
+                    
+                    if (mysqli_stmt_execute($stmt)) {
+                        if ($delete_old_image) {
+                            deleteServiceImage($service['image_path']);
+                        }
+                        setFlashMessage('success', 'Paket jasa berhasil diupdate.');
+                        redirect('services.php');
+                    } else {
+                        $error = 'Gagal mengupdate paket jasa.';
+                    }
                 }
             } else {
                 // Insert new service
@@ -99,6 +139,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 );
                 
                 if (mysqli_stmt_execute($stmt)) {
+                    $new_service_id = mysqli_insert_id($conn);
+
+                    // Upload image if provided
+                    if ($new_image_file) {
+                        $uploaded_path = uploadServiceImage($new_image_file, $new_service_id);
+                        if ($uploaded_path) {
+                            $img_stmt = mysqli_prepare($conn, "UPDATE services SET image_path = ? WHERE id = ?");
+                            mysqli_stmt_bind_param($img_stmt, "si", $uploaded_path, $new_service_id);
+                            mysqli_stmt_execute($img_stmt);
+                        }
+                    }
+
                     setFlashMessage('success', 'Paket jasa berhasil ditambahkan.');
                     redirect('services.php');
                 } else {
@@ -137,7 +189,7 @@ include 'includes/sidebar.php';
             <!-- Service Form -->
             <div class="card">
                 <div class="card-body p-4">
-                    <form method="POST" action="">
+                    <form method="POST" action="" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="service_name" class="form-label">
@@ -165,6 +217,40 @@ include 'includes/sidebar.php';
                                 <small class="form-text text-muted">
                                     Deskripsi yang jelas akan membantu klien memahami nilai paket Anda
                                 </small>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Gambar Paket Jasa</label>
+                                <?php
+                                $has_current_image = $is_edit && !empty($service['image_path']) && file_exists($service['image_path']);
+                                ?>
+                                <div class="service-image-upload-area" id="imageUploadArea"
+                                     onclick="document.getElementById('service_image').click()">
+                                    <div id="imageEmptyState"<?= $has_current_image ? ' class="d-none"' : '' ?>>
+                                        <i class="fas fa-image fa-2x text-muted mb-2 d-block"></i>
+                                        <p class="text-muted mb-1 small">Klik untuk upload gambar</p>
+                                        <p class="text-muted mb-0" style="font-size:11px;">JPG, PNG &middot; Maks 2MB</p>
+                                    </div>
+                                    <img src="<?= $has_current_image ? e($service['image_path']) : '' ?>"
+                                         id="imagePreview" alt="Preview Gambar"
+                                         class="service-image-preview<?= $has_current_image ? '' : ' d-none' ?>">
+                                </div>
+                                <input type="file" id="service_image" name="service_image"
+                                       accept="image/jpeg,image/png,image/jpg" class="d-none">
+                                <input type="hidden" name="delete_image" id="deleteImageInput" value="0">
+                                <div class="mt-2 d-flex gap-2">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                                            onclick="event.stopPropagation(); document.getElementById('service_image').click()">
+                                        <i class="fas fa-upload me-1"></i>
+                                        <span id="uploadBtnText"><?= $has_current_image ? 'Ganti Gambar' : 'Upload Gambar' ?></span>
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-outline-danger btn-sm<?= $has_current_image ? '' : ' d-none' ?>"
+                                            id="removeImageBtn" onclick="removeServiceImage()">
+                                        <i class="fas fa-trash me-1"></i>Hapus Gambar
+                                    </button>
+                                </div>
+                                <small class="form-text text-muted mt-1 d-block">Gambar akan ditampilkan di daftar paket jasa</small>
                             </div>
                             
                             <div class="col-md-6 mb-3">
@@ -236,5 +322,33 @@ include 'includes/sidebar.php';
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById('service_image').addEventListener('change', function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById('imagePreview').src = e.target.result;
+        document.getElementById('imagePreview').classList.remove('d-none');
+        document.getElementById('imageEmptyState').classList.add('d-none');
+        document.getElementById('removeImageBtn').classList.remove('d-none');
+        document.getElementById('uploadBtnText').textContent = 'Ganti Gambar';
+        document.getElementById('deleteImageInput').value = '0';
+    };
+    reader.readAsDataURL(file);
+});
+
+function removeServiceImage() {
+    document.getElementById('imagePreview').src = '';
+    document.getElementById('imagePreview').classList.add('d-none');
+    document.getElementById('imageEmptyState').classList.remove('d-none');
+    document.getElementById('removeImageBtn').classList.add('d-none');
+    document.getElementById('service_image').value = '';
+    document.getElementById('uploadBtnText').textContent = 'Upload Gambar';
+    document.getElementById('deleteImageInput').value = '1';
+}
+</script>
 
 <?php include 'includes/footer.php'; ?>

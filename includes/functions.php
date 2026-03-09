@@ -254,6 +254,39 @@ function generateInvoiceNumber($conn, $business_id) {
     return $prefix . str_pad($next_num, 4, '0', STR_PAD_LEFT);
 }
 
+// ============================================================
+// Service Image Functions
+// ============================================================
+
+/**
+ * Upload service image and return the stored path, or false on failure.
+ */
+function uploadServiceImage($file, $service_id) {
+    $upload_dir = 'assets/uploads/services/';
+    if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0755, true);
+    }
+
+    $file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    $new_filename = 'service_' . $service_id . '_' . time() . '.' . $file_extension;
+    $new_path = $upload_dir . $new_filename;
+
+    if (move_uploaded_file($file['tmp_name'], $new_path)) {
+        return $new_path;
+    }
+
+    return false;
+}
+
+/**
+ * Delete a service image file from disk.
+ */
+function deleteServiceImage($image_path) {
+    if (!empty($image_path) && file_exists($image_path)) {
+        unlink($image_path);
+    }
+}
+
 // Include Notification Helper
 require_once __DIR__ . '/notification_helper.php';
 ?>
