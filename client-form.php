@@ -37,6 +37,24 @@ if ($is_edit) {
 
 // Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'] ?? 'save_client';
+    
+    if ($action === 'add_activity_log' && $is_edit) {
+        $note = trim($_POST['note'] ?? '');
+        if (empty($note)) {
+            setFlashMessage('danger', 'Catatan tidak boleh kosong.');
+            redirect("client-form.php?id=$client_id");
+        }
+        $stmt = mysqli_prepare($conn, "INSERT INTO activity_logs (business_id, client_id, note) VALUES (?, ?, ?)");
+        mysqli_stmt_bind_param($stmt, "iis", $business_id, $client_id, $note);
+        if (mysqli_stmt_execute($stmt)) {
+            setFlashMessage('success', 'Catatan aktivitas berhasil ditambahkan.');
+        } else {
+            setFlashMessage('danger', 'Gagal menambahkan catatan aktivitas.');
+        }
+        redirect("client-form.php?id=$client_id");
+    }
+
     $client_name = trim($_POST['client_name'] ?? '');
     $company = trim($_POST['company'] ?? '');
     $email = trim($_POST['email'] ?? '');
@@ -93,6 +111,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+}
+
+// Load activity logs if editing
+$activity_logs = [];
+if ($is_edit) {
+    $stmt = mysqli_prepare($conn, "SELECT * FROM activity_logs WHERE client_id = ? ORDER BY created_at DESC");
+    mysqli_stmt_bind_param($stmt, "i", $client_id);
+    mysqli_stmt_execute($stmt);
+    $activity_logs = mysqli_stmt_get_result($stmt);
 }
 
 include 'includes/header.php';
@@ -211,6 +238,55 @@ include 'includes/sidebar.php';
                     </form>
                 </div>
             </div>
+            
+            <?php if ($is_edit): ?>
+            <div class="card mt-4 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">
+                        <i class="fas fa-clipboard-list me-2"></i>Catatan Aktivitas
+                    </h5>
+                    
+                    <form method="POST" action="" class="mb-4">
+                        <input type="hidden" name="action" value="add_activity_log">
+                        <div class="mb-2">
+                            <textarea class="form-control bg-light" name="note" rows="2" placeholder="Tulis catatan atau log aktivitas baru..." required></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                <i class="fas fa-paper-plane me-1"></i>Kirim Catatan
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <?php if (mysqli_num_rows($activity_logs) > 0): ?>
+                    <div class="activity-timeline">
+                        <?php while ($log = mysqli_fetch_assoc($activity_logs)): ?>
+                        <div class="d-flex mb-3 border-bottom pb-3">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                                    <i class="fas fa-comment fa-sm"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3 flex-grow-1">
+                                <div class="text-muted small mb-1">
+                                    <i class="far fa-clock me-1"></i><?= formatDate($log['created_at'], true) ?>
+                                </div>
+                                <div class="text-dark bg-light p-3 rounded">
+                                    <?= nl2br(e($log['note'])) ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endwhile; ?>
+                    </div>
+                    <?php else: ?>
+                    <div class="text-center py-4 border rounded bg-light">
+                        <i class="fas fa-comments fa-2x text-muted mb-2"></i>
+                        <p class="text-muted mb-0">Belum ada catatan aktivitas.</p>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
