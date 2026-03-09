@@ -331,8 +331,8 @@ include 'includes/sidebar.php';
                             <table class="table align-middle" id="itemsTable">
                                 <thead>
                                     <tr>
-                                        <th style="width: 45%">Deskripsi <span class="text-danger">*</span></th>
-                                        <th style="width: 12%">Qty</th>
+                                        <th style="width: 40%">Deskripsi <span class="text-danger">*</span></th>
+                                        <th style="width: 18%">Qty</th>
                                         <th style="width: 25%">Harga Satuan <span class="text-danger">*</span></th>
                                         <th style="width: 13%" class="text-end">Subtotal</th>
                                         <th style="width: 5%"></th>
