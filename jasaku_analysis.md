@@ -17,6 +17,7 @@ Berdasarkan eksplorasi kode dan PRD, berikut kondisi fitur yang **sudah implemen
 | Multi-business switcher | ✅ Done | `system_config` untuk business limit |
 | CSRF Protection | ✅ Done | Token generator di [functions.php](file:///c:/xampp/htdocs/faydev/jasaku/includes/functions.php) |
 | Laporan & Export CSV | ✅ Done | [reports.php](file:///c:/xampp/htdocs/faydev/jasaku/reports.php) (Laba-Rugi & Pipeline), [export-csv.php](file:///c:/xampp/htdocs/faydev/jasaku/export-csv.php) (5 tipe export) |
+| Activity Log | ✅ Done | Fitur catatan aktivitas pada klien dan deal |
 
 > [!NOTE]
 > MVP sudah sangat solid. Struktur kode bersih, keamanan cukup baik (prepared statements, XSS escaping, CSRF). Yang kurang adalah fitur-fitur yang membuat platform ini **sticky** dan berguna di lapangan.
@@ -44,28 +45,6 @@ CREATE TABLE notifications (
     message TEXT NOT NULL,
     related_id INT, -- deal_id/payment_id
     is_read BOOLEAN DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
----
-
-### B. Catatan Aktivitas per Klien / Deal (Activity Log)
-**Kenapa penting:** Agensi dengan tim > 1 orang (atau owner yang sering lupa) butuh jejak percakapan/aktivitas per klien.
-
-**Yang perlu dibangun:**
-- Kolom catatan timeline di halaman detail deal
-- Input "Tambah Catatan" (bebas teks, seperti CRM notes)
-- Tampilan chronological (terbaru di atas)
-
-**Tabel tambahan:**
-```sql
-CREATE TABLE activity_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    business_id INT NOT NULL,
-    deal_id INT,
-    client_id INT,
-    note TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
@@ -135,11 +114,11 @@ Phase 2 ✅ (Selesai):
 
 Phase 3 ✅ (Selesai):
 ├── Export CSV untuk transaksi & laporan
-└── Halaman reports.php (Laba-Rugi & Pipeline)
+├── Halaman reports.php (Laba-Rugi & Pipeline)
+└── Activity log per deal/klien
 
 Phase 4 (2-3 minggu):
 ├── Notifikasi in-app (deal stale, overdue)
-├── Activity log per deal/klien
 └── Kanban view untuk pipeline deals
 
 Phase 5 (2-3 minggu):
@@ -157,9 +136,8 @@ Phase 6 (Future):
 
 ## 💬 Kesimpulan
 
-MVP Jasaku sudah dibangun dengan **fondasi yang sangat baik** — struktur database solid, keamanan cukup, dan UI yang bersih. `deal-detail.php` sudah selesai dibangun lengkap dengan stage management, payment tracking, dan stage history. **Invoice Generator** dan **Laporan & Export CSV** juga sudah diimplementasikan. Untuk pengembangan selanjutnya, hal yang paling krusial adalah:
+MVP Jasaku sudah dibangun dengan **fondasi yang sangat baik** — struktur database solid, keamanan cukup, dan UI yang bersih. `deal-detail.php` sudah selesai dibangun lengkap dengan stage management, payment tracking, dan stage history. **Invoice Generator**, **Laporan & Export CSV**, dan **Activity log** juga sudah diimplementasikan. Untuk pengembangan selanjutnya, hal yang paling krusial adalah:
 
 1. **Notifikasi in-app** — reminder deal stale dan payment overdue
-2. **Activity log** — catatan aktivitas per klien/deal untuk CRM notes
 
 Fitur-fitur lain bersifat *nice-to-have* yang meningkatkan retention dan diferensiasi produk.
