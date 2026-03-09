@@ -253,4 +253,7 @@ function generateInvoiceNumber($conn, $business_id) {
 
     return $prefix . str_pad($next_num, 4, '0', STR_PAD_LEFT);
 }
+
+// Include Notification Helper
+require_once __DIR__ . '/notification_helper.php';
 ?>
