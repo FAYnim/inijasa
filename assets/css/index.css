@@ -40,7 +40,7 @@ body {
 /* Sidebar Filters */
 .filter-sidebar {
     position: sticky;
-    top: 135px;
+    top: 75px;
     height: calc(100vh - 135px);
     overflow-y: auto;
     scrollbar-width: thin;

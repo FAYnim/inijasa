@@ -95,27 +95,27 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
         </div>
     </nav>
 
-    <!-- Sub Navbar -->
-    <div class="sub-navbar border-bottom py-2 bg-white sticky-top d-none d-md-block" style="top: 73px; z-index: 1019;">
-        <div class="container-fluid px-4 d-flex align-items-center gap-4 py-1 text-muted fs-6">
-            <a href="#" class="text-dark text-decoration-none fw-semibold d-flex align-items-center"><i class="fas fa-list me-2"></i>Kategori <i class="fas fa-chevron-down ms-2 small text-muted"></i></a>
-            <div class="vr opacity-25"></div>
-            <a href="#" class="text-muted text-decoration-none hover-dark fw-medium">Siap Dikerjakan</a>
-            <a href="#" class="text-muted text-decoration-none hover-dark fw-medium">Layanan Prioritas</a>
-            <a href="#" class="text-muted text-decoration-none hover-dark fw-medium d-flex align-items-center">Pusat Pembeli <i class="fas fa-chevron-down ms-1 small"></i></a>
-            <a href="#" class="text-muted text-decoration-none hover-dark fw-medium d-flex align-items-center">Jual di Jasaku <i class="fas fa-chevron-down ms-1 small"></i></a>
-            <a href="#" class="text-muted text-decoration-none hover-dark fw-medium d-flex align-items-center">Bantuan <i class="fas fa-chevron-down ms-1 small"></i></a>
-        </div>
-    </div>
-
     <!-- Main Content -->
-    <div class="container-fluid px-4 py-4 main-content-area">
+    <div class="container-fluid px-4 main-content-area">
         <div class="row">
             <!-- Sidebar Filters -->
             <aside class="col-lg-3 col-xl-2 d-none d-lg-block">
                 <div class="filter-sidebar pe-2">
                     <h5 class="fw-bold mb-4 text-dark">Filter</h5>
-                    
+
+                    <!-- Kategori -->
+                    <div class="filter-group mb-4 pb-2">
+                        <h6 class="fw-bold mb-3 text-dark fs-6"><i class="fas fa-list me-2"></i>Kategori</h6>
+                        <div class="d-flex flex-column gap-1">
+                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Desain & Kreatif</a>
+                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Pemrograman & IT</a>
+                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Pemasaran Digital</a>
+                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Penulisan & Terjemahan</a>
+                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Kebersihan & Rumah</a>
+                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Konsultasi Bisnis</a>
+                        </div>
+                    </div>
+
                     <!-- Filter Group 5: Price -->
                     <div class="filter-group mb-4 pb-2 pt-1">
                         <h6 class="fw-bold mb-3 text-dark fs-6">Harga</h6>
@@ -155,15 +155,6 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
                         </div>
                         <button class="btn btn-white rounded-2 px-2 py-1 border border-light-grey shadow-sm view-toggle text-dark fs-5"><i class="fas fa-th-large"></i></button>
                     </div>
-                </div>
-
-                <!-- Active Filter Tags -->
-                <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
-                    <span class="filter-tag">Siap Dikerjakan <i class="fas fa-times ms-2 text-muted small hover-primary" style="cursor:pointer;"></i></span>
-                    <span class="filter-tag">Konsultasi Berbayar <i class="fas fa-times ms-2 text-muted small hover-primary" style="cursor:pointer;"></i></span>
-                    <span class="filter-tag">Harga Minimum <i class="fas fa-times ms-2 text-muted small hover-primary" style="cursor:pointer;"></i></span>
-                    <span class="filter-tag">Harga Maksimum <i class="fas fa-times ms-2 text-muted small hover-primary" style="cursor:pointer;"></i></span>
-                    <a href="index.php" class="text-primary text-decoration-none fw-bold ms-3 filter-clear" style="font-size: 0.95rem;">Hapus Semua Filter</a>
                 </div>
 
                 <!-- Product Grid -->
