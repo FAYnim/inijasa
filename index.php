@@ -73,13 +73,6 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
             <div class="collapse navbar-collapse d-flex justify-content-between align-items-center w-100 mt-3 mt-lg-0" id="navbarNav">
                 <form action="index.php" method="GET" class="search-container mx-auto" style="max-width: 650px; width: 100%;">
                     <div class="input-group search-input-group align-items-center p-1 rounded-pill border hover-shadow-sm bg-white" style="transition: all 0.2s;">
-                        <span class="input-group-text border-0 bg-transparent text-muted ps-3 pe-2"><i class="fas fa-map-marker-alt"></i></span>
-                        <select class="form-select border-0 bg-transparent text-muted fw-medium shadow-none px-1" style="max-width: 120px;">
-                            <option>Jakarta</option>
-                            <option>Surabaya</option>
-                            <option>Bandung</option>
-                        </select>
-                        <div class="vr my-2 opacity-25"></div>
                         <input type="text" name="q" class="form-control border-0 shadow-none ps-3 fw-medium text-dark bg-transparent" placeholder="Ketik jasa yang dicari..." value="<?= htmlspecialchars($searchQuery) ?>">
                         <button type="submit" class="btn rounded-pill px-4 py-2 fw-bold text-white shadow-sm" style="background-color: var(--primary-color);"><i class="fas fa-search me-2"></i>Cari</button>
                     </div>
@@ -141,7 +134,7 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
                 <!-- Search Result Header -->
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 pb-2 border-bottom border-light gap-3">
                     <div class="fw-bold text-dark fs-6">
-                        1 - <?= min(16, count($services)) ?> dari <?= count($services) + 7000 ?> hasil untuk <span class="text-primary">"<?= empty($searchQuery) ? 'Semua' : htmlspecialchars($searchQuery) ?>"</span>
+                        1 - <?= min(16, count($services)) ?> dari <?= count($services) ?> hasil untuk <span class="text-primary">"<?= empty($searchQuery) ? 'Semua' : htmlspecialchars($searchQuery) ?>"</span>
                     </div>
                     
                     <div class="d-flex align-items-center gap-3">
@@ -153,7 +146,6 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
                                 <option>Harga: Tertinggi ke Terendah</option>
                             </select>
                         </div>
-                        <button class="btn btn-white rounded-2 px-2 py-1 border border-light-grey shadow-sm view-toggle text-dark fs-5"><i class="fas fa-th-large"></i></button>
                     </div>
                 </div>
 
