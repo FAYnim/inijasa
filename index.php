@@ -116,67 +116,10 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
                 <div class="filter-sidebar pe-2">
                     <h5 class="fw-bold mb-4 text-dark">Filter</h5>
                     
-                    <!-- Filter Group 1 -->
-                    <div class="filter-group mb-4 pb-2">
-                        <h6 class="fw-bold mb-3 text-dark fs-6">Tipe Penyedia</h6>
-                        <div class="form-check mb-2 custom-checkbox">
-                            <input class="form-check-input shadow-none" type="checkbox" id="tAssurance">
-                            <label class="form-check-label d-flex align-items-center gap-2 text-muted" for="tAssurance">
-                                <i class="fas fa-crown text-warning"></i> Jaminan Transaksi
-                            </label>
-                        </div>
-                        <div class="form-check mb-2 custom-checkbox">
-                            <input class="form-check-input shadow-none" type="checkbox" id="vSuppliers">
-                            <label class="form-check-label d-flex align-items-center gap-2 text-muted" for="vSuppliers">
-                                <i class="fas fa-check-circle text-primary"></i> Terverifikasi
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Filter Group 2 -->
-                    <div class="filter-group mb-4 pb-2">
-                        <h6 class="fw-bold mb-3 text-dark fs-6">Tipe Layanan</h6>
-                        <div class="form-check mb-3 custom-checkbox orange-check">
-                            <input class="form-check-input shadow-none" type="checkbox" id="pReady" checked>
-                            <label class="form-check-label text-muted fw-medium" for="pReady">Siap Dikerjakan</label>
-                        </div>
-                        <div class="form-check mb-2 custom-checkbox orange-check">
-                            <input class="form-check-input shadow-none" type="checkbox" id="pPaid" checked>
-                            <label class="form-check-label text-muted fw-medium" for="pPaid">Konsultasi Berbayar</label>
-                        </div>
-                    </div>
-
-                    <!-- Filter Group 3 -->
-                    <div class="filter-group mb-4 pb-2">
-                        <h6 class="fw-bold mb-3 text-dark fs-6">Pengalaman</h6>
-                        <div class="form-check mb-3 custom-checkbox">
-                            <input class="form-check-input shadow-none" type="checkbox" id="cNew">
-                            <label class="form-check-label text-muted" for="cNew">Baru Bergabung</label>
-                        </div>
-                        <div class="form-check mb-2 custom-checkbox">
-                            <input class="form-check-input shadow-none" type="checkbox" id="cSecond">
-                            <label class="form-check-label text-muted" for="cSecond">Berpengalaman</label>
-                        </div>
-                    </div>
-
-                    <!-- Filter Group 4: Range -->
-                    <div class="filter-group mb-4 pb-2 pt-2">
-                        <div class="position-relative pb-4">
-                            <div class="range-slider-tooltip bg-dark text-white rounded px-2 py-1 small fw-bold position-absolute" style="left: 50%; top:-30px; transform: translateX(-50%);">500</div>
-                            <h6 class="fw-bold mb-3 text-dark fs-6 float-start">Min. Pesanan</h6>
-                            <div class="clearfix"></div>
-                            <input type="range" class="form-range custom-range" min="10" max="1000" value="500">
-                            <div class="d-flex justify-content-between text-muted mt-1 fw-medium" style="font-size: 0.8em;">
-                                <span>10</span>
-                                <span>1000</span>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Filter Group 5: Price -->
                     <div class="filter-group mb-4 pb-2 pt-1">
                         <h6 class="fw-bold mb-3 text-dark fs-6">Harga</h6>
-                        <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="d-flex flex-column gap-2 mt-3">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text border-end-0 text-muted bg-white px-2 ps-3 fw-medium border-light-grey rounded-start-2 shadow-sm text-center" style="width: 40px; font-size: 0.85rem;">Rp</span>
                                 <input type="text" class="form-control border-start-0 ps-1 bg-white fw-medium border-light-grey rounded-end-2 shadow-sm" value="100.000">
@@ -185,8 +128,6 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
                                 <span class="input-group-text border-end-0 text-muted bg-white px-2 ps-3 fw-medium border-light-grey rounded-start-2 shadow-sm text-center" style="width: 40px; font-size: 0.85rem;">Rp</span>
                                 <input type="text" class="form-control border-start-0 ps-1 bg-white fw-medium border-light-grey rounded-end-2 shadow-sm" value="5.000.000">
                             </div>
-                        </div>
-                        <div class="d-flex flex-column gap-2 mt-3">
                             <button class="btn border-light-grey text-start py-2 text-muted bg-white filter-btn rounded-2 shadow-sm pe-4">Di bawah Rp 500rb</button>
                             <button class="btn border-light-grey text-start py-2 text-muted bg-white filter-btn rounded-2 shadow-sm pe-4">Rp 500rb - Rp 1Jt</button>
                             <button class="btn border-light-grey text-start py-2 text-muted bg-white filter-btn rounded-2 shadow-sm pe-4">Rp 1Jt - Rp 5Jt</button>
@@ -222,7 +163,6 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
                     <span class="filter-tag">Konsultasi Berbayar <i class="fas fa-times ms-2 text-muted small hover-primary" style="cursor:pointer;"></i></span>
                     <span class="filter-tag">Harga Minimum <i class="fas fa-times ms-2 text-muted small hover-primary" style="cursor:pointer;"></i></span>
                     <span class="filter-tag">Harga Maksimum <i class="fas fa-times ms-2 text-muted small hover-primary" style="cursor:pointer;"></i></span>
-                    <span class="filter-tag">Minimal Pesanan <i class="fas fa-times ms-2 text-muted small hover-primary" style="cursor:pointer;"></i></span>
                     <a href="index.php" class="text-primary text-decoration-none fw-bold ms-3 filter-clear" style="font-size: 0.95rem;">Hapus Semua Filter</a>
                 </div>
 
