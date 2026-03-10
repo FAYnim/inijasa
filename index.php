@@ -96,19 +96,6 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
                 <div class="filter-sidebar pe-2">
                     <h5 class="fw-bold mb-4 text-dark">Filter</h5>
 
-                    <!-- Kategori -->
-                    <div class="filter-group mb-4 pb-2">
-                        <h6 class="fw-bold mb-3 text-dark fs-6"><i class="fas fa-list me-2"></i>Kategori</h6>
-                        <div class="d-flex flex-column gap-1">
-                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Desain & Kreatif</a>
-                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Pemrograman & IT</a>
-                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Pemasaran Digital</a>
-                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Penulisan & Terjemahan</a>
-                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Kebersihan & Rumah</a>
-                            <a href="#" class="text-muted text-decoration-none py-1 px-2 rounded-2 hover-dark fw-medium">Konsultasi Bisnis</a>
-                        </div>
-                    </div>
-
                     <!-- Filter Group 5: Price -->
                     <div class="filter-group mb-4 pb-2 pt-1">
                         <h6 class="fw-bold mb-3 text-dark fs-6">Harga</h6>
