@@ -86,18 +86,9 @@ $placeholderColors = ['#FF6B35', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6'];
                 </form>
 
                 <ul class="navbar-nav align-items-center gap-4 d-none d-lg-flex">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark fw-semibold d-flex align-items-center" href="#" role="button">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg" width="22" class="me-2 border rounded-1 shadow-sm" alt="ID"> ID <i class="fas fa-chevron-down ms-1 small text-muted" style="font-size:0.7em;"></i>
-                        </a>
-                    </li>
                     <li class="nav-item"><a class="nav-link text-dark hover-primary" href="#"><i class="fas fa-shopping-cart fs-5"></i></a></li>
-                    <li class="nav-item"><a class="nav-link text-dark hover-primary" href="#"><i class="far fa-bell fs-5"></i></a></li>
-                    <li class="nav-item"><a class="nav-link text-dark hover-primary" href="#"><i class="far fa-envelope fs-5"></i></a></li>
                     <li class="nav-item ms-2">
-                        <a href="business.php" class="text-decoration-none">
-                            <img src="https://ui-avatars.com/api/?name=User&background=333&color=fff&rounded=true&bold=true" width="36" height="36" alt="User" class="rounded-circle border">
-                        </a>
+                        <a href="business.php" class="btn btn-dark rounded-pill px-4 py-2 fw-semibold">Bisnis</a>
                     </li>
                 </ul>
             </div>
