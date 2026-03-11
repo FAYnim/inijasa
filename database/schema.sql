@@ -106,6 +106,7 @@ CREATE TABLE deal_payments (
     payment_date DATE NOT NULL,
     method ENUM('Transfer', 'Cash', 'QRIS', 'Lainnya'),
     notes VARCHAR(255),
+    transaction_id INT DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (deal_id) REFERENCES deals(id) ON DELETE CASCADE,
     INDEX idx_deal_id (deal_id),
@@ -145,6 +146,9 @@ CREATE TABLE transactions (
     INDEX idx_transaction_date (transaction_date),
     INDEX idx_deal_id (deal_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Add foreign key constraint for deal_payments to transactions
+ALTER TABLE deal_payments ADD CONSTRAINT fk_deal_payment_transaction FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE;
 
 -- System configuration table (migration 001)
 CREATE TABLE system_config (
