@@ -31,7 +31,7 @@ session_start();
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white py-3 shadow-sm" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand fw-bold text-primary fs-3" href="business.php">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="index.php">
                 Jasaku
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -39,19 +39,21 @@ session_start();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link px-3" href="business.php#features">Fitur</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="business.php#bento">Kelebihan</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="business.php#how-it-works">Cara Kerja</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="business.php#pricing">Harga</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="business.php#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index.php#features">Fitur</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index.php#bento">Kelebihan</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index.php#how-it-works">Cara Kerja</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index.php#pricing">Harga</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index.php#faq">FAQ</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <a href="dashboard.php" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Dashboard</a>
-                    <?php else: ?>
+                    <?php
+else: ?>
                         <a href="auth/login.php" class="text-decoration-none fw-medium text-dark px-3 py-2 btn-login">Masuk</a>
                         <a href="auth/register.php" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Coba Gratis</a>
-                    <?php endif; ?>
+                    <?php
+endif; ?>
                 </div>
             </div>
         </div>
@@ -155,7 +157,7 @@ session_start();
         <div class="container px-4 px-lg-5">
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-4 pe-lg-5">
-                    <a class="navbar-brand fw-bold text-dark fs-3 mb-3 d-inline-block text-decoration-none d-flex align-items-center gap-2" href="business.php">
+                    <a class="navbar-brand fw-bold text-dark fs-3 mb-3 d-inline-block text-decoration-none d-flex align-items-center gap-2" href="index.php">
                         <i class="fas fa-briefcase text-primary"></i> Jasaku
                     </a>
                     <p class="text-muted mt-2 fw-medium pe-lg-4">Platform operasi terpadu untuk agensi, freelancer, dan UMKM jasa inovatif di Indonesia.</p>

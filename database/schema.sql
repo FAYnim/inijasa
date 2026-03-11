@@ -44,6 +44,7 @@ CREATE TABLE services (
     business_id INT NOT NULL,
     service_name VARCHAR(100) NOT NULL,
     description TEXT,
+    image_path VARCHAR(255) NULL,
     price DECIMAL(15,2) NOT NULL,
     status ENUM('Active', 'Inactive') DEFAULT 'Active',
     is_deleted BOOLEAN DEFAULT 0,
