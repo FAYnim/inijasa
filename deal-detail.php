@@ -129,8 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect("deal-detail.php?id=$deal_id");
         }
         
-        // Check ownership and get final_value
-        $stmt = mysqli_prepare($conn, "SELECT final_value FROM deals WHERE id = ? AND business_id = ?");
+        // Check ownership and get final_value and deal_title
+        $stmt = mysqli_prepare($conn, "SELECT deal_title, final_value FROM deals WHERE id = ? AND business_id = ?");
         mysqli_stmt_bind_param($stmt, "ii", $deal_id, $business_id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
@@ -155,13 +155,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect("deal-detail.php?id=$deal_id");
         }
         
-        // Insert payment
-        $stmt = mysqli_prepare($conn, 
-            "INSERT INTO deal_payments (deal_id, amount, payment_date, method, notes) VALUES (?, ?, ?, ?, ?)"
-        );
-        mysqli_stmt_bind_param($stmt, "idsss", $deal_id, $amount, $payment_date, $method, $notes);
+        // Insert payment to transactions first
+        $trans_type = 'Income';
+        $trans_category = 'Deal Payment';
+        $trans_title = "Pembayaran Deal: " . ($deal_check['deal_title'] ?? "ID $deal_id");
         
-        if (mysqli_stmt_execute($stmt)) {
+        $stmt_trans = mysqli_prepare($conn, 
+            "INSERT INTO transactions (business_id, type, title, category, amount, transaction_date, method, notes, deal_id) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        );
+        mysqli_stmt_bind_param($stmt_trans, "isssdsssi", 
+            $business_id, $trans_type, $trans_title, $trans_category, $amount, $payment_date, $method, $notes, $deal_id
+        );
+        
+        if (mysqli_stmt_execute($stmt_trans)) {
+            $transaction_id = mysqli_insert_id($conn);
+            
+            $stmt = mysqli_prepare($conn, 
+                "INSERT INTO deal_payments (deal_id, amount, payment_date, method, notes, transaction_id) VALUES (?, ?, ?, ?, ?, ?)"
+            );
+            mysqli_stmt_bind_param($stmt, "idsssi", $deal_id, $amount, $payment_date, $method, $notes, $transaction_id);
+            mysqli_stmt_execute($stmt);
+            
             setFlashMessage('success', 'Pembayaran berhasil ditambahkan.');
         } else {
             setFlashMessage('danger', 'Gagal menambahkan pembayaran.');
@@ -174,9 +189,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'delete_payment') {
         $payment_id = (int)($_POST['payment_id'] ?? 0);
         
-        // Verify payment belongs to this deal and business
+        // Verify payment belongs to this deal and business and get transaction_id
         $stmt = mysqli_prepare($conn, 
-            "SELECT dp.id FROM deal_payments dp 
+            "SELECT dp.id, dp.transaction_id FROM deal_payments dp 
              JOIN deals d ON dp.deal_id = d.id 
              WHERE dp.id = ? AND dp.deal_id = ? AND d.business_id = ?"
         );
@@ -189,10 +204,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect("deal-detail.php?id=$deal_id");
         }
         
-        $stmt = mysqli_prepare($conn, "DELETE FROM deal_payments WHERE id = ?");
-        mysqli_stmt_bind_param($stmt, "i", $payment_id);
+        $payment_record = mysqli_fetch_assoc($result);
+        $success = false;
         
-        if (mysqli_stmt_execute($stmt)) {
+        if ($payment_record['transaction_id']) {
+            // Delete the transaction, which will cascade delete the deal_payment
+            $stmt = mysqli_prepare($conn, "DELETE FROM transactions WHERE id = ?");
+            mysqli_stmt_bind_param($stmt, "i", $payment_record['transaction_id']);
+            $success = mysqli_stmt_execute($stmt);
+        } else {
+            // Fallback for older payments that don't have transaction_id
+            $stmt = mysqli_prepare($conn, "DELETE FROM deal_payments WHERE id = ?");
+            mysqli_stmt_bind_param($stmt, "i", $payment_id);
+            $success = mysqli_stmt_execute($stmt);
+        }
+        
+        if ($success) {
             setFlashMessage('success', 'Pembayaran berhasil dihapus.');
         } else {
             setFlashMessage('danger', 'Gagal menghapus pembayaran.');
