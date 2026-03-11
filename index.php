@@ -102,7 +102,24 @@ if (isset($_SESSION['user_id'])) {
                                 <p class="text-success small fw-medium mt-1"><i class="fas fa-arrow-up"></i> 12.5% dibanding bulan lalu</p>
                             </div>
                             <div class="card-body p-4 pt-2">
-                                <img src="https://placehold.co/400x200/F8F9FA/CBD5E1?text=Grafik+Pertumbuhan" class="img-fluid rounded w-100" alt="Chart">
+                                <svg class="img-fluid rounded w-100" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="paint0_linear" x1="200" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0d6efd" stop-opacity="0.25"/>
+                                            <stop offset="1" stop-color="#0d6efd" stop-opacity="0"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M0 160H400" stroke="#F1F5F9" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                    <path d="M0 120H400" stroke="#F1F5F9" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                    <path d="M0 80H400" stroke="#F1F5F9" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                    <path d="M0 40H400" stroke="#F1F5F9" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                    <path d="M0 150 C 40 150, 70 130, 100 120 C 130 110, 160 50, 200 80 C 240 110, 270 60, 300 70 C 340 80, 370 20, 400 20 L 400 200 L 0 200 Z" fill="url(#paint0_linear)"/>
+                                    <path d="M0 150 C 40 150, 70 130, 100 120 C 130 110, 160 50, 200 80 C 240 110, 270 60, 300 70 C 340 80, 370 20, 400 20" stroke="#0d6efd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="100" cy="120" r="4.5" fill="white" stroke="#0d6efd" stroke-width="2.5"/>
+                                    <circle cx="200" cy="80" r="4.5" fill="white" stroke="#0d6efd" stroke-width="2.5"/>
+                                    <circle cx="300" cy="70" r="4.5" fill="white" stroke="#0d6efd" stroke-width="2.5"/>
+                                    <circle cx="400" cy="20" r="6.5" fill="#0d6efd" stroke="white" stroke-width="3"/>
+                                </svg>
                             </div>
                         </div>
 
@@ -194,7 +211,47 @@ if (isset($_SESSION['user_id'])) {
                         <p class="text-muted fs-5 fw-medium mb-0 max-w-md">Kendalikan deal pipeline Anda secara mulus. Pantau tahapan setiap transaksi dari prospek awal hingga selesai dibayar.</p>
                     </div>
                     <div class="flex-shrink-0 bento-bottom-img text-center pt-5 pt-md-0 pe-md-5 w-100" style="max-width: 500px;">
-                        <img src="https://placehold.co/800x400/FFFFFF/CBD5E1?text=Grafik+Pertumbuhan+Bulan+ke+Bulan" class="img-fluid bento-image shadow-sm" alt="Graph" style="border-top-left-radius: 12px; border-top-right-radius: 12px; border: 1px solid rgba(0,0,0,0.05); border-bottom:0;">
+                        <svg class="img-fluid bento-image shadow-sm w-100" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-top-left-radius: 12px; border-top-right-radius: 12px; border: 1px solid rgba(0,0,0,0.05); border-bottom:0; background: #ffffff;">
+                            <defs>
+                                <linearGradient id="bar_gradient" x1="0" y1="0" x2="0" y2="360" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#0d6efd"/>
+                                    <stop offset="1" stop-color="#0d6efd" stop-opacity="0.4"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M50 360H770" stroke="#E2E8F0" stroke-width="2"/>
+                            <path d="M50 280H770" stroke="#F1F5F9" stroke-width="2" stroke-dasharray="6 6"/>
+                            <path d="M50 200H770" stroke="#F1F5F9" stroke-width="2" stroke-dasharray="6 6"/>
+                            <path d="M50 120H770" stroke="#F1F5F9" stroke-width="2" stroke-dasharray="6 6"/>
+                            <path d="M50 40H770" stroke="#F1F5F9" stroke-width="2" stroke-dasharray="6 6"/>
+                            
+                            <text x="40" y="365" font-family="Inter, sans-serif" font-size="13" fill="#94A3B8" text-anchor="end">0</text>
+                            <text x="40" y="285" font-family="Inter, sans-serif" font-size="13" fill="#94A3B8" text-anchor="end">25M</text>
+                            <text x="40" y="205" font-family="Inter, sans-serif" font-size="13" fill="#94A3B8" text-anchor="end">50M</text>
+                            <text x="40" y="125" font-family="Inter, sans-serif" font-size="13" fill="#94A3B8" text-anchor="end">75M</text>
+                            <text x="40" y="45" font-family="Inter, sans-serif" font-size="13" fill="#94A3B8" text-anchor="end">100M</text>
+                            
+                            <rect x="90" y="240" width="48" height="120" rx="6" fill="#E2E8F0"/>
+                            <rect x="186" y="200" width="48" height="160" rx="6" fill="#E2E8F0"/>
+                            <rect x="282" y="160" width="48" height="200" rx="6" fill="#E2E8F0"/>
+                            <rect x="378" y="140" width="48" height="220" rx="6" fill="#E2E8F0"/>
+                            <rect x="474" y="90" width="48" height="270" rx="6" fill="#E2E8F0"/>
+                            <rect x="570" y="70" width="48" height="290" rx="6" fill="#E2E8F0"/>
+                            <rect x="666" y="30" width="48" height="330" rx="6" fill="url(#bar_gradient)"/>
+                        
+                            <path d="M114 200 L 210 160 L 306 140 L 402 100 L 498 70 L 594 40 L 690 10" stroke="#F59E0B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <rect x="625" y="15" width="130" height="44" rx="8" fill="#1E293B" opacity="0.95"/>
+                            <text x="690" y="43" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Rp 92.5M</text>
+                            <circle cx="690" cy="10" r="7" fill="#F59E0B" stroke="white" stroke-width="3"/>
+                            
+                            <text x="114" y="390" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="middle">Jan</text>
+                            <text x="210" y="390" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="middle">Feb</text>
+                            <text x="306" y="390" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="middle">Mar</text>
+                            <text x="402" y="390" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="middle">Apr</text>
+                            <text x="498" y="390" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="middle">Mei</text>
+                            <text x="594" y="390" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="middle">Jun</text>
+                            <text x="690" y="390" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#0d6efd" text-anchor="middle">Jul</text>
+                        </svg>
                     </div>
                 </div>
             </div>
