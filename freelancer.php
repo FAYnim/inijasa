@@ -1,6 +1,6 @@
 <?php
 /**
- * About Us Page
+ * Freelancer Page
  * Jasaku - Platform Manajemen Bisnis Jasa
  */
 
@@ -11,7 +11,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - Jasaku</title>
+    <title>Solusi Freelancer - Jasaku</title>
     
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -48,12 +48,10 @@ session_start();
                 <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <a href="dashboard.php" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Dashboard</a>
-                    <?php
-else: ?>
+                    <?php else: ?>
                         <a href="auth/login.php" class="text-decoration-none fw-medium text-dark px-3 py-2 btn-login">Masuk</a>
                         <a href="auth/register.php" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Coba Gratis</a>
-                    <?php
-endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -64,90 +62,35 @@ endif; ?>
         <div class="container px-4 px-lg-5">
             <div class="row pt-5 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 hero-content mb-5">
-                    <p class="text-primary fw-semibold small tracking-widest text-uppercase mb-3">Cerita Kami</p>
+                    <p class="text-primary fw-semibold small tracking-widest text-uppercase mb-3">Solusi Freelancer</p>
                     <h1 class="display-3 fw-bold text-dark mb-4">
-                        Merevolusi Cara Bisnis Jasa Bekerja
+                        Tingkatkan Profesionalisme Bisnis Freelance Anda
                     </h1>
                     <p class="text-muted fs-5 fw-medium mx-auto" style="max-width: 700px;">
-                        Jasaku hadir untuk memberikan solusi operasional yang efisien, transparan, dan terintegrasi bagi para penyedia jasa di Indonesia—dari freelancer hingga agensi profesional.
+                        Fokus pada pekerjaan Anda, biarkan Jasaku mengurus sisanya. Kelola klien, invoice, dan portofolio layanan dengan lebih mudah.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Story / Content Section -->
-    <section class="py-5 bg-light my-5" id="story">
+    <!-- Content Section -->
+    <section class="py-5 bg-light my-5">
         <div class="container px-4 px-lg-5 py-5">
-            <div class="row align-items-center g-5 mb-5 pb-5">
+            <div class="row align-items-center g-5">
                 <div class="col-lg-6">
-                    <img src="https://placehold.co/800x600/F8F9FA/CBD5E1?text=Perjalanan+Jasaku" alt="Perjalanan Jasaku" class="img-fluid rounded-4 shadow-lg w-100 border border-light-subtle">
+                    <img src="https://placehold.co/800x600/F8F9FA/CBD5E1?text=Freelancer" alt="Solusi Freelancer" class="img-fluid rounded-4 shadow-lg w-100 border border-light-subtle">
                 </div>
                 <div class="col-lg-6 ps-lg-5">
-                    <h2 class="display-5 fw-bold text-dark mb-4">Latar Belakang Kami</h2>
+                    <h2 class="display-5 fw-bold text-dark mb-4">Satu Tempat Untuk Semua</h2>
                     <p class="text-muted fs-5 mb-4 lh-lg">
-                        Berawal dari pengalaman mengelola agensi jasa, kami menyadari betapa rumitnya menyelaraskan proses operasional, penjualan, dan penagihan klien tanpa sistem yang saling terhubung. Alat-alat yang ada sering kali terlalu mahal, rumit, atau tidak sesuai dengan alur kerja (workflow) penyedia jasa.
+                        Jasaku menawarkan fitur yang disesuaikan dengan kebutuhan pekerja lepas (freelancer), memastikan Anda dibayar tepat waktu tanpa pusing memikirkan manajemen data.
                     </p>
-                    <p class="text-muted fs-5 mb-0 lh-lg">
-                        Atas dasar itulah Jasaku dibangun. Sebuah platform <em>all-in-one</em> yang dirancang secara spesifik, mengedepankan kesederhanaan, namun memiliki skalabilitas tinggi untuk memenuhi kebutuhan bisnis jasa masa kini yang serba dinamis.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row mt-5 pt-3 g-4 align-items-stretch">
-                <!-- Visi -->
-                <div class="col-md-6">
-                    <div class="bento-card bg-white p-5 h-100 d-flex flex-column justify-content-center text-center hover-lift position-relative overflow-hidden group">
-                        <div class="mb-4 position-relative z-1">
-                            <i class="fas fa-rocket text-primary" style="font-size: 4rem;"></i>
-                        </div>
-                        <h3 class="fw-bold mb-3 fs-2 text-dark position-relative z-1">Visi Kami</h3>
-                        <p class="text-muted fs-5 fw-medium mb-0 position-relative z-1">Menjadi ekosistem digital terbaik dan terpercaya yang memampukan setiap bisnis jasa di Indonesia untuk tumbuh tanpa batas.</p>
-                    </div>
-                </div>
-                <!-- Misi -->
-                <div class="col-md-6">
-                    <div class="bento-card bg-primary text-white p-5 h-100 d-flex flex-column justify-content-center text-center hover-lift position-relative overflow-hidden group">
-                        <div class="step-bg d-none d-lg-block" style="opacity: 0.1"></div>
-                        <div class="mb-4 position-relative z-1">
-                            <i class="fas fa-bullseye text-white" style="font-size: 4rem;"></i>
-                        </div>
-                        <h3 class="fw-bold mb-3 fs-2 text-white position-relative z-1">Misi Kami</h3>
-                        <p class="text-white-50 fs-5 fw-medium mb-0 position-relative z-1">Menyederhanakan kompleksitas operasional, meningkatkan transparansi keuangan, dan mengotomatisasi alur kerja agar Anda bisa fokus melayani klien.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Support / Value section -->
-    <section class="py-5 my-5">
-        <div class="container px-4 px-lg-5">
-            <div class="text-center mb-5 pb-3">
-                <p class="text-primary fw-semibold small tracking-widest text-uppercase">Nilai Utama</p>
-                <h2 class="display-5 fw-bold text-dark">Mengapa Jasaku Berbeda</h2>
-            </div>
-            <div class="row g-4 text-center">
-                <div class="col-md-4 feature-box p-4">
-                    <div class="feature-icon mb-4 mx-auto" style="width: 80px; height: 80px; font-size: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-handshake text-primary"></i>
-                    </div>
-                    <h4 class="fw-bold fs-4 text-dark mb-3">Kolaboratif</h4>
-                    <p class="text-muted fw-medium fs-6">Kami membangun Jasaku tidak hanya untuk kami, tetapi dirancang bersama masukan dari ratusan praktisi bisnis jasa nyata.</p>
-                </div>
-                <div class="col-md-4 feature-box p-4">
-                    <div class="feature-icon mb-4 mx-auto" style="width: 80px; height: 80px; font-size: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-lock text-primary"></i>
-                    </div>
-                    <h4 class="fw-bold fs-4 text-dark mb-3">Keamanan Data</h4>
-                    <p class="text-muted fw-medium fs-6">Privasi dan keamanan data finansial maupun klien Anda adalah prioritas tertinggi kami melalui standar enkripsi industri.</p>
-                </div>
-                <div class="col-md-4 feature-box p-4">
-                    <div class="feature-icon mb-4 mx-auto" style="width: 80px; height: 80px; font-size: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-lightbulb text-primary"></i>
-                    </div>
-                    <h4 class="fw-bold fs-4 text-dark mb-3">Inovasi Berkelanjutan</h4>
-                    <p class="text-muted fw-medium fs-6">Kami secara rutin merilis pembaruan fitur baru untuk memastikan tools yang Anda gunakan selalu relevan dengan tren masa kini.</p>
+                    <ul class="list-unstyled text-muted fw-medium fs-5 d-flex flex-column gap-3 mb-0">
+                        <li><i class="fas fa-check text-primary me-3"></i>Format penawaran yang profesional</li>
+                        <li><i class="fas fa-check text-primary me-3"></i>Pembayaran yang mudah dilacak</li>
+                        <li><i class="fas fa-check text-primary me-3"></i>Manajemen proyek tanpa hambatan</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -160,11 +103,11 @@ endif; ?>
             
             <div class="row align-items-center py-5 px-lg-4 position-relative z-1 text-center text-lg-start">
                 <div class="col-lg-7 mb-4 mb-lg-0">
-                    <p class="small fw-bold tracking-widest text-uppercase text-white-50 mb-3">Mari Bertumbuh Bersama</p>
-                    <h2 class="display-5 fw-bold mb-0 lh-sm">Jadilah bagian dari perjalanan Jasaku.</h2>
+                    <p class="small fw-bold tracking-widest text-uppercase text-white-50 mb-3">Mulai Mandiri Bersama Jasaku</p>
+                    <h2 class="display-5 fw-bold mb-0 lh-sm">Daftar sekarang dan kelola freelance-mu dengan lebih rapi.</h2>
                 </div>
                 <div class="col-lg-5 text-lg-end d-flex gap-3 justify-content-center justify-content-lg-end flex-wrap">
-                    <a href="auth/register.php" class="btn border-0 rounded-pill px-5 py-3 fw-bold fs-5 shadow-sm cta-banner-btn" style="background-color: var(--accent); color: white;">Mulai Gratis Sekarang</a>
+                    <a href="auth/register.php" class="btn border-0 rounded-pill px-5 py-3 fw-bold fs-5 shadow-sm cta-banner-btn" style="background-color: var(--accent); color: white;">Buat Akun Gratis</a>
                 </div>
             </div>
         </div>
