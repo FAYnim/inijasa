@@ -165,16 +165,16 @@ endif; ?>
                 <div class="col-6 col-md-4 col-lg-2 offset-lg-2">
                     <h6 class="fw-bold mb-4 text-dark mb-4 pb-2 border-bottom border-light-subtle d-inline-block">Solusi</h6>
                     <ul class="list-unstyled text-muted d-flex flex-column gap-3 fw-medium">
-                        <li><a href="#" class="text-decoration-none text-muted footer-link">Agensi Kecil</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted footer-link">Freelancer</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted footer-link">Konsultan</a></li>
+                        <li><a href="agensi-kecil.php" class="text-decoration-none text-muted footer-link">Agensi Kecil</a></li>
+                        <li><a href="freelancer.php" class="text-decoration-none text-muted footer-link">Freelancer</a></li>
+                        <li><a href="konsultan.php" class="text-decoration-none text-muted footer-link">Konsultan</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
                     <h6 class="fw-bold mb-4 text-dark mb-4 pb-2 border-bottom border-light-subtle d-inline-block">Perusahaan</h6>
                     <ul class="list-unstyled text-muted d-flex flex-column gap-3 fw-medium">
                         <li><a href="about.php" class="text-decoration-none text-muted footer-link">Tentang Kami</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted footer-link">Karir</a></li>
+                        <li><a href="karir.php" class="text-decoration-none text-muted footer-link">Karir</a></li>
                         <li><a href="contact.php" class="text-decoration-none text-muted footer-link">Kontak</a></li>
                     </ul>
                 </div>
@@ -190,8 +190,8 @@ endif; ?>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-muted border-top border-light-subtle pt-4 mt-5">
                 <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> Jasaku. All Rights Reserved.</p>
                 <div class="d-flex gap-4 small fw-medium">
-                    <a href="#" class="text-decoration-none text-muted footer-link">Terms</a>
-                    <a href="#" class="text-decoration-none text-muted footer-link">Privacy</a>
+                    <a href="terms.php" class="text-decoration-none text-muted footer-link">Terms</a>
+                    <a href="privacy.php" class="text-decoration-none text-muted footer-link">Privacy</a>
                 </div>
             </div>
         </div>
