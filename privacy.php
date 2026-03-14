@@ -1,7 +1,7 @@
 <?php
 /**
  * Privacy Page
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 session_start();
@@ -11,7 +11,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kebijakan Privasi - Jasaku</title>
+    <title>Kebijakan Privasi - IniJasa</title>
     
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white py-3 shadow-sm" id="mainNav">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand fw-bold text-primary fs-3" href="index.php">
-                Jasaku
+                IniJasa
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -79,13 +79,13 @@ session_start();
                 <p class="text-muted mb-4">Kami mengumpulkan informasi yang Anda berikan saat mendaftar, menggunakan layanan kami, dan berkomunikasi dengan dukungan kami.</p>
 
                 <h4 class="fw-bold mb-3">2. Penggunaan Data</h4>
-                <p class="text-muted mb-4">Informasi Anda digunakan untuk menyediakan, menjaga, dan meningkatkan fungsionalitas layanan Jasaku serta untuk memberikan pembaruan platform.</p>
+                <p class="text-muted mb-4">Informasi Anda digunakan untuk menyediakan, menjaga, dan meningkatkan fungsionalitas layanan IniJasa serta untuk memberikan pembaruan platform.</p>
 
                 <h4 class="fw-bold mb-3">3. Keamanan Data</h4>
                 <p class="text-muted mb-4">Kami menerapkan praktik standar industri terbaik untuk melindungi data pribadi dan finansial Anda dari akses yang tidak sah.</p>
 
                 <h4 class="fw-bold mb-3">4. Hak Pengguna</h4>
-                <p class="text-muted mb-0">Anda berhak untuk mengakses, mengedit, atau menghapus data pribadi Anda kapan pun Anda menginginkannya dalam pengaturan akun Jasaku.</p>
+                <p class="text-muted mb-0">Anda berhak untuk mengakses, mengedit, atau menghapus data pribadi Anda kapan pun Anda menginginkannya dalam pengaturan akun IniJasa.</p>
             </div>
         </div>
     </section>
@@ -96,7 +96,7 @@ session_start();
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-4 pe-lg-5">
                     <a class="navbar-brand fw-bold text-dark fs-3 mb-3 d-inline-block text-decoration-none d-flex align-items-center gap-2" href="index.php">
-                        <i class="fas fa-briefcase text-primary"></i> Jasaku
+                        <i class="fas fa-briefcase text-primary"></i> IniJasa
                     </a>
                     <p class="text-muted mt-2 fw-medium pe-lg-4">Platform operasi terpadu untuk agensi, freelancer, dan UMKM jasa inovatif di Indonesia.</p>
                 </div>
@@ -126,7 +126,7 @@ session_start();
                 </div>
             </div>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-muted border-top border-light-subtle pt-4 mt-5">
-                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> Jasaku. All Rights Reserved.</p>
+                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> IniJasa. All Rights Reserved.</p>
                 <div class="d-flex gap-4 small fw-medium">
                     <a href="terms.php" class="text-decoration-none text-muted footer-link">Terms</a>
                     <a href="privacy.php" class="text-decoration-none text-muted footer-link">Privacy</a>

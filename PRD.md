@@ -1,6 +1,6 @@
 # 📋 Product Requirements Document (PRD)
 
-## Jasaku — Platform Manajemen Bisnis Jasa
+## IniJasa — Platform Manajemen Bisnis Jasa
 
 **Versi:** 1.0 (MVP)  
 **Tanggal:** 5 Maret 2026  
@@ -418,7 +418,7 @@ CREATE TABLE transactions (
 
 ### 7.2 Struktur Folder
 ```
-/jasaku
+/inijasa
 ├── /assets
 │   ├── /css (custom styles)
 │   ├── /js (custom scripts, jQuery AJAX handlers)

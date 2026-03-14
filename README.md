@@ -1,8 +1,8 @@
-# 🚀 Jasaku
+# 🚀 IniJasa
 
 > Platform Manajemen Bisnis Jasa untuk Agensi dan UMKM Indonesia
 
-**Jasaku** adalah platform SaaS yang dirancang khusus untuk membantu pemilik bisnis jasa di Indonesia mengelola operasional bisnis mereka secara terintegrasi — mulai dari database klien, penawaran proyek, pipeline sales, hingga pencatatan keuangan — dalam satu command center yang sederhana namun powerful.
+**IniJasa** adalah platform SaaS yang dirancang khusus untuk membantu pemilik bisnis jasa di Indonesia mengelola operasional bisnis mereka secara terintegrasi — mulai dari database klien, penawaran proyek, pipeline sales, hingga pencatatan keuangan — dalam satu command center yang sederhana namun powerful.
 
 ---
 
@@ -31,7 +31,7 @@ Banyak pemilik bisnis jasa (agensi, konsultan, UMKM) di Indonesia masih kesulita
 
 ### Solution
 
-Jasaku menyediakan platform all-in-one yang menyatukan:
+IniJasa menyediakan platform all-in-one yang menyatukan:
 - **CRM sederhana** untuk database klien
 - **Deal Pipeline** untuk tracking sales funnel
 - **Service Management** untuk kelola paket jasa
@@ -168,7 +168,7 @@ Lead → Qualified → Proposal → Negotiation → Won/Lost
 ## 📁 Struktur Projek
 
 ```
-jasaku/
+inijasa/
 ├── assets/
 │   ├── css/
 │   │   └── style.css              # Custom styling
@@ -566,7 +566,7 @@ $_SESSION['csrf_token']   // CSRF protection
 
 ## 📝 License & Credits
 
-**Jasaku** © 2026 — Platform Manajemen Bisnis Jasa
+**IniJasa** © 2026 — Platform Manajemen Bisnis Jasa
 
 Dibuat dengan ❤️ untuk UMKM dan Agensi Jasa Indonesia 🇮🇩
 

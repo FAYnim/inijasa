@@ -1,7 +1,7 @@
 <?php
 /**
  * Konsultan Page
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 session_start();
@@ -11,7 +11,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solusi Konsultan - Jasaku</title>
+    <title>Solusi Konsultan - IniJasa</title>
     
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white py-3 shadow-sm" id="mainNav">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand fw-bold text-primary fs-3" href="index.php">
-                Jasaku
+                IniJasa
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -67,7 +67,7 @@ session_start();
                         Kelola Praktik Konsultasi Anda Secara Profesional
                     </h1>
                     <p class="text-muted fs-5 fw-medium mx-auto" style="max-width: 700px;">
-                        Tingkatkan kepuasan klien dan kelola waktu Anda dengan efisien. Jasaku memberikan struktur yang memadai bagi konsultan untuk menyimpan data penting di satu tempat.
+                        Tingkatkan kepuasan klien dan kelola waktu Anda dengan efisien. IniJasa memberikan struktur yang memadai bagi konsultan untuk menyimpan data penting di satu tempat.
                     </p>
                 </div>
             </div>
@@ -84,7 +84,7 @@ session_start();
                 <div class="col-lg-6 ps-lg-5">
                     <h2 class="display-5 fw-bold text-dark mb-4">Efisiensi Dalam Setiap Langkah</h2>
                     <p class="text-muted fs-5 mb-4 lh-lg">
-                        Mulai dari presentasi proposal hingga penerimaan bayaran. Jasaku menyesuaikan dengan cara kerja konsultan sehingga Anda tidak lagi membuang waktu pada tugas administratif.
+                        Mulai dari presentasi proposal hingga penerimaan bayaran. IniJasa menyesuaikan dengan cara kerja konsultan sehingga Anda tidak lagi membuang waktu pada tugas administratif.
                     </p>
                     <ul class="list-unstyled text-muted fw-medium fs-5 d-flex flex-column gap-3 mb-0">
                         <li><i class="fas fa-check text-primary me-3"></i>Pembukuan yang akurat</li>
@@ -104,7 +104,7 @@ session_start();
             <div class="row align-items-center py-5 px-lg-4 position-relative z-1 text-center text-lg-start">
                 <div class="col-lg-7 mb-4 mb-lg-0">
                     <p class="small fw-bold tracking-widest text-uppercase text-white-50 mb-3">Fokus Pada Klien Anda</p>
-                    <h2 class="display-5 fw-bold mb-0 lh-sm">Atasi kendala back-office dengan Jasaku.</h2>
+                    <h2 class="display-5 fw-bold mb-0 lh-sm">Atasi kendala back-office dengan IniJasa.</h2>
                 </div>
                 <div class="col-lg-5 text-lg-end d-flex gap-3 justify-content-center justify-content-lg-end flex-wrap">
                     <a href="auth/register.php" class="btn border-0 rounded-pill px-5 py-3 fw-bold fs-5 shadow-sm cta-banner-btn" style="background-color: var(--accent); color: white;">Mulai Gratis</a>
@@ -119,7 +119,7 @@ session_start();
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-4 pe-lg-5">
                     <a class="navbar-brand fw-bold text-dark fs-3 mb-3 d-inline-block text-decoration-none d-flex align-items-center gap-2" href="index.php">
-                        <i class="fas fa-briefcase text-primary"></i> Jasaku
+                        <i class="fas fa-briefcase text-primary"></i> IniJasa
                     </a>
                     <p class="text-muted mt-2 fw-medium pe-lg-4">Platform operasi terpadu untuk agensi, freelancer, dan UMKM jasa inovatif di Indonesia.</p>
                 </div>
@@ -149,7 +149,7 @@ session_start();
                 </div>
             </div>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-muted border-top border-light-subtle pt-4 mt-5">
-                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> Jasaku. All Rights Reserved.</p>
+                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> IniJasa. All Rights Reserved.</p>
                 <div class="d-flex gap-4 small fw-medium">
                     <a href="terms.php" class="text-decoration-none text-muted footer-link">Terms</a>
                     <a href="privacy.php" class="text-decoration-none text-muted footer-link">Privacy</a>

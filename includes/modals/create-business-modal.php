@@ -16,7 +16,7 @@
                             Nama Bisnis <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control" id="newBusinessName" name="business_name"
-                               placeholder="Contoh: Jasaku Creative Studio" required>
+                               placeholder="Contoh: IniJasa Creative Studio" required>
                         <div class="invalid-feedback">Nama bisnis wajib diisi.</div>
                     </div>
 

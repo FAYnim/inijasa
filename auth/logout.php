@@ -1,7 +1,7 @@
 <?php
 /**
  * Logout Handler
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 session_start();

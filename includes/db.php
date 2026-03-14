@@ -1,7 +1,7 @@
 <?php
 /**
  * Database Connection File
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 // Database configuration

@@ -1,4 +1,4 @@
-# 🔍 Analisis Jasaku MVP & Rekomendasi Pengembangan
+# 🔍 Analisis IniJasa MVP & Rekomendasi Pengembangan
 
 ## Status MVP Saat Ini
 
@@ -15,8 +15,8 @@ Berdasarkan eksplorasi kode dan PRD, berikut kondisi fitur yang **sudah implemen
 | Financial Tracking | ✅ Done | Income/Expense, filter by date & category |
 | Dashboard | ✅ Done | KPI cards, Chart.js, recent deals |
 | Multi-business switcher | ✅ Done | `system_config` untuk business limit |
-| CSRF Protection | ✅ Done | Token generator di [functions.php](file:///c:/xampp/htdocs/faydev/jasaku/includes/functions.php) |
-| Laporan & Export CSV | ✅ Done | [reports.php](file:///c:/xampp/htdocs/faydev/jasaku/reports.php) (Laba-Rugi & Pipeline), [export-csv.php](file:///c:/xampp/htdocs/faydev/jasaku/export-csv.php) (5 tipe export) |
+| CSRF Protection | ✅ Done | Token generator di [functions.php](file:///c:/xampp/htdocs/faydev/inijasa/includes/functions.php) |
+| Laporan & Export CSV | ✅ Done | [reports.php](file:///c:/xampp/htdocs/faydev/inijasa/reports.php) (Laba-Rugi & Pipeline), [export-csv.php](file:///c:/xampp/htdocs/faydev/inijasa/export-csv.php) (5 tipe export) |
 | Activity Log | ✅ Done | Fitur catatan aktivitas pada klien dan deal |
 | Notifikasi In-App | ✅ Done | Reminder otomatis untuk deal stale, payment overdue, dan rentang waktu |
 
@@ -31,7 +31,7 @@ Berdasarkan eksplorasi kode dan PRD, berikut kondisi fitur yang **sudah implemen
 ### C. Kanban Board View untuk Pipeline
 Saat ini tampilan deal hanya tabel list. **Kanban view** (kolom per stage, drag-drop) lebih intuitif untuk tracking pipeline. Banyak CRM populer (Trello-style) menggunakan ini sebagai default view.
 
-**Implementasi:** Toggle antara List View ↔ Kanban View di [deals.php](file:///c:/xampp/htdocs/faydev/jasaku/deals.php) menggunakan JavaScript + CSS Grid/Flexbox.
+**Implementasi:** Toggle antara List View ↔ Kanban View di [deals.php](file:///c:/xampp/htdocs/faydev/inijasa/deals.php) menggunakan JavaScript + CSS Grid/Flexbox.
 
 ---
 
@@ -69,15 +69,15 @@ Saat ini tampilan deal hanya tabel list. **Kanban view** (kolom per stage, drag-
 | Issue | Lokasi | Status |
 |-------|--------|--------|
 | ~~Raw query di finance.php~~ | `finance.php`, `transaction-form.php` | ✅ Fixed — semua query sudah pakai prepared statement |
-| Tidak ada rate limiting login | [auth/login.php](file:///c:/xampp/htdocs/faydev/jasaku/auth/login.php) | ⬜ Tambah login attempt counter di session/DB |
+| Tidak ada rate limiting login | [auth/login.php](file:///c:/xampp/htdocs/faydev/inijasa/auth/login.php) | ⬜ Tambah login attempt counter di session/DB |
 | ~~Delete transaksi via GET request~~ | `finance.php`, `transaction-form.php` | ✅ Fixed — sudah POST + CSRF token |
 
 ### UX / Fungsionalitas
 | Issue | Lokasi | Solusi |
 |-------|--------|--------|
-| Tidak ada pagination | [clients.php](file:///c:/xampp/htdocs/faydev/jasaku/clients.php), [deals.php](file:///c:/xampp/htdocs/faydev/jasaku/deals.php) | Tambah LIMIT/OFFSET |
-| Chart dashboard N+1 query | [dashboard.php](file:///c:/xampp/htdocs/faydev/jasaku/dashboard.php) L128-161 | Merge ke satu query dengan GROUP BY |
-| `service_name` di [deals.php](file:///c:/xampp/htdocs/faydev/jasaku/deals.php) join ke `services` tapi alias di PRD adalah `service_packages` | [deals.php](file:///c:/xampp/htdocs/faydev/jasaku/deals.php) L29 | Sudah benar (schema pakai `services`), tapi nama berbeda dari PRD |
+| Tidak ada pagination | [clients.php](file:///c:/xampp/htdocs/faydev/inijasa/clients.php), [deals.php](file:///c:/xampp/htdocs/faydev/inijasa/deals.php) | Tambah LIMIT/OFFSET |
+| Chart dashboard N+1 query | [dashboard.php](file:///c:/xampp/htdocs/faydev/inijasa/dashboard.php) L128-161 | Merge ke satu query dengan GROUP BY |
+| `service_name` di [deals.php](file:///c:/xampp/htdocs/faydev/inijasa/deals.php) join ke `services` tapi alias di PRD adalah `service_packages` | [deals.php](file:///c:/xampp/htdocs/faydev/inijasa/deals.php) L29 | Sudah benar (schema pakai `services`), tapi nama berbeda dari PRD |
 
 ---
 
@@ -111,7 +111,7 @@ Phase 6 (Future):
 
 ## 💬 Kesimpulan
 
-MVP Jasaku sudah dibangun dengan **fondasi yang sangat baik** — struktur database solid, keamanan cukup, dan UI yang bersih. `deal-detail.php` sudah selesai dibangun lengkap dengan stage management, payment tracking, dan stage history. **Invoice Generator**, **Laporan & Export CSV**, **Activity log**, dan **Notifikasi In-App** juga sudah diimplementasikan. Untuk pengembangan selanjutnya, hal yang paling krusial adalah:
+MVP IniJasa sudah dibangun dengan **fondasi yang sangat baik** — struktur database solid, keamanan cukup, dan UI yang bersih. `deal-detail.php` sudah selesai dibangun lengkap dengan stage management, payment tracking, dan stage history. **Invoice Generator**, **Laporan & Export CSV**, **Activity log**, dan **Notifikasi In-App** juga sudah diimplementasikan. Untuk pengembangan selanjutnya, hal yang paling krusial adalah:
 
 1. **Kanban view** untuk pipeline deals agar tracking lebih intuitif
 

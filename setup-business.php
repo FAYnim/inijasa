@@ -1,7 +1,7 @@
 <?php
 /**
  * Business Setup Page (First-time Setup)
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 require_once 'includes/db.php';
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $business_id = mysqli_insert_id($conn);
                 $_SESSION['business_id'] = $business_id;
                 
-                setFlashMessage('success', 'Bisnis berhasil dibuat! Selamat datang di Jasaku.');
+                setFlashMessage('success', 'Bisnis berhasil dibuat! Selamat datang di IniJasa.');
                 redirect('dashboard.php');
             } else {
                 $error = 'Terjadi kesalahan. Silakan coba lagi.';
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Setup Bisnis - Jasaku</title>
+    <title>Setup Bisnis - IniJasa</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -313,7 +313,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                    class="form-control" 
                                    id="business_name" 
                                    name="business_name" 
-                                   placeholder="Contoh: Jasaku Digital Agency"
+                                   placeholder="Contoh: IniJasa Digital Agency"
                                    value="<?= htmlspecialchars($_POST['business_name'] ?? '') ?>"
                                    required>
                         </div>

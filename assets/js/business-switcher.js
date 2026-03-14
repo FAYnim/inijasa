@@ -281,11 +281,11 @@
     function getApiBase() {
         // Determine relative path from current page depth to api/ folder
         const depth = (window.location.pathname.match(/\//g) || []).length - 1;
-        // pages are at root, so api/ is one level up relative to /jasaku/
+        // pages are at root, so api/ is one level up relative to app base path
         // Just use absolute path relative to domain root
         const parts  = window.location.pathname.split('/');
-        // Find 'jasaku' segment
-        const idx = parts.indexOf('jasaku');
+        // Support both old and new branded folder names during migration.
+        const idx = Math.max(parts.indexOf('inijasa'), parts.indexOf('jasaku'));
         if (idx !== -1) {
             return parts.slice(0, idx + 1).join('/') + '/api/';
         }

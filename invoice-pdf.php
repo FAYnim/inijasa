@@ -1,7 +1,7 @@
 <?php
 /**
  * Invoice PDF / Print View
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  * 
  * Halaman print-optimized tanpa sidebar/topbar.
  * User bisa Ctrl+P / klik tombol cetak untuk save as PDF.

@@ -1,7 +1,7 @@
 <?php
 /**
  * Sidebar Navigation
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 $current_page = basename($_SERVER['PHP_SELF']);
@@ -125,7 +125,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <div class="sidebar-logo-icon">
                 <i class="fas fa-briefcase"></i>
             </div>
-            <h1 class="sidebar-logo-text">Jasaku</h1>
+            <h1 class="sidebar-logo-text">IniJasa</h1>
         </a>
     </div>
     
