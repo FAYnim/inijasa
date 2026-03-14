@@ -181,13 +181,19 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </ul>
         
         <div class="nav-section">Pengaturan</div>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a href="business-profile.php" class="nav-link <?= $current_page == 'business-profile.php' ? 'active' : '' ?>">
-                    <i class="fas fa-building"></i>
-                    <span>Profil Bisnis</span>
-                </a>
-            </li>
-        </ul>
+         <ul class="nav flex-column">
+             <li class="nav-item">
+                 <a href="help.php" class="nav-link <?= $current_page == 'help.php' ? 'active' : '' ?>">
+                     <i class="fas fa-question-circle"></i>
+                     <span>Bantuan</span>
+                 </a>
+             </li>
+             <li class="nav-item">
+                 <a href="business-profile.php" class="nav-link <?= $current_page == 'business-profile.php' ? 'active' : '' ?>">
+                     <i class="fas fa-building"></i>
+                     <span>Profil Bisnis</span>
+                 </a>
+             </li>
+         </ul>
     </nav>
 </div>
