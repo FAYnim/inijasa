@@ -81,7 +81,7 @@ endif; ?>
         <div class="container px-4 px-lg-5 py-5">
             <div class="row align-items-center g-5 mb-5 pb-5">
                 <div class="col-lg-6">
-                    <img src="https://placehold.co/800x600/F8F9FA/CBD5E1?text=Perjalanan+IniJasa" alt="Perjalanan IniJasa" class="img-fluid rounded-4 shadow-lg w-100 border border-light-subtle">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80" alt="Perjalanan IniJasa" class="img-fluid rounded-4 shadow-lg w-100 border border-light-subtle">
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <h2 class="display-5 fw-bold text-dark mb-4">Latar Belakang Kami</h2>
