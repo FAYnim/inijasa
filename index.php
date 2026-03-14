@@ -1,7 +1,7 @@
 <?php
 /**
  * Landing Page Business
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 session_start();
@@ -17,7 +17,7 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasaku - Platform Manajemen Bisnis Jasa All-in-One</title>
+    <title>IniJasa - Platform Manajemen Bisnis Jasa All-in-One</title>
     
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@ if (isset($_SESSION['user_id'])) {
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white py-3 shadow-sm" id="mainNav">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand fw-bold text-primary fs-3" href="#">
-                Jasaku
+                IniJasa
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -182,14 +182,14 @@ if (isset($_SESSION['user_id'])) {
         <div class="container px-4 px-lg-5">
             <div class="text-center mb-5 pb-3">
                 <p class="text-primary fw-semibold small tracking-widest text-uppercase">Statistik & Kinerja</p>
-                <h2 class="display-5 fw-bold text-dark">Mengapa mereka memilih Jasaku</h2>
+                <h2 class="display-5 fw-bold text-dark">Mengapa mereka memilih IniJasa</h2>
             </div>
             
             <div class="bento-grid">
                 <!-- Large Top Left -->
                 <div class="bento-card bg-light p-5 d-flex flex-column justify-content-center">
                     <h2 class="fw-bold text-primary mb-3" style="font-size: 5rem; letter-spacing: -0.05em;">100+</h2>
-                    <h4 class="fw-bold text-dark mb-0 fs-3">Bisnis jasa sudah beroperasi di Jasaku</h4>
+                    <h4 class="fw-bold text-dark mb-0 fs-3">Bisnis jasa sudah beroperasi di IniJasa</h4>
                 </div>
                 
                 <!-- Top Right Square -->
@@ -303,7 +303,7 @@ if (isset($_SESSION['user_id'])) {
             <p class="text-primary fw-semibold small tracking-widest text-uppercase mb-3">Visi Kami</p>
             <h2 class="display-5 fw-bold text-dark mb-4">Kami mendukung perusahaan jasa bertumbuh</h2>
             <p class="text-muted fs-5 mx-auto mb-5 fw-medium" style="max-width: 650px;">
-                Fokus Jasaku adalah memudahkan operasional pengelola agensi, konsultan, dan penyedia UMKM jasa agar bisa lebih fokus mengekskalasi bisnis.
+                Fokus IniJasa adalah memudahkan operasional pengelola agensi, konsultan, dan penyedia UMKM jasa agar bisa lebih fokus mengekskalasi bisnis.
             </p>
             
             <div class="row justify-content-center g-4 mt-2 stat-row">
@@ -458,7 +458,7 @@ if (isset($_SESSION['user_id'])) {
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-4 pe-lg-5">
                     <a class="navbar-brand fw-bold text-dark fs-3 mb-3 d-inline-block text-decoration-none d-flex align-items-center gap-2" href="#">
-                        <i class="fas fa-briefcase text-primary"></i> Jasaku
+                        <i class="fas fa-briefcase text-primary"></i> IniJasa
                     </a>
                     <p class="text-muted mt-2 fw-medium pe-lg-4">Platform operasi terpadu untuk agensi, freelancer, dan UMKM jasa inovatif di Indonesia.</p>
                 </div>
@@ -488,7 +488,7 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </div>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-muted border-top border-light-subtle pt-4 mt-5">
-                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> Jasaku. All Rights Reserved.</p>
+                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> IniJasa. All Rights Reserved.</p>
                 <div class="d-flex gap-4 small fw-medium">
                     <a href="terms.php" class="text-decoration-none text-muted footer-link">Terms</a>
                     <a href="privacy.php" class="text-decoration-none text-muted footer-link">Privacy</a>

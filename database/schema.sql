@@ -1,4 +1,4 @@
--- Jasaku Database Schema
+-- IniJasa Database Schema
 -- Platform Manajemen Bisnis Jasa
 -- Updated: includes migrations 001, 002, 003
 
@@ -198,7 +198,7 @@ CREATE TABLE invoice_items (
 
 -- Admin user
 INSERT INTO users (full_name, email, password_hash) VALUES
-('Admin User', 'admin@jasaku.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'); -- password: password
+('Admin User', 'admin@inijasa.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'); -- password: password
 
 -- Activity Logs table (migration 006)
 CREATE TABLE activity_logs (

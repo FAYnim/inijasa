@@ -1,7 +1,7 @@
 <?php
 /**
  * API Endpoint: Mark notifications as read
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 require_once '../includes/db.php';

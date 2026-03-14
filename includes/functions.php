@@ -1,7 +1,7 @@
 <?php
 /**
  * Helper Functions
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 // Start session if not already started

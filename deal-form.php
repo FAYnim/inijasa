@@ -1,7 +1,7 @@
 <?php
 /**
  * Deal Form Page (Create/Edit Deal)
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 require_once 'includes/db.php';

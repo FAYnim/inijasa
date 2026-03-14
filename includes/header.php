@@ -1,5 +1,5 @@
 <?php
-$business_name = 'Jasaku';
+$business_name = 'IniJasa';
 $user_name = 'User';
 
 if (isset($_SESSION['business_id']) && isset($conn)) {
@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= isset($page_title) ? e($page_title) . ' - ' : '' ?>Jasaku</title>
+    <title><?= isset($page_title) ? e($page_title) . ' - ' : '' ?>IniJasa</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">

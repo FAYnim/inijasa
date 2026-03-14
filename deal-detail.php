@@ -1,7 +1,7 @@
 <?php
 /**
  * Deal Detail Page
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  * 
  * Menampilkan detail deal lengkap:
  * - Info deal + klien

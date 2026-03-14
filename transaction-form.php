@@ -1,7 +1,7 @@
 <?php
 /**
  * Transaction Form Page (Create/Edit Income or Expense)
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 require_once 'includes/db.php';

@@ -1,7 +1,7 @@
 <?php
 /**
  * Register Page
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 require_once '../includes/db.php';
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar - Jasaku</title>
+    <title>Daftar - IniJasa</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -280,7 +280,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <i class="fas fa-briefcase"></i>
                 </div>
                 <h1 class="register-title">Daftar Akun Baru</h1>
-                <p class="register-subtitle">Mulai kelola bisnis Anda dengan Jasaku</p>
+                <p class="register-subtitle">Mulai kelola bisnis Anda dengan IniJasa</p>
             </div>
             
             <?php if ($error): ?>

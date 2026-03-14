@@ -1,4 +1,4 @@
-// Jasaku Landing Page - Minimal JavaScript for Enhanced UX
+// IniJasa Landing Page - Minimal JavaScript for Enhanced UX
 
 document.addEventListener('DOMContentLoaded', function() {
     

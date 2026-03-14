@@ -1,7 +1,7 @@
 <?php
 /**
  * Karir Page
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  */
 
 session_start();
@@ -11,7 +11,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karir - Jasaku</title>
+    <title>Karir - IniJasa</title>
     
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white py-3 shadow-sm" id="mainNav">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand fw-bold text-primary fs-3" href="index.php">
-                Jasaku
+                IniJasa
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -62,7 +62,7 @@ session_start();
         <div class="container px-4 px-lg-5">
             <div class="row pt-5 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 hero-content mb-5">
-                    <p class="text-primary fw-semibold small tracking-widest text-uppercase mb-3">Karir di Jasaku</p>
+                    <p class="text-primary fw-semibold small tracking-widest text-uppercase mb-3">Karir di IniJasa</p>
                     <h1 class="display-3 fw-bold text-dark mb-4">
                         Bergabunglah Bersama Tim Kami
                     </h1>
@@ -79,7 +79,7 @@ session_start();
         <div class="container px-4 px-lg-5 py-5 text-center">
             <h2 class="display-6 fw-bold text-dark mb-4">Posisi Terbuka</h2>
             <p class="text-muted fs-5 mb-5 mx-auto" style="max-width: 600px;">
-                Saat ini belum ada lowongan pekerjaan yang terbuka. Namun, kami selalu mencari talenta hebat. Anda dapat mengirimkan CV Anda ke <strong>hello@jasaku.id</strong>.
+                Saat ini belum ada lowongan pekerjaan yang terbuka. Namun, kami selalu mencari talenta hebat. Anda dapat mengirimkan CV Anda ke <strong>hello@inijasa.id</strong>.
             </p>
         </div>
     </section>
@@ -90,7 +90,7 @@ session_start();
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-4 pe-lg-5">
                     <a class="navbar-brand fw-bold text-dark fs-3 mb-3 d-inline-block text-decoration-none d-flex align-items-center gap-2" href="index.php">
-                        <i class="fas fa-briefcase text-primary"></i> Jasaku
+                        <i class="fas fa-briefcase text-primary"></i> IniJasa
                     </a>
                     <p class="text-muted mt-2 fw-medium pe-lg-4">Platform operasi terpadu untuk agensi, freelancer, dan UMKM jasa inovatif di Indonesia.</p>
                 </div>
@@ -120,7 +120,7 @@ session_start();
                 </div>
             </div>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-muted border-top border-light-subtle pt-4 mt-5">
-                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> Jasaku. All Rights Reserved.</p>
+                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> IniJasa. All Rights Reserved.</p>
                 <div class="d-flex gap-4 small fw-medium">
                     <a href="terms.php" class="text-decoration-none text-muted footer-link">Terms</a>
                     <a href="privacy.php" class="text-decoration-none text-muted footer-link">Privacy</a>

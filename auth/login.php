@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Jasaku</title>
+    <title>Login - IniJasa</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -239,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <i class="fas fa-briefcase"></i>
                 </div>
                 <h1 class="login-title">Selamat Datang</h1>
-                <p class="login-subtitle">Login ke akun Jasaku Anda</p>
+                <p class="login-subtitle">Login ke akun IniJasa Anda</p>
             </div>
             
             <?php if ($error): ?>

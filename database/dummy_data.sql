@@ -1,5 +1,5 @@
 -- ============================================================
--- Jasaku - Full Setup (Database + Tables + Dummy Data)
+-- IniJasa - Full Setup (Database + Tables + Dummy Data)
 -- ============================================================
 -- Skenario:
 --   User 1 (Faris)   → 2 bisnis: Digital Agency + Konsultan
@@ -186,9 +186,9 @@ ALTER TABLE users          AUTO_INCREMENT = 1;
 -- USERS
 -- ============================================================
 INSERT INTO users (id, full_name, email, password_hash) VALUES
-(1, 'Faris Adillah',    'faris@jasaku.com',  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
-(2, 'Rina Kusuma',      'rina@jasaku.com',   '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
-(3, 'Dito Prasetyo',    'dito@jasaku.com',   '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+(1, 'Faris Adillah',    'faris@inijasa.com',  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(2, 'Rina Kusuma',      'rina@inijasa.com',   '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(3, 'Dito Prasetyo',    'dito@inijasa.com',   '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
 -- ============================================================
 -- BUSINESSES
@@ -488,7 +488,7 @@ INSERT INTO transactions (business_id, type, title, category, amount, transactio
 -- NEW USER
 -- ============================================================
 INSERT INTO users (id, full_name, email, password_hash) VALUES
-(4, 'Nadia Safitri', 'nadia@jasaku.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+(4, 'Nadia Safitri', 'nadia@inijasa.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
 -- ============================================================
 -- NEW BUSINESS (user 4)

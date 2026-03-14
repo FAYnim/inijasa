@@ -1,7 +1,7 @@
 <?php
 /**
  * CSV Export Handler
- * Jasaku - Platform Manajemen Bisnis Jasa
+ * IniJasa - Platform Manajemen Bisnis Jasa
  * 
  * Supports: transactions, deals, clients, profit_loss, pipeline
  * Usage: export-csv.php?type=transactions&tab=income&date_from=...&date_to=...
