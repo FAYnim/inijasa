@@ -82,8 +82,7 @@ if (isset($_SESSION['user_id'])) {
                         <div class="d-flex gap-4 align-items-center flex-wrap opacity-50 hero-partner-logos">
                             <i class="fab fa-whatsapp fs-2"></i>
                             <i class="fab fa-google fs-2"></i>
-                            <i class="fas fa-money-bill-wave fs-2"></i>
-                            <i class="fas fa-calendar-alt fs-2"></i>
+                            <span class="fw-bold fs-5" style="font-family: monospace; letter-spacing: -0.03em;">mayar.id</span>
                         </div>
                     </div>
                 </div>
