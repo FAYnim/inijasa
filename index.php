@@ -72,8 +72,8 @@ if (isset($_SESSION['user_id'])) {
                     </p>
                     <div class="hero-cta mb-5 pb-3">
                         <div class="input-group input-group-lg hero-input-group shadow-sm p-1 rounded-pill bg-white border border-light-subtle">
-                            <input type="email" class="form-control border-0 bg-transparent ps-4" placeholder="Alamat email Anda">
-                            <button class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm" type="button" onclick="window.location.href='auth/register.php'">Mulai Gratis</button>
+                            <input type="email" id="heroEmail" class="form-control border-0 bg-transparent ps-4" placeholder="Alamat email Anda">
+                            <button class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm" type="button" onclick="var e=document.getElementById('heroEmail').value;window.location.href='auth/register.php'+(e?'?email='+encodeURIComponent(e):'')">Mulai Gratis</button>
                         </div>
                     </div>
                     
