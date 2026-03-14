@@ -316,7 +316,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            id="email" 
                            name="email" 
                            placeholder="nama@email.com"
-                           value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
+                           value="<?= htmlspecialchars($_POST['email'] ?? $_GET['email'] ?? '') ?>"
                            required>
                     <div class="form-text">Email ini akan digunakan untuk login</div>
                 </div>
