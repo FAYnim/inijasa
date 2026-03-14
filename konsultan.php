@@ -79,7 +79,7 @@ session_start();
         <div class="container px-4 px-lg-5 py-5">
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
-                    <img src="https://placehold.co/800x600/F8F9FA/CBD5E1?text=Konsultan" alt="Solusi Konsultan" class="img-fluid rounded-4 shadow-lg w-100 border border-light-subtle">
+                    <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?w=800&q=80" alt="Solusi Konsultan" class="img-fluid rounded-4 shadow-lg w-100 border border-light-subtle">
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <h2 class="display-5 fw-bold text-dark mb-4">Efisiensi Dalam Setiap Langkah</h2>
