@@ -13,20 +13,20 @@ $page_title = 'Detail Invoice';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $invoice_id = (int)($_GET['id'] ?? 0);
 if (!$invoice_id) {
     setFlashMessage('danger', 'Invoice tidak ditemukan.');
-    redirect('invoices.php');
+    redirect('invoices');
 }
 
 // Handle status update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
         setFlashMessage('danger', 'Token keamanan tidak valid.');
-        redirect("invoice-detail.php?id=$invoice_id");
+        redirect("invoice-detail?id=$invoice_id");
     }
     
     $action = $_POST['action'] ?? '';
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (!in_array($new_status, $valid_statuses)) {
             setFlashMessage('danger', 'Status tidak valid.');
-            redirect("invoice-detail.php?id=$invoice_id");
+            redirect("invoice-detail?id=$invoice_id");
         }
         
         $stmt = mysqli_prepare($conn, "UPDATE invoices SET status = ? WHERE id = ? AND business_id = ?");
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlashMessage('danger', 'Gagal mengubah status.');
         }
-        redirect("invoice-detail.php?id=$invoice_id");
+        redirect("invoice-detail?id=$invoice_id");
     }
     
     if ($action === 'delete') {
@@ -57,10 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (mysqli_stmt_execute($stmt) && mysqli_affected_rows($conn) > 0) {
             setFlashMessage('success', 'Invoice berhasil dihapus.');
-            redirect('invoices.php');
+            redirect('invoices');
         } else {
             setFlashMessage('danger', 'Gagal menghapus invoice.');
-            redirect("invoice-detail.php?id=$invoice_id");
+            redirect("invoice-detail?id=$invoice_id");
         }
     }
 }
@@ -83,7 +83,7 @@ $invoice = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 
 if (!$invoice) {
     setFlashMessage('danger', 'Invoice tidak ditemukan.');
-    redirect('invoices.php');
+    redirect('invoices');
 }
 
 $page_title = 'Invoice: ' . $invoice['invoice_number'];
@@ -130,7 +130,7 @@ include 'includes/sidebar.php';
         <div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-1">
-                    <li class="breadcrumb-item"><a href="invoices.php">Invoice</a></li>
+                    <li class="breadcrumb-item"><a href="invoices">Invoice</a></li>
                     <li class="breadcrumb-item active"><?= e($invoice['invoice_number']) ?></li>
                 </ol>
             </nav>
@@ -142,13 +142,13 @@ include 'includes/sidebar.php';
             </h2>
         </div>
         <div class="d-flex gap-2">
-            <a href="invoices.php" class="btn btn-outline-secondary">
+            <a href="invoices" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left me-2"></i>Kembali
             </a>
-            <a href="invoice-pdf.php?id=<?= $invoice_id ?>" class="btn btn-outline-primary" target="_blank">
+            <a href="invoice-pdf?id=<?= $invoice_id ?>" class="btn btn-outline-primary" target="_blank">
                 <i class="fas fa-print me-2"></i>Cetak
             </a>
-            <a href="invoice-form.php?id=<?= $invoice_id ?>" class="btn btn-primary">
+            <a href="invoice-form?id=<?= $invoice_id ?>" class="btn btn-primary">
                 <i class="fas fa-edit me-2"></i>Edit
             </a>
         </div>
@@ -350,7 +350,7 @@ include 'includes/sidebar.php';
                     </h5>
                     <p class="mb-1"><strong><?= e($invoice['deal_title']) ?></strong></p>
                     <p class="text-muted mb-3"><?= formatCurrency($invoice['deal_value']) ?></p>
-                    <a href="deal-detail.php?id=<?= $invoice['deal_id'] ?>" class="btn btn-outline-primary btn-sm w-100">
+                    <a href="deal-detail?id=<?= $invoice['deal_id'] ?>" class="btn btn-outline-primary btn-sm w-100">
                         <i class="fas fa-external-link-alt me-1"></i>Lihat Detail Deal
                     </a>
                 </div>
@@ -364,10 +364,10 @@ include 'includes/sidebar.php';
                         <i class="fas fa-cog me-2"></i>Aksi
                     </h5>
                     <div class="d-grid gap-2">
-                        <a href="invoice-pdf.php?id=<?= $invoice_id ?>" class="btn btn-outline-primary" target="_blank">
+                        <a href="invoice-pdf?id=<?= $invoice_id ?>" class="btn btn-outline-primary" target="_blank">
                             <i class="fas fa-print me-2"></i>Cetak / Download PDF
                         </a>
-                        <a href="invoice-form.php?id=<?= $invoice_id ?>" class="btn btn-outline-secondary">
+                        <a href="invoice-form?id=<?= $invoice_id ?>" class="btn btn-outline-secondary">
                             <i class="fas fa-edit me-2"></i>Edit Invoice
                         </a>
                         <form method="POST" onsubmit="return confirm('Yakin ingin menghapus invoice ini? Tindakan ini tidak bisa dibatalkan.')">

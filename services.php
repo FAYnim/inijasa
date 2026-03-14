@@ -13,7 +13,7 @@ $page_title = 'Paket Jasa';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 // Handle delete action
@@ -30,7 +30,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
         setFlashMessage('danger', 'Paket jasa tidak ditemukan.');
     }
     
-    redirect('services.php');
+    redirect('services');
 }
 
 // Get filter parameters
@@ -83,7 +83,7 @@ include 'includes/sidebar.php';
             <h2 class="page-title mb-1">Paket Jasa</h2>
             <p class="text-muted mb-0"><?= $stats['total'] ?> paket jasa · <?= $stats['active'] ?> aktif · <?= $stats['inactive'] ?> nonaktif</p>
         </div>
-        <a href="service-form.php" class="btn btn-primary">
+        <a href="service-form" class="btn btn-primary">
             <i class="fas fa-plus-circle me-2"></i>Tambah Paket Jasa
         </a>
     </div>
@@ -179,12 +179,12 @@ include 'includes/sidebar.php';
                             </td>
                             <td class="text-end">
                                 <div class="btn-group btn-group-sm">
-                                    <a href="service-form.php?id=<?= $service['id'] ?>" 
+                                    <a href="service-form?id=<?= $service['id'] ?>" 
                                        class="btn btn-outline-primary" 
                                        title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="services.php?action=delete&id=<?= $service['id'] ?>" 
+                                    <a href="services?action=delete&id=<?= $service['id'] ?>" 
                                        class="btn btn-outline-danger"
                                        title="Hapus"
                                        onclick="return confirm('Yakin ingin menghapus paket jasa ini?')">
@@ -208,9 +208,9 @@ include 'includes/sidebar.php';
                     <?php endif; ?>
                 </p>
                 <?php if ($search || $status_filter): ?>
-                    <a href="services.php" class="btn btn-secondary">Reset Filter</a>
+                    <a href="services" class="btn btn-secondary">Reset Filter</a>
                 <?php else: ?>
-                    <a href="service-form.php" class="btn btn-primary">
+                    <a href="service-form" class="btn btn-primary">
                         <i class="fas fa-plus-circle me-2"></i>Tambah Paket Jasa
                     </a>
                 <?php endif; ?>

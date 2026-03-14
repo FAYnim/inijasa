@@ -13,7 +13,7 @@ $page_title = 'Dashboard';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $current_month = date('Y-m');
@@ -297,7 +297,7 @@ include 'includes/sidebar.php';
         <div>
             <strong>Outstanding Payments:</strong>
             Anda memiliki <strong><?= formatCurrency($outstanding_payments) ?></strong> pembayaran yang belum lunas.
-            <a href="finance.php" class="alert-link ms-2">Lihat Detail</a>
+            <a href="finance" class="alert-link ms-2">Lihat Detail</a>
         </div>
     </div>
     <?php endif; ?>
@@ -329,7 +329,7 @@ include 'includes/sidebar.php';
             <div class="activity-card">
                 <div class="activity-header">
                     <h5 class="activity-title">Recent Deals</h5>
-                    <a href="deals.php" class="activity-link">Lihat Semua</a>
+                    <a href="deals" class="activity-link">Lihat Semua</a>
                 </div>
                 <div class="activity-body">
                     <?php if (mysqli_num_rows($recent_deals) > 0): ?>
@@ -374,7 +374,7 @@ include 'includes/sidebar.php';
                         <div class="empty-state">
                             <i class="fas fa-handshake empty-icon"></i>
                             <p class="empty-text">Belum ada deals</p>
-                            <a href="deal-form.php" class="btn btn-sm btn-primary">Buat Deal Baru</a>
+                            <a href="deal-form" class="btn btn-sm btn-primary">Buat Deal Baru</a>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -388,19 +388,19 @@ include 'includes/sidebar.php';
             <div class="quick-actions">
                 <h5 class="section-title mb-3">Quick Actions</h5>
                 <div class="action-buttons">
-                    <a href="deal-form.php" class="action-btn">
+                    <a href="deal-form" class="action-btn">
                         <i class="fas fa-plus-circle"></i>
                         <span>Buat Deal Baru</span>
                     </a>
-                    <a href="client-form.php" class="action-btn">
+                    <a href="client-form" class="action-btn">
                         <i class="fas fa-user-plus"></i>
                         <span>Tambah Klien</span>
                     </a>
-                    <a href="transaction-form.php" class="action-btn">
+                    <a href="transaction-form" class="action-btn">
                         <i class="fas fa-dollar-sign"></i>
                         <span>Catat Transaksi</span>
                     </a>
-                    <a href="service-form.php" class="action-btn">
+                    <a href="service-form" class="action-btn">
                         <i class="fas fa-box"></i>
                         <span>Tambah Paket Jasa</span>
                     </a>

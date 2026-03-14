@@ -288,10 +288,10 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
                                 $link = '#';
                                 if ($notif['type'] == 'deal_stale' || $notif['type'] == 'close_date_passed') {
                                     $icon = '<i class="fas fa-exclamation-circle"></i>';
-                                    $link = "deal-detail.php?id=" . $notif['related_id'];
+                                    $link = "deal-detail?id=" . $notif['related_id'];
                                 } elseif ($notif['type'] == 'overdue_payment') {
                                     $icon = '<i class="fas fa-file-invoice"></i>';
-                                    $link = "invoices.php";
+                                    $link = "invoices";
                                 }
                             ?>
                             <a href="<?= htmlspecialchars($link) ?>" class="notification-item">
@@ -319,9 +319,9 @@ if (isset($_SESSION['user_id']) && isset($conn)) {
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="business-profile.php"><i class="fas fa-cog me-2"></i>Pengaturan Bisnis</a></li>
+                    <li><a class="dropdown-item" href="business-profile"><i class="fas fa-cog me-2"></i>Pengaturan Bisnis</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="auth/logout.php"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    <li><a class="dropdown-item text-danger" href="auth/logout"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                 </ul>
             </div>
         </div>

@@ -13,7 +13,7 @@ $page_title = 'Profil Bisnis';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $error = '';
@@ -26,7 +26,7 @@ $business = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 
 if (!$business) {
     setFlashMessage('danger', 'Bisnis tidak ditemukan.');
-    redirect('dashboard.php');
+    redirect('dashboard');
 }
 
 // Process form submission
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 
                 setFlashMessage('success', 'Profil bisnis berhasil diupdate.');
-                redirect('business-profile.php');
+                redirect('business-profile');
             } else {
                 $error = 'Terjadi kesalahan saat mengupdate profil bisnis.';
             }
@@ -282,7 +282,7 @@ include 'includes/sidebar.php';
                                 <hr class="my-4">
                                 
                                 <div class="d-flex justify-content-between">
-                                    <a href="dashboard.php" class="btn btn-outline-secondary">
+                                    <a href="dashboard" class="btn btn-outline-secondary">
                                         <i class="fas fa-arrow-left me-2"></i>Kembali ke Dashboard
                                     </a>
                                     <button type="submit" class="btn btn-primary">

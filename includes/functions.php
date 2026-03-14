@@ -28,7 +28,7 @@ function redirect($page) {
 
 function requireLogin() {
     if (!isLoggedIn()) {
-        redirect('auth/login.php');
+        redirect('auth/login');
     }
 }
 

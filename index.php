@@ -8,7 +8,7 @@ session_start();
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard.php');
+    header('Location: dashboard');
     exit();
 }
 ?>
@@ -52,8 +52,8 @@ if (isset($_SESSION['user_id'])) {
                     <li class="nav-item"><a class="nav-link px-3" href="#faq">FAQ</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-                    <a href="auth/login.php" class="text-decoration-none fw-medium text-dark px-3 py-2 btn-login">Masuk</a>
-                    <a href="auth/register.php" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Coba Gratis</a>
+                    <a href="auth/login" class="text-decoration-none fw-medium text-dark px-3 py-2 btn-login">Masuk</a>
+                    <a href="auth/register" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Coba Gratis</a>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@ if (isset($_SESSION['user_id'])) {
                     <div class="hero-cta mb-5 pb-3">
                         <div class="input-group input-group-lg hero-input-group shadow-sm p-1 rounded-pill bg-white border border-light-subtle">
                             <input type="email" id="heroEmail" class="form-control border-0 bg-transparent ps-4" placeholder="Alamat email Anda">
-                            <button class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm" type="button" onclick="var e=document.getElementById('heroEmail').value;window.location.href='auth/register.php'+(e?'?email='+encodeURIComponent(e):'')">Mulai Gratis</button>
+                            <button class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm" type="button" onclick="var e=document.getElementById('heroEmail').value;window.location.href='auth/register'+(e?'?email='+encodeURIComponent(e):'')">Mulai Gratis</button>
                         </div>
                     </div>
                     
@@ -341,7 +341,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <p class="text-muted fw-medium">Sempurna untuk freelancer atau yang baru memulai bisnis jasa.</p>
                         </div>
-                        <a href="auth/register.php" class="text-decoration-none fw-bold fs-5 text-dark mt-auto d-flex align-items-center gap-2 group mb-4">
+                        <a href="auth/register" class="text-decoration-none fw-bold fs-5 text-dark mt-auto d-flex align-items-center gap-2 group mb-4">
                             Mulai Gratis <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
                         </a>
                         <ul class="list-unstyled text-muted fw-medium fs-6 d-flex flex-column gap-3 mb-0 pt-4 border-top">
@@ -367,7 +367,7 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <p class="text-white-50 fw-medium">Cocok untuk agensi dengan tim dan proyek tak terbatas.</p>
                         </div>
-                        <a href="auth/register.php" class="text-decoration-none fw-bold fs-5 text-white mt-auto d-flex align-items-center gap-2 mb-4 position-relative z-1 btn-premium-cta">
+                        <a href="auth/register" class="text-decoration-none fw-bold fs-5 text-white mt-auto d-flex align-items-center gap-2 mb-4 position-relative z-1 btn-premium-cta">
                             Coba Premium <i class="fas fa-arrow-right"></i>
                         </a>
                         <ul class="list-unstyled text-white font-medium fs-6 d-flex flex-column gap-3 mb-0 pt-4 position-relative z-1 border-top border-white border-opacity-25">
@@ -444,7 +444,7 @@ if (isset($_SESSION['user_id'])) {
                     <h2 class="display-5 fw-bold mb-0 lh-sm">Tingkatkan efektivitas pembayaran operasional Anda.</h2>
                 </div>
                 <div class="col-lg-5 text-lg-end d-flex gap-3 justify-content-center justify-content-lg-end flex-wrap">
-                    <a href="auth/register.php" class="btn border-0 rounded-pill px-5 py-3 fw-bold fs-5 shadow-sm cta-banner-btn" style="background-color: var(--accent); color: white;">Get Started</a>
+                    <a href="auth/register" class="btn border-0 rounded-pill px-5 py-3 fw-bold fs-5 shadow-sm cta-banner-btn" style="background-color: var(--accent); color: white;">Get Started</a>
                     <a href="#how-it-works" class="btn btn-outline-light rounded-pill px-4 py-3 fw-bold fs-5 d-none d-sm-inline-flex align-items-center gap-2">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -464,17 +464,17 @@ if (isset($_SESSION['user_id'])) {
                 <div class="col-6 col-md-4 col-lg-2 offset-lg-2">
                     <h6 class="fw-bold mb-4 text-dark mb-4 pb-2 border-bottom border-light-subtle d-inline-block">Solusi</h6>
                     <ul class="list-unstyled text-muted d-flex flex-column gap-3 fw-medium">
-                        <li><a href="agensi-kecil.php" class="text-decoration-none text-muted footer-link">Agensi Kecil</a></li>
-                        <li><a href="freelancer.php" class="text-decoration-none text-muted footer-link">Freelancer</a></li>
-                        <li><a href="konsultan.php" class="text-decoration-none text-muted footer-link">Konsultan</a></li>
+                        <li><a href="agensi-kecil" class="text-decoration-none text-muted footer-link">Agensi Kecil</a></li>
+                        <li><a href="freelancer" class="text-decoration-none text-muted footer-link">Freelancer</a></li>
+                        <li><a href="konsultan" class="text-decoration-none text-muted footer-link">Konsultan</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
                     <h6 class="fw-bold mb-4 text-dark mb-4 pb-2 border-bottom border-light-subtle d-inline-block">Perusahaan</h6>
                     <ul class="list-unstyled text-muted d-flex flex-column gap-3 fw-medium">
-                        <li><a href="about.php" class="text-decoration-none text-muted footer-link">Tentang Kami</a></li>
-                        <li><a href="karir.php" class="text-decoration-none text-muted footer-link">Karir</a></li>
-                        <li><a href="contact.php" class="text-decoration-none text-muted footer-link">Kontak</a></li>
+                        <li><a href="about" class="text-decoration-none text-muted footer-link">Tentang Kami</a></li>
+                        <li><a href="karir" class="text-decoration-none text-muted footer-link">Karir</a></li>
+                        <li><a href="contact" class="text-decoration-none text-muted footer-link">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mt-4 mt-lg-0">
@@ -489,8 +489,8 @@ if (isset($_SESSION['user_id'])) {
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-muted border-top border-light-subtle pt-4 mt-5">
                 <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> IniJasa. All Rights Reserved.</p>
                 <div class="d-flex gap-4 small fw-medium">
-                    <a href="terms.php" class="text-decoration-none text-muted footer-link">Terms</a>
-                    <a href="privacy.php" class="text-decoration-none text-muted footer-link">Privacy</a>
+                    <a href="terms" class="text-decoration-none text-muted footer-link">Terms</a>
+                    <a href="privacy" class="text-decoration-none text-muted footer-link">Privacy</a>
                 </div>
             </div>
         </div>

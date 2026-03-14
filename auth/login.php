@@ -3,7 +3,7 @@ require_once '../includes/db.php';
 require_once '../includes/functions.php';
 
 if (isLoggedIn()) {
-    redirect('../dashboard.php');
+    redirect('../dashboard');
 }
 
 $error = '';
@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if ($business = mysqli_fetch_assoc($business_result)) {
                     $_SESSION['business_id'] = $business['id'];
-                    redirect('../dashboard.php');
+                    redirect('../dashboard');
                 } else {
-                    redirect('../setup-business.php');
+                    redirect('../setup-business');
                 }
             } else {
                 $error = 'Email atau password salah.';
@@ -291,12 +291,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             
             <div class="register-link">
-                Belum punya akun? <a href="register.php">Daftar Sekarang</a>
+                Belum punya akun? <a href="register">Daftar Sekarang</a>
             </div>
         </div>
         
         <div class="back-home">
-            <a href="../index.php">
+            <a href="../index">
                 <i class="fas fa-arrow-left me-2"></i>Kembali ke Beranda
             </a>
         </div>

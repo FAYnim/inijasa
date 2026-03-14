@@ -15,12 +15,12 @@ requireLogin();
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $invoice_id = (int)($_GET['id'] ?? 0);
 if (!$invoice_id) {
-    redirect('invoices.php');
+    redirect('invoices');
 }
 
 // Fetch invoice with all related data
@@ -38,7 +38,7 @@ mysqli_stmt_execute($stmt);
 $invoice = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 
 if (!$invoice) {
-    redirect('invoices.php');
+    redirect('invoices');
 }
 
 // Fetch items
@@ -422,7 +422,7 @@ $status_colors = [
 
 <!-- Action Bar (hidden on print) -->
 <div class="action-bar">
-    <a href="invoice-detail.php?id=<?= $invoice_id ?>" class="btn btn-back">
+    <a href="invoice-detail?id=<?= $invoice_id ?>" class="btn btn-back">
         <i class="fas fa-arrow-left"></i> Kembali ke Detail
     </a>
     <button class="btn btn-print" onclick="window.print()">

@@ -11,7 +11,7 @@ requireLogin();
 
 $business_id = getCurrentBusinessId();
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $client_id = $_GET['id'] ?? null;
@@ -31,7 +31,7 @@ if ($is_edit) {
     
     if (!$client) {
         setFlashMessage('danger', 'Klien tidak ditemukan.');
-        redirect('clients.php');
+        redirect('clients');
     }
 }
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $note = trim($_POST['note'] ?? '');
         if (empty($note)) {
             setFlashMessage('danger', 'Catatan tidak boleh kosong.');
-            redirect("client-form.php?id=$client_id");
+            redirect("client-form?id=$client_id");
         }
         $stmt = mysqli_prepare($conn, "INSERT INTO activity_logs (business_id, client_id, note) VALUES (?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "iis", $business_id, $client_id, $note);
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlashMessage('danger', 'Gagal menambahkan catatan aktivitas.');
         }
-        redirect("client-form.php?id=$client_id");
+        redirect("client-form?id=$client_id");
     }
 
     $client_name = trim($_POST['client_name'] ?? '');
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (mysqli_stmt_execute($stmt)) {
                 setFlashMessage('success', 'Klien berhasil diupdate.');
-                redirect('clients.php');
+                redirect('clients');
             } else {
                 $error = 'Gagal mengupdate klien.';
             }
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (mysqli_stmt_execute($stmt)) {
                 setFlashMessage('success', 'Klien berhasil ditambahkan.');
-                redirect('clients.php');
+                redirect('clients');
             } else {
                 $error = 'Gagal menambahkan klien.';
             }
@@ -135,7 +135,7 @@ include 'includes/sidebar.php';
                     <h2 class="page-title mb-1"><?= $page_title ?></h2>
                     <p class="text-muted mb-0">Lengkapi informasi klien</p>
                 </div>
-                <a href="clients.php" class="btn btn-outline-secondary">
+                <a href="clients" class="btn btn-outline-secondary">
                     <i class="fas fa-arrow-left me-2"></i>Kembali
                 </a>
             </div>
@@ -227,7 +227,7 @@ include 'includes/sidebar.php';
                             
                             <div class="col-md-12">
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <a href="clients.php" class="btn btn-secondary">Batal</a>
+                                    <a href="clients" class="btn btn-secondary">Batal</a>
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fas fa-save me-2"></i>
                                         <?= $is_edit ? 'Update Klien' : 'Simpan Klien' ?>

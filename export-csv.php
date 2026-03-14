@@ -14,7 +14,7 @@ requireLogin();
 
 $business_id = getCurrentBusinessId();
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $export_type = $_GET['type'] ?? '';
@@ -22,7 +22,7 @@ $allowed_types = ['transactions', 'deals', 'clients', 'profit_loss', 'pipeline']
 
 if (!in_array($export_type, $allowed_types)) {
     setFlashMessage('danger', 'Tipe export tidak valid.');
-    redirect('dashboard.php');
+    redirect('dashboard');
 }
 
 // Set CSV headers

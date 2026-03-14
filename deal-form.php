@@ -11,7 +11,7 @@ requireLogin();
 
 $business_id = getCurrentBusinessId();
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $deal_id = $_GET['id'] ?? null;
@@ -31,7 +31,7 @@ if ($is_edit) {
     
     if (!$deal) {
         setFlashMessage('danger', 'Deal tidak ditemukan.');
-        redirect('deals.php');
+        redirect('deals');
     }
 }
 
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (mysqli_stmt_execute($stmt)) {
                 setFlashMessage('success', 'Deal berhasil diupdate.');
-                redirect('deals.php');
+                redirect('deals');
             } else {
                 $error = 'Gagal mengupdate deal.';
             }
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (mysqli_stmt_execute($stmt)) {
                 setFlashMessage('success', 'Deal berhasil dibuat.');
-                redirect('deals.php');
+                redirect('deals');
             } else {
                 $error = 'Gagal membuat deal.';
             }
@@ -124,7 +124,7 @@ include 'includes/sidebar.php';
                     <h2 class="page-title mb-1"><?= $page_title ?></h2>
                     <p class="text-muted mb-0">Lengkapi informasi deal</p>
                 </div>
-                <a href="deals.php" class="btn btn-outline-secondary">
+                <a href="deals" class="btn btn-outline-secondary">
                     <i class="fas fa-arrow-left me-2"></i>Kembali
                 </a>
             </div>
@@ -157,7 +157,7 @@ include 'includes/sidebar.php';
                                     <?php endwhile; ?>
                                 </select>
                                 <div class="form-text">
-                                    <a href="client-form.php" target="_blank">+ Tambah klien baru</a>
+                                    <a href="client-form" target="_blank">+ Tambah klien baru</a>
                                 </div>
                             </div>
                             
@@ -256,7 +256,7 @@ include 'includes/sidebar.php';
                             
                             <div class="col-md-12">
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <a href="deals.php" class="btn btn-secondary">Batal</a>
+                                    <a href="deals" class="btn btn-secondary">Batal</a>
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fas fa-save me-2"></i>
                                         <?= $is_edit ? 'Update Deal' : 'Buat Deal' ?>

@@ -13,7 +13,7 @@ $page_title = 'Keuangan';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 // Get active tab (income or expense)
@@ -113,11 +113,11 @@ include 'includes/sidebar.php';
             <p class="text-muted mb-0">Kelola pemasukan dan pengeluaran bisnis</p>
         </div>
         <div class="d-flex gap-2">
-            <a href="export-csv.php?type=transactions&tab=<?= $active_tab ?>&date_from=<?= urlencode($date_from) ?>&date_to=<?= urlencode($date_to) ?>&category=<?= urlencode($category_filter) ?>&search=<?= urlencode($search) ?>" 
+            <a href="export-csv?type=transactions&tab=<?= $active_tab ?>&date_from=<?= urlencode($date_from) ?>&date_to=<?= urlencode($date_to) ?>&category=<?= urlencode($category_filter) ?>&search=<?= urlencode($search) ?>" 
                class="btn btn-outline-success">
                 <i class="fas fa-file-csv me-2"></i>Export CSV
             </a>
-            <a href="transaction-form.php?type=<?= $active_tab ?>" class="btn btn-primary">
+            <a href="transaction-form?type=<?= $active_tab ?>" class="btn btn-primary">
                 <i class="fas fa-plus-circle me-2"></i>Tambah Transaksi
             </a>
         </div>
@@ -295,7 +295,7 @@ include 'includes/sidebar.php';
                                 <td>
                                     <?php if ($trans['deal_id']): ?>
                                         <small>
-                                            <a href="deals.php?highlight=<?= $trans['deal_id'] ?>">
+                                            <a href="deals?highlight=<?= $trans['deal_id'] ?>">
                                                 <?= e($trans['deal_title']) ?>
                                             </a>
                                             <br>
@@ -316,12 +316,12 @@ include 'includes/sidebar.php';
                             </td>
                             <td class="text-end">
                                 <div class="btn-group btn-group-sm">
-                                    <a href="transaction-form.php?id=<?= $trans['id'] ?>&type=<?= $active_tab ?>" 
+                                    <a href="transaction-form?id=<?= $trans['id'] ?>&type=<?= $active_tab ?>" 
                                        class="btn btn-outline-primary" 
                                        title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form method="POST" action="transaction-form.php" class="d-inline" 
+                                    <form method="POST" action="transaction-form" class="d-inline" 
                                           onsubmit="return confirm('Yakin ingin menghapus transaksi ini?')">
                                         <input type="hidden" name="csrf_token" value="<?= generateCSRFToken() ?>">
                                         <input type="hidden" name="action" value="delete">
@@ -370,9 +370,9 @@ include 'includes/sidebar.php';
                     <?php endif; ?>
                 </p>
                 <?php if ($search || $category_filter || $date_from || $date_to): ?>
-                    <a href="finance.php?tab=<?= $active_tab ?>" class="btn btn-secondary">Reset Filter</a>
+                    <a href="finance?tab=<?= $active_tab ?>" class="btn btn-secondary">Reset Filter</a>
                 <?php else: ?>
-                    <a href="transaction-form.php?type=<?= $active_tab ?>" class="btn btn-primary">
+                    <a href="transaction-form?type=<?= $active_tab ?>" class="btn btn-primary">
                         <i class="fas fa-plus-circle me-2"></i>Tambah Transaksi
                     </a>
                 <?php endif; ?>

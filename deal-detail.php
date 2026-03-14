@@ -19,14 +19,14 @@ $page_title = 'Detail Deal';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 // Validate deal ID
 $deal_id = (int)($_GET['id'] ?? 0);
 if (!$deal_id) {
     setFlashMessage('danger', 'Deal tidak ditemukan.');
-    redirect('deals.php');
+    redirect('deals');
 }
 
 // ============================================================
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verify CSRF token for all POST actions
     if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
         setFlashMessage('danger', 'Token keamanan tidak valid. Silakan coba lagi.');
-        redirect("deal-detail.php?id=$deal_id");
+        redirect("deal-detail?id=$deal_id");
     }
 
     // --- Action: Move Stage ---
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (!in_array($new_stage, $valid_stages)) {
             setFlashMessage('danger', 'Stage tidak valid.');
-            redirect("deal-detail.php?id=$deal_id");
+            redirect("deal-detail?id=$deal_id");
         }
         
         // Get current deal stage
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (!$current) {
             setFlashMessage('danger', 'Deal tidak ditemukan.');
-            redirect('deals.php');
+            redirect('deals');
         }
         
         $old_stage = $current['current_stage'];
@@ -69,13 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Block if stage is already Won or Lost (final)
         if (in_array($old_stage, ['Won', 'Lost'])) {
             setFlashMessage('warning', 'Stage sudah final (Won/Lost) dan tidak bisa diubah.');
-            redirect("deal-detail.php?id=$deal_id");
+            redirect("deal-detail?id=$deal_id");
         }
         
         // Block if same stage
         if ($old_stage === $new_stage) {
             setFlashMessage('info', 'Deal sudah berada di stage tersebut.');
-            redirect("deal-detail.php?id=$deal_id");
+            redirect("deal-detail?id=$deal_id");
         }
         
         // Begin transaction
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlashMessage('danger', 'Gagal memindahkan stage.');
         }
         
-        redirect("deal-detail.php?id=$deal_id");
+        redirect("deal-detail?id=$deal_id");
     }
 
     // --- Action: Add Payment ---
@@ -122,11 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Validate
         if ($amount <= 0) {
             setFlashMessage('danger', 'Jumlah pembayaran harus lebih dari 0.');
-            redirect("deal-detail.php?id=$deal_id");
+            redirect("deal-detail?id=$deal_id");
         }
         if (empty($payment_date)) {
             setFlashMessage('danger', 'Tanggal pembayaran wajib diisi.');
-            redirect("deal-detail.php?id=$deal_id");
+            redirect("deal-detail?id=$deal_id");
         }
         
         // Check ownership and get final_value and deal_title
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (!$deal_check) {
             setFlashMessage('danger', 'Deal tidak ditemukan.');
-            redirect('deals.php');
+            redirect('deals');
         }
         
         // Check total paid so far
@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (($paid_so_far + $amount) > $deal_check['final_value'] + 0.01) {
             $remaining = $deal_check['final_value'] - $paid_so_far;
             setFlashMessage('danger', 'Jumlah pembayaran melebihi sisa tagihan (' . formatCurrency($remaining) . ').');
-            redirect("deal-detail.php?id=$deal_id");
+            redirect("deal-detail?id=$deal_id");
         }
         
         // Insert payment to transactions first
@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlashMessage('danger', 'Gagal menambahkan pembayaran.');
         }
         
-        redirect("deal-detail.php?id=$deal_id");
+        redirect("deal-detail?id=$deal_id");
     }
 
     // --- Action: Delete Payment ---
@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (mysqli_num_rows($result) === 0) {
             setFlashMessage('danger', 'Pembayaran tidak ditemukan.');
-            redirect("deal-detail.php?id=$deal_id");
+            redirect("deal-detail?id=$deal_id");
         }
         
         $payment_record = mysqli_fetch_assoc($result);
@@ -225,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlashMessage('danger', 'Gagal menghapus pembayaran.');
         }
         
-        redirect("deal-detail.php?id=$deal_id");
+        redirect("deal-detail?id=$deal_id");
     }
 
     // --- Action: Add Activity Log ---
@@ -234,7 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (empty($note)) {
             setFlashMessage('danger', 'Catatan tidak boleh kosong.');
-            redirect("deal-detail.php?id=$deal_id");
+            redirect("deal-detail?id=$deal_id");
         }
         
         $stmt = mysqli_prepare($conn, 
@@ -248,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlashMessage('danger', 'Gagal menambahkan catatan aktivitas.');
         }
         
-        redirect("deal-detail.php?id=$deal_id");
+        redirect("deal-detail?id=$deal_id");
     }
 }
 
@@ -273,7 +273,7 @@ $deal = mysqli_fetch_assoc($result);
 
 if (!$deal) {
     setFlashMessage('danger', 'Deal tidak ditemukan.');
-    redirect('deals.php');
+    redirect('deals');
 }
 
 $page_title = 'Detail: ' . $deal['deal_title'];
@@ -350,20 +350,20 @@ include 'includes/sidebar.php';
         <div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-1">
-                    <li class="breadcrumb-item"><a href="deals.php">Deals</a></li>
+                    <li class="breadcrumb-item"><a href="deals">Deals</a></li>
                     <li class="breadcrumb-item active"><?= e($deal['deal_title']) ?></li>
                 </ol>
             </nav>
             <h2 class="page-title mb-0"><?= e($deal['deal_title']) ?></h2>
         </div>
         <div class="d-flex gap-2">
-            <a href="deals.php" class="btn btn-outline-secondary">
+            <a href="deals" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left me-2"></i>Kembali
             </a>
-            <a href="invoice-form.php?deal_id=<?= $deal['id'] ?>" class="btn btn-outline-primary">
+            <a href="invoice-form?deal_id=<?= $deal['id'] ?>" class="btn btn-outline-primary">
                 <i class="fas fa-file-invoice me-2"></i>Buat Invoice
             </a>
-            <a href="deal-form.php?id=<?= $deal['id'] ?>" class="btn btn-primary">
+            <a href="deal-form?id=<?= $deal['id'] ?>" class="btn btn-primary">
                 <i class="fas fa-edit me-2"></i>Edit Deal
             </a>
         </div>
@@ -571,7 +571,7 @@ include 'includes/sidebar.php';
                         <?php endif; ?>
                     </div>
                     <div class="d-grid mt-3">
-                        <a href="client-form.php?id=<?= $deal['cid'] ?>" class="btn btn-outline-secondary btn-sm">
+                        <a href="client-form?id=<?= $deal['cid'] ?>" class="btn btn-outline-secondary btn-sm">
                             <i class="fas fa-external-link-alt me-1"></i>Lihat Detail Klien
                         </a>
                     </div>

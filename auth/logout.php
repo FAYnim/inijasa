@@ -18,6 +18,6 @@ if (isset($_COOKIE[session_name()])) {
 session_destroy();
 
 // Redirect to landing page
-header('Location: ../index.php');
+header('Location: ../index');
 exit();
 ?>

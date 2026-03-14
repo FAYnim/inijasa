@@ -23,7 +23,7 @@ $has_business = mysqli_fetch_assoc($result)['count'] > 0;
 
 // If already has business, redirect to dashboard
 if ($has_business && !isset($_GET['add'])) {
-    redirect('dashboard.php');
+    redirect('dashboard');
 }
 
 // Process form submission
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['business_id'] = $business_id;
                 
                 setFlashMessage('success', 'Bisnis berhasil dibuat! Selamat datang di IniJasa.');
-                redirect('dashboard.php');
+                redirect('dashboard');
             } else {
                 $error = 'Terjadi kesalahan. Silakan coba lagi.';
             }
@@ -401,7 +401,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 <?php if ($has_business): ?>
                     <div class="text-center mt-3">
-                        <a href="dashboard.php" class="text-muted">Lewati & ke Dashboard</a>
+                        <a href="dashboard" class="text-muted">Lewati & ke Dashboard</a>
                     </div>
                 <?php endif; ?>
             </div>

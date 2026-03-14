@@ -9,7 +9,7 @@ require_once '../includes/functions.php';
 
 // Redirect if already logged in
 if (isLoggedIn()) {
-    redirect('../dashboard.php');
+    redirect('../dashboard');
 }
 
 $error = '';
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_name'] = $full_name;
                 
                 // Redirect to business setup
-                redirect('../setup-business.php');
+                redirect('../setup-business');
             } else {
                 $error = 'Terjadi kesalahan. Silakan coba lagi.';
             }
@@ -368,12 +368,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             
             <div class="login-link">
-                Sudah punya akun? <a href="login.php">Login di sini</a>
+                Sudah punya akun? <a href="login">Login di sini</a>
             </div>
         </div>
         
         <div class="back-home">
-            <a href="../index.php">
+            <a href="../index">
                 <i class="fas fa-arrow-left me-2"></i>Kembali ke Beranda
             </a>
         </div>

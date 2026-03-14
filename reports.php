@@ -13,7 +13,7 @@ $page_title = 'Laporan';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 // Active tab
@@ -157,7 +157,7 @@ include 'includes/sidebar.php';
                     </button>
                 </div>
                 <div class="col-md-2">
-                    <a href="export-csv.php?type=profit_loss&date_from=<?= urlencode($date_from) ?>&date_to=<?= urlencode($date_to) ?>" 
+                    <a href="export-csv?type=profit_loss&date_from=<?= urlencode($date_from) ?>&date_to=<?= urlencode($date_to) ?>" 
                        class="btn btn-outline-success w-100">
                         <i class="fas fa-file-csv me-2"></i>Export CSV
                     </a>
@@ -323,7 +323,7 @@ include 'includes/sidebar.php';
 
     <!-- Export Button -->
     <div class="d-flex justify-content-end mb-3">
-        <a href="export-csv.php?type=pipeline" class="btn btn-outline-success">
+        <a href="export-csv?type=pipeline" class="btn btn-outline-success">
             <i class="fas fa-file-csv me-2"></i>Export CSV
         </a>
     </div>

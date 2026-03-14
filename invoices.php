@@ -13,14 +13,14 @@ $page_title = 'Invoice';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 // Handle delete action
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete') {
     if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
         setFlashMessage('danger', 'Token keamanan tidak valid.');
-        redirect('invoices.php');
+        redirect('invoices');
     }
     
     $delete_id = (int)($_POST['invoice_id'] ?? 0);
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
     } else {
         setFlashMessage('danger', 'Gagal menghapus invoice.');
     }
-    redirect('invoices.php');
+    redirect('invoices');
 }
 
 // Filters
@@ -95,7 +95,7 @@ include 'includes/sidebar.php';
             <h2 class="page-title mb-1">Invoice</h2>
             <p class="text-muted mb-0">Kelola invoice dan penawaran untuk klien</p>
         </div>
-        <a href="invoice-form.php" class="btn btn-primary">
+        <a href="invoice-form" class="btn btn-primary">
             <i class="fas fa-plus-circle me-2"></i>Buat Invoice Baru
         </a>
     </div>
@@ -197,7 +197,7 @@ include 'includes/sidebar.php';
                     </button>
                 </div>
                 <div class="col-md-2">
-                    <a href="invoices.php" class="btn btn-outline-secondary w-100">Reset</a>
+                    <a href="invoices" class="btn btn-outline-secondary w-100">Reset</a>
                 </div>
             </form>
         </div>
@@ -237,7 +237,7 @@ include 'includes/sidebar.php';
                         ?>
                         <tr>
                             <td>
-                                <a href="invoice-detail.php?id=<?= $inv['id'] ?>" class="fw-bold text-decoration-none">
+                                <a href="invoice-detail?id=<?= $inv['id'] ?>" class="fw-bold text-decoration-none">
                                     <?= e($inv['invoice_number']) ?>
                                 </a>
                             </td>
@@ -272,10 +272,10 @@ include 'includes/sidebar.php';
                             </td>
                             <td class="text-end">
                                 <div class="btn-group btn-group-sm">
-                                    <a href="invoice-detail.php?id=<?= $inv['id'] ?>" class="btn btn-outline-primary" title="Detail">
+                                    <a href="invoice-detail?id=<?= $inv['id'] ?>" class="btn btn-outline-primary" title="Detail">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="invoice-form.php?id=<?= $inv['id'] ?>" class="btn btn-outline-secondary" title="Edit">
+                                    <a href="invoice-form?id=<?= $inv['id'] ?>" class="btn btn-outline-secondary" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <form method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus invoice ini?')">
@@ -304,9 +304,9 @@ include 'includes/sidebar.php';
                     <?php endif; ?>
                 </p>
                 <?php if ($search || $status_filter): ?>
-                    <a href="invoices.php" class="btn btn-secondary">Reset Filter</a>
+                    <a href="invoices" class="btn btn-secondary">Reset Filter</a>
                 <?php else: ?>
-                    <a href="invoice-form.php" class="btn btn-primary">
+                    <a href="invoice-form" class="btn btn-primary">
                         <i class="fas fa-plus-circle me-2"></i>Buat Invoice Baru
                     </a>
                 <?php endif; ?>

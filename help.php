@@ -13,7 +13,7 @@ $page_title = 'Bantuan';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 include 'includes/header.php';

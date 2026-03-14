@@ -12,7 +12,7 @@ requireLogin();
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $invoice_id = (int)($_GET['id'] ?? 0);
@@ -42,7 +42,7 @@ if ($is_edit) {
     
     if (!$invoice) {
         setFlashMessage('danger', 'Invoice tidak ditemukan.');
-        redirect('invoices.php');
+        redirect('invoices');
     }
     
     // Load items
@@ -193,7 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             mysqli_commit($conn);
             setFlashMessage('success', $is_edit ? 'Invoice berhasil diupdate.' : 'Invoice berhasil dibuat.');
-            redirect("invoice-detail.php?id=$target_id");
+            redirect("invoice-detail?id=$target_id");
             
         } catch (Exception $e) {
             mysqli_rollback($conn);
@@ -230,13 +230,13 @@ include 'includes/sidebar.php';
                 <div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-1">
-                            <li class="breadcrumb-item"><a href="invoices.php">Invoice</a></li>
+                            <li class="breadcrumb-item"><a href="invoices">Invoice</a></li>
                             <li class="breadcrumb-item active"><?= $is_edit ? 'Edit' : 'Buat Baru' ?></li>
                         </ol>
                     </nav>
                     <h2 class="page-title mb-0"><?= e($page_title) ?></h2>
                 </div>
-                <a href="invoices.php" class="btn btn-outline-secondary">
+                <a href="invoices" class="btn btn-outline-secondary">
                     <i class="fas fa-arrow-left me-2"></i>Kembali
                 </a>
             </div>
@@ -400,7 +400,7 @@ include 'includes/sidebar.php';
                 
                 <!-- Actions -->
                 <div class="d-flex justify-content-between">
-                    <a href="invoices.php" class="btn btn-outline-secondary">
+                    <a href="invoices" class="btn btn-outline-secondary">
                         <i class="fas fa-arrow-left me-2"></i>Batal
                     </a>
                     <button type="submit" class="btn btn-primary btn-lg">

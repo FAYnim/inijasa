@@ -13,7 +13,7 @@ $page_title = 'Klien';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 // Get filter parameters
@@ -62,11 +62,11 @@ include 'includes/sidebar.php';
             <p class="text-muted mb-0">Total <?= $total_clients ?> klien terdaftar</p>
         </div>
         <div class="d-flex gap-2">
-            <a href="export-csv.php?type=clients&source=<?= urlencode($source_filter) ?>&search=<?= urlencode($search) ?>" 
+            <a href="export-csv?type=clients&source=<?= urlencode($source_filter) ?>&search=<?= urlencode($search) ?>" 
                class="btn btn-outline-success">
                 <i class="fas fa-file-csv me-2"></i>Export CSV
             </a>
-            <a href="client-form.php" class="btn btn-primary">
+            <a href="client-form" class="btn btn-primary">
                 <i class="fas fa-user-plus me-2"></i>Tambah Klien
             </a>
         </div>
@@ -152,10 +152,10 @@ include 'includes/sidebar.php';
                         </div>
                         
                         <div class="d-flex gap-2 mt-3">
-                            <a href="client-form.php?id=<?= $client['id'] ?>" class="btn btn-sm btn-outline-primary flex-fill">
+                            <a href="client-form?id=<?= $client['id'] ?>" class="btn btn-sm btn-outline-primary flex-fill">
                                 <i class="fas fa-edit me-1"></i>Edit
                             </a>
-                            <a href="deal-form.php?client_id=<?= $client['id'] ?>" class="btn btn-sm btn-primary flex-fill">
+                            <a href="deal-form?client_id=<?= $client['id'] ?>" class="btn btn-sm btn-primary flex-fill">
                                 <i class="fas fa-plus me-1"></i>Buat Deal
                             </a>
                         </div>
@@ -172,7 +172,7 @@ include 'includes/sidebar.php';
                             <?php if ($search || $source_filter): ?>
                                 Tidak ada klien yang sesuai dengan filter.
                             <?php else: ?>
-                                Belum ada klien. <a href="client-form.php">Tambah klien pertama Anda</a>
+                                Belum ada klien. <a href="client-form">Tambah klien pertama Anda</a>
                             <?php endif; ?>
                         </p>
                     </div>

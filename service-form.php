@@ -11,7 +11,7 @@ requireLogin();
 
 $business_id = getCurrentBusinessId();
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 $service_id = $_GET['id'] ?? null;
@@ -31,7 +31,7 @@ if ($is_edit) {
     
     if (!$service) {
         setFlashMessage('danger', 'Paket jasa tidak ditemukan.');
-        redirect('services.php');
+        redirect('services');
     }
 }
 
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             deleteServiceImage($service['image_path']);
                         }
                         setFlashMessage('success', 'Paket jasa berhasil diupdate.');
-                        redirect('services.php');
+                        redirect('services');
                     } else {
                         $error = 'Gagal mengupdate paket jasa.';
                     }
@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     setFlashMessage('success', 'Paket jasa berhasil ditambahkan.');
-                    redirect('services.php');
+                    redirect('services');
                 } else {
                     $error = 'Gagal menambahkan paket jasa.';
                 }
@@ -174,7 +174,7 @@ include 'includes/sidebar.php';
                     <h2 class="page-title mb-1"><?= $page_title ?></h2>
                     <p class="text-muted mb-0">Lengkapi informasi paket jasa yang Anda tawarkan</p>
                 </div>
-                <a href="services.php" class="btn btn-outline-secondary">
+                <a href="services" class="btn btn-outline-secondary">
                     <i class="fas fa-arrow-left me-2"></i>Kembali
                 </a>
             </div>
@@ -289,7 +289,7 @@ include 'includes/sidebar.php';
                         <hr class="my-4">
                         
                         <div class="d-flex justify-content-between">
-                            <a href="services.php" class="btn btn-outline-secondary">
+                            <a href="services" class="btn btn-outline-secondary">
                                 <i class="fas fa-times me-2"></i>Batal
                             </a>
                             <button type="submit" class="btn btn-primary">

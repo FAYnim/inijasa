@@ -11,7 +11,7 @@ requireLogin();
 
 $business_id = getCurrentBusinessId();
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 // Handle delete action (POST + CSRF)
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $csrf_token = $_POST['csrf_token'] ?? '';
     if (!verifyCSRFToken($csrf_token)) {
         setFlashMessage('danger', 'Token CSRF tidak valid. Silakan coba lagi.');
-        redirect('finance.php');
+        redirect('finance');
     }
     
     $trans_id = (int)$_POST['id'];
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         setFlashMessage('danger', 'Transaksi tidak ditemukan.');
     }
     
-    redirect("finance.php?tab=$type");
+    redirect("finance?tab=$type");
 }
 
 $trans_id = $_GET['id'] ?? null;
@@ -63,7 +63,7 @@ if ($is_edit) {
     
     if (!$transaction) {
         setFlashMessage('danger', 'Transaksi tidak ditemukan.');
-        redirect('finance.php');
+        redirect('finance');
     }
     
     // Set type based on transaction type
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (mysqli_stmt_execute($stmt)) {
                 setFlashMessage('success', 'Transaksi berhasil diupdate.');
-                redirect("finance.php?tab=$type");
+                redirect("finance?tab=$type");
             } else {
                 $error = 'Gagal mengupdate transaksi.';
             }
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (mysqli_stmt_execute($stmt)) {
                 setFlashMessage('success', 'Transaksi berhasil ditambahkan.');
-                redirect("finance.php?tab=$type");
+                redirect("finance?tab=$type");
             } else {
                 $error = 'Gagal menambahkan transaksi.';
             }
@@ -175,7 +175,7 @@ include 'includes/sidebar.php';
                     <h2 class="page-title mb-1"><?= $page_title ?></h2>
                     <p class="text-muted mb-0">Catat transaksi keuangan bisnis Anda</p>
                 </div>
-                <a href="finance.php?tab=<?= $type ?>" class="btn btn-outline-secondary">
+                <a href="finance?tab=<?= $type ?>" class="btn btn-outline-secondary">
                     <i class="fas fa-arrow-left me-2"></i>Kembali
                 </a>
             </div>
@@ -301,7 +301,7 @@ include 'includes/sidebar.php';
                         <hr class="my-4">
                         
                         <div class="d-flex justify-content-between">
-                            <a href="finance.php?tab=<?= $type ?>" class="btn btn-outline-secondary">
+                            <a href="finance?tab=<?= $type ?>" class="btn btn-outline-secondary">
                                 <i class="fas fa-times me-2"></i>Batal
                             </a>
                             <button type="submit" class="btn btn-<?= $type === 'income' ? 'success' : 'danger' ?>">

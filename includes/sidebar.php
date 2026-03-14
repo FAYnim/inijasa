@@ -121,7 +121,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <a href="dashboard.php" class="sidebar-logo">
+        <a href="dashboard" class="sidebar-logo">
             <div class="sidebar-logo-icon">
                 <i class="fas fa-briefcase"></i>
             </div>
@@ -133,19 +133,19 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <div class="nav-section">Menu Utama</div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="dashboard.php" class="nav-link <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
+                <a href="dashboard" class="nav-link <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="deals.php" class="nav-link <?= $current_page == 'deals.php' ? 'active' : '' ?>">
+                <a href="deals" class="nav-link <?= $current_page == 'deals.php' ? 'active' : '' ?>">
                     <i class="fas fa-handshake"></i>
                     <span>Deals</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="clients.php" class="nav-link <?= $current_page == 'clients.php' ? 'active' : '' ?>">
+                <a href="clients" class="nav-link <?= $current_page == 'clients.php' ? 'active' : '' ?>">
                     <i class="fas fa-users"></i>
                     <span>Klien</span>
                 </a>
@@ -155,25 +155,25 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <div class="nav-section">Layanan & Keuangan</div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="services.php" class="nav-link <?= $current_page == 'services.php' ? 'active' : '' ?>">
+                <a href="services" class="nav-link <?= $current_page == 'services.php' ? 'active' : '' ?>">
                     <i class="fas fa-box"></i>
                     <span>Paket Jasa</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="finance.php" class="nav-link <?= $current_page == 'finance.php' ? 'active' : '' ?>">
+                <a href="finance" class="nav-link <?= $current_page == 'finance.php' ? 'active' : '' ?>">
                     <i class="fas fa-wallet"></i>
                     <span>Keuangan</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="invoices.php" class="nav-link <?= in_array($current_page, ['invoices.php', 'invoice-form.php', 'invoice-detail.php']) ? 'active' : '' ?>">
+                <a href="invoices" class="nav-link <?= in_array($current_page, ['invoices.php', 'invoice-form.php', 'invoice-detail.php']) ? 'active' : '' ?>">
                     <i class="fas fa-file-invoice"></i>
                     <span>Invoice</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="reports.php" class="nav-link <?= $current_page == 'reports.php' ? 'active' : '' ?>">
+                <a href="reports" class="nav-link <?= $current_page == 'reports.php' ? 'active' : '' ?>">
                     <i class="fas fa-chart-bar"></i>
                     <span>Laporan</span>
                 </a>
@@ -183,13 +183,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <div class="nav-section">Pengaturan</div>
          <ul class="nav flex-column">
              <li class="nav-item">
-                 <a href="help.php" class="nav-link <?= $current_page == 'help.php' ? 'active' : '' ?>">
+                 <a href="help" class="nav-link <?= $current_page == 'help.php' ? 'active' : '' ?>">
                      <i class="fas fa-question-circle"></i>
                      <span>Bantuan</span>
                  </a>
              </li>
              <li class="nav-item">
-                 <a href="business-profile.php" class="nav-link <?= $current_page == 'business-profile.php' ? 'active' : '' ?>">
+                 <a href="business-profile" class="nav-link <?= $current_page == 'business-profile.php' ? 'active' : '' ?>">
                      <i class="fas fa-building"></i>
                      <span>Profil Bisnis</span>
                  </a>

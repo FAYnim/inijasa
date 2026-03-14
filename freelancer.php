@@ -31,7 +31,7 @@ session_start();
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white py-3 shadow-sm" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand fw-bold text-primary fs-3" href="index.php">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="index">
                 IniJasa
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -39,18 +39,18 @@ session_start();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link px-3" href="index.php#features">Fitur</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="index.php#bento">Kelebihan</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="index.php#how-it-works">Cara Kerja</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="index.php#pricing">Harga</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="index.php#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index#features">Fitur</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index#bento">Kelebihan</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index#how-it-works">Cara Kerja</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index#pricing">Harga</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="index#faq">FAQ</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <a href="dashboard.php" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Dashboard</a>
+                        <a href="dashboard" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Dashboard</a>
                     <?php else: ?>
-                        <a href="auth/login.php" class="text-decoration-none fw-medium text-dark px-3 py-2 btn-login">Masuk</a>
-                        <a href="auth/register.php" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Coba Gratis</a>
+                        <a href="auth/login" class="text-decoration-none fw-medium text-dark px-3 py-2 btn-login">Masuk</a>
+                        <a href="auth/register" class="btn btn-primary rounded-pill px-4 py-2 cta-btn fw-medium shadow-sm">Coba Gratis</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -107,7 +107,7 @@ session_start();
                     <h2 class="display-5 fw-bold mb-0 lh-sm">Daftar sekarang dan kelola freelance-mu dengan lebih rapi.</h2>
                 </div>
                 <div class="col-lg-5 text-lg-end d-flex gap-3 justify-content-center justify-content-lg-end flex-wrap">
-                    <a href="auth/register.php" class="btn border-0 rounded-pill px-5 py-3 fw-bold fs-5 shadow-sm cta-banner-btn" style="background-color: var(--accent); color: white;">Buat Akun Gratis</a>
+                    <a href="auth/register" class="btn border-0 rounded-pill px-5 py-3 fw-bold fs-5 shadow-sm cta-banner-btn" style="background-color: var(--accent); color: white;">Buat Akun Gratis</a>
                 </div>
             </div>
         </div>
@@ -118,7 +118,7 @@ session_start();
         <div class="container px-4 px-lg-5">
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-4 pe-lg-5">
-                    <a class="navbar-brand fw-bold text-dark fs-3 mb-3 d-inline-block text-decoration-none d-flex align-items-center gap-2" href="index.php">
+                    <a class="navbar-brand fw-bold text-dark fs-3 mb-3 d-inline-block text-decoration-none d-flex align-items-center gap-2" href="index">
                         <i class="fas fa-briefcase text-primary"></i> IniJasa
                     </a>
                     <p class="text-muted mt-2 fw-medium pe-lg-4">Platform operasi terpadu untuk agensi, freelancer, dan UMKM jasa inovatif di Indonesia.</p>
@@ -126,17 +126,17 @@ session_start();
                 <div class="col-6 col-md-4 col-lg-2 offset-lg-2">
                     <h6 class="fw-bold mb-4 text-dark mb-4 pb-2 border-bottom border-light-subtle d-inline-block">Solusi</h6>
                     <ul class="list-unstyled text-muted d-flex flex-column gap-3 fw-medium">
-                        <li><a href="agensi-kecil.php" class="text-decoration-none text-muted footer-link">Agensi Kecil</a></li>
-                        <li><a href="freelancer.php" class="text-decoration-none text-muted footer-link">Freelancer</a></li>
-                        <li><a href="konsultan.php" class="text-decoration-none text-muted footer-link">Konsultan</a></li>
+                        <li><a href="agensi-kecil" class="text-decoration-none text-muted footer-link">Agensi Kecil</a></li>
+                        <li><a href="freelancer" class="text-decoration-none text-muted footer-link">Freelancer</a></li>
+                        <li><a href="konsultan" class="text-decoration-none text-muted footer-link">Konsultan</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
                     <h6 class="fw-bold mb-4 text-dark mb-4 pb-2 border-bottom border-light-subtle d-inline-block">Perusahaan</h6>
                     <ul class="list-unstyled text-muted d-flex flex-column gap-3 fw-medium">
-                        <li><a href="about.php" class="text-decoration-none text-muted footer-link">Tentang Kami</a></li>
-                        <li><a href="karir.php" class="text-decoration-none text-muted footer-link">Karir</a></li>
-                        <li><a href="contact.php" class="text-decoration-none text-muted footer-link">Kontak</a></li>
+                        <li><a href="about" class="text-decoration-none text-muted footer-link">Tentang Kami</a></li>
+                        <li><a href="karir" class="text-decoration-none text-muted footer-link">Karir</a></li>
+                        <li><a href="contact" class="text-decoration-none text-muted footer-link">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mt-4 mt-lg-0">
@@ -151,8 +151,8 @@ session_start();
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-muted border-top border-light-subtle pt-4 mt-5">
                 <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> IniJasa. All Rights Reserved.</p>
                 <div class="d-flex gap-4 small fw-medium">
-                    <a href="terms.php" class="text-decoration-none text-muted footer-link">Terms</a>
-                    <a href="privacy.php" class="text-decoration-none text-muted footer-link">Privacy</a>
+                    <a href="terms" class="text-decoration-none text-muted footer-link">Terms</a>
+                    <a href="privacy" class="text-decoration-none text-muted footer-link">Privacy</a>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ $page_title = 'Deals';
 $business_id = getCurrentBusinessId();
 
 if (!$business_id) {
-    redirect('setup-business.php');
+    redirect('setup-business');
 }
 
 // Get filter parameters
@@ -81,11 +81,11 @@ include 'includes/sidebar.php';
             <p class="text-muted mb-0">Kelola semua kesepakatan bisnis Anda</p>
         </div>
         <div class="d-flex gap-2">
-            <a href="export-csv.php?type=deals&stage=<?= urlencode($filter_stage) ?>&search=<?= urlencode($search) ?>" 
+            <a href="export-csv?type=deals&stage=<?= urlencode($filter_stage) ?>&search=<?= urlencode($search) ?>" 
                class="btn btn-outline-success">
                 <i class="fas fa-file-csv me-2"></i>Export CSV
             </a>
-            <a href="deal-form.php" class="btn btn-primary">
+            <a href="deal-form" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Buat Deal Baru
             </a>
         </div>
@@ -105,14 +105,14 @@ include 'includes/sidebar.php';
         <div class="card-body">
             <ul class="nav nav-pills stage-filters">
                 <li class="nav-item">
-                    <a class="nav-link <?= $filter_stage === '' ? 'active' : '' ?>" href="deals.php">
+                    <a class="nav-link <?= $filter_stage === '' ? 'active' : '' ?>" href="deals">
                         Semua <span class="badge bg-secondary ms-1"><?= array_sum($stage_counts) ?></span>
                     </a>
                 </li>
                 <?php foreach ($stages as $stage): ?>
                 <li class="nav-item">
                     <a class="nav-link <?= $filter_stage === $stage ? 'active' : '' ?>" 
-                       href="deals.php?stage=<?= urlencode($stage) ?>">
+                       href="deals?stage=<?= urlencode($stage) ?>">
                         <?= $stage ?> <span class="badge bg-secondary ms-1"><?= $stage_counts[$stage] ?></span>
                     </a>
                 </li>
@@ -204,13 +204,13 @@ include 'includes/sidebar.php';
                                 </td>
                                 <td>
                                     <div class="btn-group btn-group-sm">
-                                        <a href="deal-form.php?id=<?= $deal['id'] ?>" 
+                                        <a href="deal-form?id=<?= $deal['id'] ?>" 
                                            class="btn btn-outline-primary" 
                                            data-bs-toggle="tooltip" 
                                            title="Edit">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="deal-detail.php?id=<?= $deal['id'] ?>" 
+                                        <a href="deal-detail?id=<?= $deal['id'] ?>" 
                                            class="btn btn-outline-info" 
                                            data-bs-toggle="tooltip" 
                                            title="Detail">
@@ -228,7 +228,7 @@ include 'includes/sidebar.php';
                                         <?php if ($search || $filter_stage): ?>
                                             Tidak ada deal yang sesuai dengan filter.
                                         <?php else: ?>
-                                            Belum ada deal. <a href="deal-form.php">Buat deal pertama Anda</a>
+                                            Belum ada deal. <a href="deal-form">Buat deal pertama Anda</a>
                                         <?php endif; ?>
                                     </p>
                                 </td>
