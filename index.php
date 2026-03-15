@@ -11,13 +11,165 @@ if (isset($_SESSION['user_id'])) {
     header('Location: dashboard');
     exit();
 }
+
+$siteUrl = 'https://inijasa.my.id';
+$canonicalUrl = $siteUrl;
+$seoTitle = 'IniJasa - Platform Manajemen Bisnis Jasa untuk Freelancer & Agensi';
+$seoDescription = 'IniJasa adalah platform operasi terpadu untuk agensi, freelancer, dan UMKM jasa di Indonesia. Kelola klien, pipeline deal, invoice, dan keuangan dalam satu dashboard.';
+$seoKeywords = 'inijasa, platform bisnis jasa, manajemen bisnis jasa, aplikasi invoice jasa, CRM klien, pipeline sales, software agensi, software freelancer, umkm jasa, laporan keuangan jasa';
+// TODO(SEO): Ganti dengan file OG image real ukuran 1200x630 agar preview share sosial optimal.
+$ogImageUrl = $siteUrl . '/assets/img/og-image-placeholder.jpg';
+// TODO(SEO): Ganti dengan URL logo brand final (minimal 112x112) untuk Organization schema.
+$logoUrl = $siteUrl . '/assets/img/logo-placeholder.png';
+
+$organizationSchema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Organization',
+    'name' => 'IniJasa',
+    'url' => $siteUrl,
+    'logo' => $logoUrl,
+    'email' => 'contact@inijasa.my.id',
+    'founder' => [
+        '@type' => 'Person',
+        'name' => 'Faris Adillah Y - FAY',
+        'jobTitle' => 'Developer, Software Engineer'
+    ],
+    'address' => [
+        '@type' => 'PostalAddress',
+        'streetAddress' => 'Jl. Smea No. 4',
+        'addressLocality' => 'Surabaya',
+        'addressRegion' => 'Jawa Timur',
+        'addressCountry' => 'ID'
+    ],
+    'areaServed' => [
+        [
+            '@type' => 'Country',
+            'name' => 'Indonesia'
+        ],
+        [
+            '@type' => 'City',
+            'name' => 'Surabaya'
+        ],
+        [
+            '@type' => 'City',
+            'name' => 'Jakarta'
+        ]
+    ],
+    'sameAs' => [
+        // TODO(SEO): Tambahkan URL sosial resmi (Instagram, LinkedIn, Facebook, X) saat akun sudah siap.
+        'https://www.inijasa.my.id'
+    ]
+];
+
+$websiteSchema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'WebSite',
+    'name' => 'IniJasa',
+    'url' => $siteUrl,
+    'inLanguage' => 'id-ID',
+    'publisher' => [
+        '@type' => 'Organization',
+        'name' => 'Faydev'
+    ]
+];
+
+$webpageSchema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'WebPage',
+    'name' => $seoTitle,
+    'url' => $canonicalUrl,
+    'description' => $seoDescription,
+    'inLanguage' => 'id-ID',
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        'name' => 'IniJasa',
+        'url' => $siteUrl
+    ],
+    'about' => [
+        '@type' => 'Thing',
+        'name' => 'Platform Manajemen Bisnis Jasa'
+    ],
+    'author' => [
+        '@type' => 'Person',
+        'name' => 'Faris Adillah Y - FAY'
+    ],
+    'publisher' => [
+        '@type' => 'Organization',
+        'name' => 'Faydev'
+    ]
+];
+
+$faqSchema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => [
+        [
+            '@type' => 'Question',
+            'name' => 'Apakah data saya aman?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Ya, kami menggunakan enkripsi dan backup otomatis untuk memastikan keamanan data bisnis Anda. Anda bebas mengekspor data kapan saja.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Bisa digunakan lewat handphone?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Tentu, platform kami dirancang responsif dan bisa diakses melalui browser mobile kapan saja dan di mana saja.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Bagaimana jika saya punya lebih dari 1 bisnis?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Dengan paket Premium, satu akun bisa mengelola multiple bisnis. Cukup beralih antar bisnis dari dashboard utama.'
+            ]
+        ]
+    ]
+];
+
+// TODO(SEO): Jika homepage berubah, sinkronkan teks FAQ di section HTML dengan FAQ schema ini.
 ?>
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id-ID">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IniJasa - Platform Manajemen Bisnis Jasa All-in-One</title>
+    <title><?php echo htmlspecialchars($seoTitle, ENT_QUOTES, 'UTF-8'); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($seoDescription, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($seoKeywords, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="author" content="Faris Adillah Y - FAY">
+    <meta name="publisher" content="Faydev">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+    <meta name="theme-color" content="#0d6efd">
+    <meta name="language" content="id-ID">
+
+    <link rel="canonical" href="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>">
+    <link rel="alternate" href="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>" hreflang="id-ID">
+    <link rel="alternate" href="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>" hreflang="x-default">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="IniJasa">
+    <meta property="og:title" content="<?php echo htmlspecialchars($seoTitle, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($seoDescription, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:image" content="<?php echo htmlspecialchars($ogImageUrl, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:image:alt" content="Preview IniJasa - Platform Manajemen Bisnis Jasa">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($seoTitle, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($seoDescription, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="twitter:image" content="<?php echo htmlspecialchars($ogImageUrl, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="twitter:image:alt" content="Preview IniJasa - Platform Manajemen Bisnis Jasa">
+    <!-- TODO(SEO): Ganti ke handle X/Twitter resmi. Hapus 2 tag ini bila tidak punya akun X. -->
+    <meta name="twitter:site" content="@inijasa">
+    <meta name="twitter:creator" content="@inijasa">
     
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -31,6 +183,19 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <link rel="stylesheet" href="assets/css/landing.css">
+
+    <script type="application/ld+json">
+        <?php echo json_encode($organizationSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?>
+    </script>
+    <script type="application/ld+json">
+        <?php echo json_encode($websiteSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?>
+    </script>
+    <script type="application/ld+json">
+        <?php echo json_encode($webpageSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?>
+    </script>
+    <script type="application/ld+json">
+        <?php echo json_encode($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?>
+    </script>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100">
     
@@ -487,7 +652,7 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </div>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-muted border-top border-light-subtle pt-4 mt-5">
-                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> IniJasa. All Rights Reserved.</p>
+                <p class="mb-3 mb-md-0 small fw-medium">&copy; <?php echo date('Y'); ?> IniJasa by Faydev. All Rights Reserved.</p>
                 <div class="d-flex gap-4 small fw-medium">
                     <a href="terms" class="text-decoration-none text-muted footer-link">Terms</a>
                     <a href="privacy" class="text-decoration-none text-muted footer-link">Privacy</a>
